@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://kwuqmy031qay"]
+
+[ext_resource type="Script" uid="uid://b4t7olajsbfi6" path="res://scripts/projectile.gd" id="1_6ismf"]
+[ext_resource type="Texture2D" uid="uid://deda0j080xf6d" path="res://assets/entities/pea.png" id="2_11xev"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_up6r6"]
+radius = 14.0
+
+[node name="Pea" type="Area2D" unique_id=1922186180]
+script = ExtResource("1_6ismf")
+damage = 1.0
+speed = 125.0
+metadata/_custom_type_script = "uid://b4t7olajsbfi6"
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1123473471]
+position = Vector2(-5, 1)
+texture = ExtResource("2_11xev")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=18206893]
+position = Vector2(1, -1)
+shape = SubResource("CircleShape2D_up6r6")

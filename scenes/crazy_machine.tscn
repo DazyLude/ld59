@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://dcvrbn1gt3hbj"]
+
+[ext_resource type="Script" uid="uid://c1i6vcd7bon7k" path="res://scenes/crazy_machine.gd" id="1_dsqke"]
+[ext_resource type="Script" uid="uid://b2janmkq80v05" path="res://scripts/module_grid.gd" id="1_ekpws"]
+
+[node name="CrazyMachine" type="Node2D" unique_id=939583606]
+script = ExtResource("1_dsqke")
+
+[node name="ModuleGrid" type="Node2D" parent="." unique_id=1588032900]
+script = ExtResource("1_ekpws")
+metadata/_custom_type_script = "uid://b2janmkq80v05"

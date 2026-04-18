@@ -14,6 +14,16 @@ config/name="brobo"
 config/features=PackedStringArray("4.6", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[autoload]
+
+GameState="*uid://senjvj82beky"
+
+[layer_names]
+
+2d_render/layer_1="mouse"
+2d_render/layer_2="projectile"
+2d_render/layer_3="module"
+
 [physics]
 
 3d/physics_engine="Jolt Physics"

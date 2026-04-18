@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://cp88wnb4h4ebe"]
+
+[ext_resource type="Script" uid="uid://ccviddsk7a45" path="res://scenes/modules/peashooter.gd" id="1_3pp2g"]
+[ext_resource type="Texture2D" uid="uid://digu20xntsr80" path="res://assets/module_visuals/peashooter.png" id="2_57vxb"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_128xt"]
+size = Vector2(128, 128)
+
+[node name="Peashooter" type="Node2D" unique_id=846544340]
+script = ExtResource("1_3pp2g")
+inputs = Array[Vector2i]([Vector2i(-1, 0)])
+metadata/_custom_type_script = "uid://dfdqpbud8104i"
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1101215429]
+texture = ExtResource("2_57vxb")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1485143772]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1587158164]
+shape = SubResource("RectangleShape2D_128xt")
+
+[node name="OutPosition" type="Marker2D" parent="." unique_id=186441712]
+position = Vector2(32, 4)
