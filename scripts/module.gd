@@ -20,7 +20,6 @@ signal destroyed;
 		return description
 
 var current_hp : float = 100.0;
-var style : StyleBoxFlat = null;
 
 @export var hitbox : Area2D = null:
 	set(v):
@@ -35,7 +34,7 @@ var style : StyleBoxFlat = null;
 func _ready() -> void:
 	if hitbox != null:
 		connect_hitbox(hitbox);
-	
+		
 	if hp_bar == null:
 		create_hp_bar();
 
@@ -76,9 +75,10 @@ func receive_damage(damage: float) -> void:
 	current_hp -= damage;
 	spawn_notification("-%d(/%d)" % [damage, current_hp], 0.5);
 	
-	hp_bar.visible = true;
-	hp_bar.value = current_hp;
-	hp_bar.get_theme_stylebox("fill").bg_color = Color.RED.lerp(Color.GREEN, current_hp / max_hp);
+	if hp_bar:
+		hp_bar.visible = true;
+		hp_bar.value = current_hp;
+		hp_bar.get_theme_stylebox("fill").bg_color = Color.RED.lerp(Color.GREEN, current_hp / max_hp);
 	
 	if current_hp <= 0:
 		destroyed.emit();
