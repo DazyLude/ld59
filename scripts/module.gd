@@ -35,8 +35,9 @@ var style : StyleBoxFlat = null;
 func _ready() -> void:
 	if hitbox != null:
 		connect_hitbox(hitbox);
-		
-	create_hp_bar();
+	
+	if hp_bar == null:
+		create_hp_bar();
 
 
 func _physics_process(_delta: float) -> void:
