@@ -70,10 +70,6 @@ var reversed : bool = false;
 func _ready() -> void:
 	super._ready();
 	update_type_visuals();
-	
-	if hp_bar:
-		hp_bar.scale = Vector2(0.66, 0.66);
-		hp_bar.position += Vector2(22, -22);
 
 
 func _physics_process(delta: float) -> void:
@@ -187,6 +183,10 @@ func point_right() -> void:
 func set_scale_modifier(scale_modifier: float) -> void:
 	$TubeConnectors.scale = Vector2(scale_modifier, scale_modifier);
 	$TubeBody.scale = Vector2(scale_modifier, scale_modifier);
+	
+	if hp_bar:
+		hp_bar.scale = Vector2(scale_modifier, scale_modifier);
+		hp_bar.position += Vector2(ceil(scale_modifier * 32), -ceil(scale_modifier * 32));
 
 
 func get_data() -> Dictionary:
