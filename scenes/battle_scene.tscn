@@ -1,6 +1,14 @@
 [gd_scene format=3 uid="uid://b1hdqegky5p3a"]
 
 [ext_resource type="Script" uid="uid://buucuse0ejwjt" path="res://scenes/battle_scene.gd" id="1_idkgt"]
+[ext_resource type="Texture2D" uid="uid://c6ah7tvh6hcu" path="res://assets/backgrounds/fon1.png" id="2_kinr6"]
 
 [node name="BattleScene" type="Node2D" unique_id=1907799236]
 script = ExtResource("1_idkgt")
+
+[node name="Fon1" type="Sprite2D" parent="." unique_id=2113337638]
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("2_kinr6")
+centered = false
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=531767384]

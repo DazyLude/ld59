@@ -106,7 +106,7 @@ func receive_input(orb: Orb) -> void:
 
 func release_frontmost_orb() -> void:
 	var orb : Orb = holding_orbs.pop_back();
-	spawn_output.emit(orb);
+	spawn_output.emit(orb, 0);
 	
 	per_orb_progress.pop_back();
 	var node : OrbRenderer = orb_nodes.pop_back();
@@ -140,13 +140,14 @@ func update_orb_position(node: OrbRenderer, progress: float) -> void:
 	if type == -1:
 		return;
 	
-	if reversed:
-		progress = 1.0 - progress;
+	var rev_mult := Vector2(-1.0, 1.0) if reversed else Vector2(1.0, 1.0);
 	
 	if progress < 0.5:
-		node.position = lerp(Vector2(inputs[0]) * pos_mult, Vector2(), progress * 2.0)
+		var start := Vector2(inputs[0]) * pos_mult * rev_mult * GameState.gameplay_scale;
+		node.position = lerp(start, Vector2(), progress * 2.0)
 	else:
-		node.position = lerp(Vector2(), Vector2(outputs[0]) * pos_mult, progress * 2.0 - 1.0)
+		var end := Vector2(outputs[0]) * pos_mult * rev_mult * GameState.gameplay_scale;
+		node.position = lerp(Vector2(), end, progress * 2.0 - 1.0)
 
 
 func update_type_visuals() -> void:
@@ -170,3 +171,20 @@ func point_left() -> void:
 
 func point_right() -> void:
 	reversed = false;
+
+
+func set_scale_modifier(scale_modifier: float) -> void:
+	$TubeConnectors.scale = Vector2(scale_modifier, scale_modifier);
+	$TubeBody.scale = Vector2(scale_modifier, scale_modifier);
+
+
+func get_data() -> Dictionary:
+	return {
+		"t": type,
+		"r": reversed,
+	}
+
+
+func apply_data(d: Dictionary) -> void:
+	type = d.t;
+	reversed = d.r;

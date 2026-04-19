@@ -1,21 +1,33 @@
 extends Module
 
 
+@export var pea_output : Marker2D;
+
+
 func can_receive_input(_orb: Orb) -> bool:
 	return true
 
 
 func receive_input(_orb: Orb) -> void:
-	var pea := preload("res://scenes/entities/pea.tscn").instantiate();
-	pea.position = $OutPosition.position;
-	GameState.shoot_projectile(pea, self);
+	var target : Vector2i = owner.owner.targeting_strategy;
+	var target_global_coords = GameState.get_other_grid_location(self, target);
+	var angle = pea_output.global_position.angle_to_point(target_global_coords);
+	#$Body.rotation = angle;
+	
+	var pea : Projectile = preload("res://scenes/entities/pea.tscn").instantiate();
+	pea.position = pea_output.position.rotated($Body.rotation);
+	pea.direction = Vector2(1.0, 0.0).rotated(angle);
+	
+	GameState.shoot_projectile(pea, self, to_global(pea.position));
 
 
 func point_left() -> void:
-	$Sprite2D.flip_h = true;
-	$OutPosition.position = ($OutPosition.position as Vector2).abs() * Vector2(-1.0, 1.0);
+	$Base.flip_h = true;
+	$Body.flip_h = true;
+	pea_output.position = (pea_output.position as Vector2).abs() * Vector2(-1.0, 1.0);
 
 
 func point_right() -> void:
-	$Sprite2D.flip_h = false;
-	$OutPosition.position = ($OutPosition.position as Vector2).abs() * Vector2(1.0, 1.0);
+	$Base.flip_h = false;
+	$Body.flip_h = false;
+	pea_output.position = (pea_output.position as Vector2).abs() * Vector2(1.0, 1.0);

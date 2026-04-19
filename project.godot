@@ -17,6 +17,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 GameState="*uid://senjvj82beky"
+ModuleLibrary="*uid://dcunk2lhkosb6"
 
 [layer_names]
 

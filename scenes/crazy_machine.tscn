@@ -2,9 +2,27 @@
 
 [ext_resource type="Script" uid="uid://c1i6vcd7bon7k" path="res://scenes/crazy_machine.gd" id="1_dsqke"]
 [ext_resource type="Script" uid="uid://b2janmkq80v05" path="res://scripts/module_grid.gd" id="1_ekpws"]
+[ext_resource type="Script" uid="uid://2sqa1sbe6dxc" path="res://scenes/protag_body.gd" id="3_usc6g"]
+[ext_resource type="Texture2D" uid="uid://bwlaq8ub3bb4c" path="res://assets/robots/protag/leg2.png" id="4_v1i6n"]
+[ext_resource type="Texture2D" uid="uid://boiw8ekccqq33" path="res://assets/robots/protag/body.png" id="5_stmj0"]
+[ext_resource type="Texture2D" uid="uid://c0pqxei7irti7" path="res://assets/robots/protag/leg1.png" id="6_bbt2m"]
 
-[node name="CrazyMachine" type="Node2D" unique_id=939583606]
+[node name="CrazyMachine" type="Node2D" unique_id=939583606 node_paths=PackedStringArray("grid", "body")]
 script = ExtResource("1_dsqke")
+grid = NodePath("ModuleGrid")
+body = NodePath("Body")
+
+[node name="Body" type="Node2D" parent="." unique_id=121952577]
+script = ExtResource("3_usc6g")
+
+[node name="BackLegSprite" type="Sprite2D" parent="Body" unique_id=423319062]
+texture = ExtResource("4_v1i6n")
+
+[node name="BodySprite" type="Sprite2D" parent="Body" unique_id=1278980478]
+texture = ExtResource("5_stmj0")
+
+[node name="LegSprite" type="Sprite2D" parent="Body" unique_id=369279111]
+texture = ExtResource("6_bbt2m")
 
 [node name="ModuleGrid" type="Node2D" parent="." unique_id=1588032900]
 script = ExtResource("1_ekpws")

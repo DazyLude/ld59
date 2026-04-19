@@ -20,7 +20,7 @@ func grid_position_to_scene_position(grid: Vector2i) -> Vector2:
 	if reversed:
 		grid *= Vector2i(-1.0, 1.0);
 	
-	return Vector2(grid) * CELL_SIZE - CELL_SIZE / 2
+	return (Vector2(grid) * CELL_SIZE - CELL_SIZE / 2) * GameState.gameplay_scale;
 
 
 func get_module_at(at: Vector2i) -> Module:
@@ -32,7 +32,7 @@ func can_add_module(at: Vector2i, module: Module) -> bool:
 
 
 func add_module(at: Vector2i, module: Module) -> void:
-	module.spawn_output.connect(poll_outputs.bind(module));
+	module.spawn_output.connect(handle_output.bind(module));
 	module.position = grid_position_to_scene_position(at);
 	
 	modules[module] = at;
@@ -42,6 +42,15 @@ func add_module(at: Vector2i, module: Module) -> void:
 		module.point_left();
 	else:
 		module.point_right();
+	
+	module.set_scale_modifier(GameState.gameplay_scale);
+
+
+func handle_output(orb: Orb, output_idx: int, module: Module) -> void:
+	if output_idx == -1:
+		poll_outputs(orb, module);
+	else:
+		request_output(orb, output_idx, module);
 
 
 func poll_outputs(orb: Orb, module: Module) -> void:
@@ -62,6 +71,30 @@ func poll_outputs(orb: Orb, module: Module) -> void:
 		return;
 	
 	spawn_homeless_orb(orb, grid_position_to_scene_position(module_position));
+
+
+func request_output(orb: Orb, output_idx: int, module: Module) -> void:
+	var module_position := modules[module];
+	if output_idx < 0 or output_idx >= module.outputs.size():
+		push_error("wrong output index in module %s" % module.module_name)
+		return;
+	
+	var output := module.outputs[output_idx];
+	var output_position := module_position + output;
+	
+	var receiver := get_module_at(output_position);
+	
+	if receiver == null:
+		spawn_homeless_orb(orb, grid_position_to_scene_position(module_position));
+		return;
+	if not receiver.inputs.has(- output):
+		spawn_homeless_orb(orb, grid_position_to_scene_position(module_position));
+		return;
+	if receiver.can_receive_input(orb) == false:
+		spawn_homeless_orb(orb, grid_position_to_scene_position(module_position));
+		return;
+	
+	receiver.receive_input(orb);
 
 
 func remove_module(module: Module) -> void:

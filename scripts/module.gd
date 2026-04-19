@@ -2,7 +2,7 @@ extends Node2D
 class_name Module
 
 
-signal spawn_output(output: Orb);
+signal spawn_output(output: Orb, idx: int);
 signal destroyed;
 
 
@@ -10,6 +10,13 @@ signal destroyed;
 @export var outputs : Array[Vector2i] = [];
 @export var inputs : Array[Vector2i] = [];
 
+@export_category("tooltips and bookkeeping")
+@export var module_name : String = "";
+@export_placeholder("{name}_desc") var description : String = "":
+	get:
+		if description == "" and module_name != "":
+			return "%s_desc" % module_name;
+		return description
 
 var current_hp : float = 100.0;
 
@@ -65,6 +72,10 @@ func point_right() -> void:
 	pass;
 
 
+func set_scale_modifier(scale_modifier: float) -> void:
+	scale = Vector2(scale_modifier, scale_modifier);
+
+
 func spawn_notification(text: String, lifetime: float) -> void:
 	var tween := create_tween();
 	
@@ -78,3 +89,11 @@ func spawn_notification(text: String, lifetime: float) -> void:
 	add_child(noto);
 	tween.tween_property(noto, ^"position", starting_position + speed * lifetime, lifetime);
 	tween.tween_callback(noto.queue_free);
+
+
+func get_data() -> Dictionary:
+	return {};
+
+
+func apply_data(_d: Dictionary) -> void:
+	pass;

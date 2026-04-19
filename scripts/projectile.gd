@@ -5,6 +5,7 @@ class_name Projectile
 @export var damage : float;
 @export var speed : float;
 var direction : Vector2;
+var shooter : Node;
 
 
 func _ready() -> void:
@@ -12,7 +13,7 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
-	self.position += speed * direction * delta;
+	self.position += speed * direction * delta * GameState.gameplay_scale;
 	if not GameState.bounds.has_point(self.position):
 		queue_free();
 
@@ -21,7 +22,7 @@ func check_module_collision(another_area: Area2D) -> void:
 	if another_area.owner != null \
 		and not another_area is Projectile \
 		and another_area.owner is Module \
-		and another_area.owner.owner != self.owner.owner:
+		and another_area.owner.owner != shooter.owner:
 			var colidee : Module = another_area.owner;
 			colidee.receive_damage(damage)
 			_on_contact();

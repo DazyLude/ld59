@@ -9,6 +9,7 @@ size = Vector2(128, 128)
 [node name="Generator" type="Node2D" unique_id=817523074 node_paths=PackedStringArray("hitbox")]
 script = ExtResource("1_nlbnv")
 outputs = Array[Vector2i]([Vector2i(1, 0), Vector2i(0, 1), Vector2i(-1, 0), Vector2i(0, -1)])
+module_name = "generator"
 hitbox = NodePath("Area2D")
 metadata/_custom_type_script = "uid://dfdqpbud8104i"
 

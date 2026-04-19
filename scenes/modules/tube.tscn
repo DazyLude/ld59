@@ -16,10 +16,7 @@ region = Rect2(0, 128, 128, 128)
 
 [node name="Tube" type="Node2D" unique_id=1167208698]
 script = ExtResource("1_ij1ss")
-type = null
-max_hp = null
-outputs = null
-inputs = null
+module_name = "tube"
 metadata/_custom_type_script = "uid://dfdqpbud8104i"
 
 [node name="TubeConnectors" type="Sprite2D" parent="." unique_id=575974076]

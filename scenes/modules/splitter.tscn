@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://bguktv5kofjbj"]
+
+[ext_resource type="Script" uid="uid://3xcmx7mgkqoo" path="res://scenes/modules/splitter.gd" id="1_agfky"]
+[ext_resource type="Texture2D" uid="uid://c4tmoalytf4gf" path="res://assets/module_visuals/tubes.png" id="2_thp8s"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mfkkb"]
+atlas = ExtResource("2_thp8s")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ug5i1"]
+load_path = "res://.godot/imported/tubes.png-e6e33db2bb620c4d108ad91dba2aae28.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_737cw"]
+atlas = SubResource("CompressedTexture2D_ug5i1")
+region = Rect2(0, 128, 128, 128)
+
+[node name="Splitter" type="Node2D" unique_id=1167208698]
+script = ExtResource("1_agfky")
+module_name = "splitter"
+metadata/_custom_type_script = "uid://dfdqpbud8104i"
+
+[node name="TubeConnectors" type="Sprite2D" parent="." unique_id=575974076]
+texture = SubResource("AtlasTexture_mfkkb")
+
+[node name="TubeBody" type="Sprite2D" parent="." unique_id=2021343729]
+texture = SubResource("AtlasTexture_737cw")
