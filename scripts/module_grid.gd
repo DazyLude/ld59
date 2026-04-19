@@ -23,20 +23,28 @@ func grid_position_to_scene_position(grid: Vector2i) -> Vector2:
 	return (Vector2(grid) * CELL_SIZE - CELL_SIZE / 2) * GameState.gameplay_scale;
 
 
+func scene_position_to_grid_position(pos: Vector2) -> Vector2i:
+	if reversed:
+		pos *= Vector2(-1.0, 1.0);
+	
+	return (((pos / GameState.gameplay_scale) + CELL_SIZE / 2) / CELL_SIZE).round();
+
+
 func get_module_at(at: Vector2i) -> Module:
 	return modules.find_key(at);
 
 
-func can_add_module(at: Vector2i, module: Module) -> bool:
-	return false;
+func can_add_module(at: Vector2i, _module: Module) -> bool:
+	return modules.find_key(at) == null;
 
 
 func add_module(at: Vector2i, module: Module) -> void:
 	module.spawn_output.connect(handle_output.bind(module));
 	module.position = grid_position_to_scene_position(at);
-	
 	modules[module] = at;
+	
 	add_child(module);
+	
 	module.owner = self;
 	if reversed:
 		module.point_left();
@@ -98,11 +106,14 @@ func request_output(orb: Orb, output_idx: int, module: Module) -> void:
 
 
 func remove_module(module: Module) -> void:
-	pass;
+	remove_child(module);
+	modules.erase(module);
+	module.queue_free();
 
 
 func move_module(from: Vector2i, to: Vector2i, module: Module) -> void:
-	pass;
+	module.position = grid_position_to_scene_position(to);
+	modules[module] = to;
 
 
 func spawn_homeless_orb(orb: Orb, at: Vector2) -> void:

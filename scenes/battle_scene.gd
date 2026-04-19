@@ -2,6 +2,8 @@ extends Node2D
 
 
 func _ready() -> void:
+	GameState.is_editing = false;
+	
 	var machine_pckd = preload("res://scenes/crazy_machine.tscn");
 	
 	var machine1 : Machine = machine_pckd.instantiate()

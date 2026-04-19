@@ -4,6 +4,7 @@ class_name _GameStateClass
 
 const bounds := Rect2(-1000.0, -1000.0, 2000.0, 2000.0);
 
+var is_editing : bool = false; 
 
 var machines : Array[Machine] = [];
 var machine_right : Machine = null;

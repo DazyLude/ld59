@@ -9,6 +9,9 @@ func can_receive_input(_orb: Orb) -> bool:
 
 
 func receive_input(_orb: Orb) -> void:
+	if GameState.is_editing:
+		return;
+	
 	var target : Vector2i = owner.owner.targeting_strategy;
 	var target_global_coords = GameState.get_other_grid_location(self, target);
 	var angle = pea_output.global_position.angle_to_point(target_global_coords);

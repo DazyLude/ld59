@@ -9,6 +9,7 @@ signal destroyed;
 @export var max_hp : float = 100.0;
 @export var outputs : Array[Vector2i] = [];
 @export var inputs : Array[Vector2i] = [];
+@export var icon : Texture2D;
 
 @export_category("tooltips and bookkeeping")
 @export var module_name : String = "";
@@ -17,6 +18,7 @@ signal destroyed;
 		if description == "" and module_name != "":
 			return "%s_desc" % module_name;
 		return description
+
 
 var current_hp : float = 100.0;
 
@@ -34,6 +36,13 @@ var current_hp : float = 100.0;
 func _ready() -> void:
 	if hitbox != null:
 		connect_hitbox(hitbox);
+	
+	if icon == null:
+		var textures := get_children().filter(func(c): return c is Sprite2D).map(func(s): return s.texture)
+		if textures.size() == 1:
+			icon = textures[0];
+		elif textures.size() > 1:
+			icon = textures[0];
 
 
 func _physics_process(_delta: float) -> void:
@@ -92,8 +101,28 @@ func spawn_notification(text: String, lifetime: float) -> void:
 
 
 func get_data() -> Dictionary:
+	if current_hp <= max_hp:
+		return {"hp" : current_hp}
 	return {};
 
 
-func apply_data(_d: Dictionary) -> void:
-	pass;
+func apply_data(d: Dictionary) -> void:
+	if d.is_empty():
+		return;
+	
+	if d.has("hp"):
+		current_hp = d.hp;
+
+
+func make_copy() -> Module:
+	var module := ModuleLibrary.get_module(module_name);
+	module.apply_data(get_data());
+	return module;
+
+
+func turn_shadow() -> void:
+	modulate = Color(1.0, 1.0, 1.0, 0.5);
+
+
+func turn_normal() -> void:
+	modulate = Color(1.0, 1.0, 1.0, 1.0);
