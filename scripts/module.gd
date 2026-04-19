@@ -9,6 +9,7 @@ signal destroyed;
 @export var max_hp : float = 100.0;
 @export var outputs : Array[Vector2i] = [];
 @export var inputs : Array[Vector2i] = [];
+@export var sprite : Sprite2D = Sprite2D.new();
 
 
 var current_hp : float = 100.0;

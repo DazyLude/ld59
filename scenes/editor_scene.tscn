@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://dk5ujxem7v14q"]
+
+[ext_resource type="Script" uid="uid://siy4gglap8pw" path="res://scenes/editor_scene.gd" id="1_f2nr1"]
+
+[node name="EditorScene" type="Node2D" unique_id=1986058424]
+script = ExtResource("1_f2nr1")
+
+[node name="CurrentMachine" type="Node2D" parent="." unique_id=2110012059]
+
+[node name="ScrollContainer" type="ScrollContainer" parent="." unique_id=1812586242]
+size_flags_horizontal = 3
+
+[node name="Inventory" type="GridContainer" parent="ScrollContainer" unique_id=332823569]
+layout_mode = 2
