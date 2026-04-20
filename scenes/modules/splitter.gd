@@ -5,28 +5,26 @@ const n := Vector2i( 0.0, -1.0);
 const e := Vector2i( 1.0,  0.0);
 const w := Vector2i(-1.0,  0.0);
 const s := Vector2i( 0.0,  1.0);
-const pos_mult := Vector2(64.0, 64.0);
+const pos_mult := Vector2(48.0, 48.0);
 
 const rot_inputs : Array[Vector2i] = [
 	w, n, e, s
 ]
 
 const type_rot_outputs : Array[Array] = [
-	[n, s], [s, e], [n, e, s], # rot0
-	[e, w], [w, s], [e, s, w], # rot1
-	[n, s], [n, w], [s, w, n], # rot2
-	[e, w], [e, n], [w, n, e], # rot3
+	[n, s], [s, e], [n, e], [n, e, s], # rot0
+	[e, w], [w, s], [e, s], [e, s, w], # rot1
+	[s, n], [n, w], [s, w], [s, w, n], # rot2
+	[w, e], [e, n], [w, n], [w, n, e], # rot3
 ]
 
 const texture_atlas_position_type_mapping = [
-	Vector2(0, 128 * 1), Vector2(0, 128 * 1), # 11
-	Vector2(0, 128 * 2), Vector2(0, 128 * 2), # 22
-	Vector2(0, 128 * 3), Vector2(0, 128 * 4), # 34
-	Vector2(0, 128 * 5), Vector2(0, 128 * 6), # 56
-	Vector2(0, 128 * 4), Vector2(0, 128 * 6), # 46
-	Vector2(0, 128 * 3), Vector2(0, 128 * 5), # 35
+	tas * Vector2(1, 5), tas * Vector2(3, 7), tas * Vector2(2, 7), tas * Vector2(1, 12), # rot0
+	tas * Vector2(2, 5), tas * Vector2(1, 7), tas * Vector2(0, 7), tas * Vector2(3, 12), # rot1
+	tas * Vector2(3, 5), tas * Vector2(2, 6), tas * Vector2(3, 6), tas * Vector2(0, 12), # rot2
+	tas * Vector2(0, 5), tas * Vector2(0, 6), tas * Vector2(1, 6), tas * Vector2(2, 12), # rot3
 ]
-const texture_atlas_size = Vector2(128, 128);
+const tas = Vector2(64, 64);
 
 
 var rot : int = 0:
@@ -39,10 +37,13 @@ var rot : int = 0:
 
 @export_enum(
 	"none:-1",
-	"t:0", "t-side:1", "+:2",
+	"t:0",
+	"t-side-cw:1",
+	"t-side-ccw:1",
+	"+:2",
 ) var type : int = -1 :
 	set(v):
-		if v < -1 or v >= 3:
+		if v < -1 or v >= 4:
 			push_error("wrong splitter type");
 			return;
 		type = v;
@@ -85,7 +86,7 @@ func _physics_process(delta: float) -> void:
 func update_inputs_outputs() -> void:
 	if type != -1:
 		inputs = [rot_inputs[rot]];
-		outputs = Array(type_rot_outputs[type + rot * 3], TYPE_VECTOR2I, &'', null);
+		outputs = Array(type_rot_outputs[type + rot * 4], TYPE_VECTOR2I, &'', null);
 	else:
 		inputs = []
 		outputs = []
@@ -159,17 +160,16 @@ func update_orb_position(orb_idx: int, progress: float) -> void:
 
 func update_type_visuals() -> void:
 	if type == -1:
-		$TubeConnectors.hide();
 		$TubeBody.hide();
 		return;
 	
-	$TubeConnectors.show();
 	$TubeBody.show();
 	
 	($TubeBody.texture as AtlasTexture).region = Rect2(
-		texture_atlas_position_type_mapping[type],
-		texture_atlas_size
+		texture_atlas_position_type_mapping[type + rot * 4],
+		tas
 	);
+	icon = $TubeBody.texture
 
 
 func point_left() -> void:
@@ -178,11 +178,6 @@ func point_left() -> void:
 
 func point_right() -> void:
 	reversed = false;
-
-
-func set_scale_modifier(scale_modifier: float) -> void:
-	$TubeConnectors.scale = Vector2(scale_modifier, scale_modifier);
-	$TubeBody.scale = Vector2(scale_modifier, scale_modifier);
 
 
 func get_data() -> Dictionary:

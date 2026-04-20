@@ -1,21 +1,30 @@
 [gd_scene format=3 uid="uid://bhk50qk1qid0g"]
 
 [ext_resource type="Script" uid="uid://dfdqpbud8104i" path="res://scripts/module.gd" id="1_d7amf"]
-[ext_resource type="Texture2D" uid="uid://q3wmaqf3bkt5" path="res://assets/module_visuals/armor.png" id="2_d7amf"]
+[ext_resource type="Texture2D" uid="uid://41pta6ojygjs" path="res://assets/module_visuals/spritess.png" id="2_d7amf"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_44xy1"]
+atlas = ExtResource("2_d7amf")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wpt5u"]
+atlas = ExtResource("2_d7amf")
+region = Rect2(64, 0, 64, 64)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1kww0"]
-size = Vector2(134, 318)
+size = Vector2(64, 64)
 
-[node name="Armor" type="Node2D" unique_id=817523074]
+[node name="Armor" type="Node2D" unique_id=817523074 node_paths=PackedStringArray("hitbox")]
 script = ExtResource("1_d7amf")
+icon = SubResource("AtlasTexture_44xy1")
 module_name = "armor"
+hitbox = NodePath("Area2D")
 metadata/_custom_type_script = "uid://dfdqpbud8104i"
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1199102708]
-texture = ExtResource("2_d7amf")
+texture = SubResource("AtlasTexture_wpt5u")
 
 [node name="Area2D" type="Area2D" parent="." unique_id=1252680025]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1018253168]
-position = Vector2(7, 10)
 shape = SubResource("RectangleShape2D_1kww0")

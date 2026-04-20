@@ -1,26 +1,32 @@
 [gd_scene format=3 uid="uid://bguktv5kofjbj"]
 
 [ext_resource type="Script" uid="uid://3xcmx7mgkqoo" path="res://scenes/modules/splitter.gd" id="1_agfky"]
-[ext_resource type="Texture2D" uid="uid://c4tmoalytf4gf" path="res://assets/module_visuals/tubes.png" id="2_thp8s"]
+[ext_resource type="Texture2D" uid="uid://41pta6ojygjs" path="res://assets/module_visuals/spritess.png" id="2_agfky"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_mfkkb"]
-atlas = ExtResource("2_thp8s")
-region = Rect2(0, 0, 128, 128)
+[sub_resource type="AtlasTexture" id="AtlasTexture_thp8s"]
+atlas = ExtResource("2_agfky")
+region = Rect2(128, 320, 64, 64)
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ug5i1"]
-load_path = "res://.godot/imported/tubes.png-e6e33db2bb620c4d108ad91dba2aae28.ctex"
+[sub_resource type="AtlasTexture" id="AtlasTexture_72j2s"]
+resource_local_to_scene = true
+atlas = ExtResource("2_agfky")
+region = Rect2(128, 320, 64, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_737cw"]
-atlas = SubResource("CompressedTexture2D_ug5i1")
-region = Rect2(0, 128, 128, 128)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_agfky"]
+size = Vector2(64, 64)
 
-[node name="Splitter" type="Node2D" unique_id=1167208698]
+[node name="Splitter" type="Node2D" unique_id=1167208698 node_paths=PackedStringArray("hitbox")]
 script = ExtResource("1_agfky")
+icon = SubResource("AtlasTexture_thp8s")
 module_name = "splitter"
+hitbox = NodePath("Area2D")
 metadata/_custom_type_script = "uid://dfdqpbud8104i"
 
-[node name="TubeConnectors" type="Sprite2D" parent="." unique_id=575974076]
-texture = SubResource("AtlasTexture_mfkkb")
-
 [node name="TubeBody" type="Sprite2D" parent="." unique_id=2021343729]
-texture = SubResource("AtlasTexture_737cw")
+texture = SubResource("AtlasTexture_72j2s")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=357843830]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=2066575242]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_agfky")

@@ -1,21 +1,30 @@
 [gd_scene format=3 uid="uid://dd2i71q0gv5kx"]
 
 [ext_resource type="Script" uid="uid://dfdqpbud8104i" path="res://scripts/module.gd" id="1_qt23w"]
-[ext_resource type="Texture2D" uid="uid://de08dvvkuu7v8" path="res://assets/module_visuals/barrier.png" id="2_qt23w"]
+[ext_resource type="Texture2D" uid="uid://41pta6ojygjs" path="res://assets/module_visuals/spritess.png" id="2_qt23w"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vt7gu"]
+atlas = ExtResource("2_qt23w")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wq7eq"]
+atlas = ExtResource("2_qt23w")
+region = Rect2(192, 0, 64, 64)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1kww0"]
-size = Vector2(134, 128)
+size = Vector2(64, 64)
 
-[node name="Barrier" type="Node2D" unique_id=817523074]
+[node name="Barrier" type="Node2D" unique_id=817523074 node_paths=PackedStringArray("hitbox")]
 script = ExtResource("1_qt23w")
+icon = SubResource("AtlasTexture_vt7gu")
 module_name = "barrier"
+hitbox = NodePath("Area2D")
 metadata/_custom_type_script = "uid://dfdqpbud8104i"
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1199102708]
-texture = ExtResource("2_qt23w")
+texture = SubResource("AtlasTexture_wq7eq")
 
 [node name="Area2D" type="Area2D" parent="." unique_id=1252680025]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1018253168]
-position = Vector2(0, 5)
 shape = SubResource("RectangleShape2D_1kww0")

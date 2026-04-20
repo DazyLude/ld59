@@ -2,7 +2,9 @@ extends Node2D
 class_name ModuleGrid
 
 
-const CELL_SIZE := Vector2(128.0, 128.0);
+const CELL_SIZE := Vector2(64.0, 64.0);
+const GRID_OFFSET := Vector2();
+
 var reversed : bool = false :
 	set(v):
 		reversed = v;
@@ -20,14 +22,14 @@ func grid_position_to_scene_position(grid: Vector2i) -> Vector2:
 	if reversed:
 		grid *= Vector2i(-1.0, 1.0);
 	
-	return (Vector2(grid) * CELL_SIZE - CELL_SIZE / 2) * GameState.gameplay_scale;
+	return (Vector2(grid) * CELL_SIZE - GRID_OFFSET) * GameState.gameplay_scale;
 
 
 func scene_position_to_grid_position(pos: Vector2) -> Vector2i:
 	if reversed:
 		pos *= Vector2(-1.0, 1.0);
 	
-	return (((pos / GameState.gameplay_scale) + CELL_SIZE / 2) / CELL_SIZE).round();
+	return (((pos / GameState.gameplay_scale) + GRID_OFFSET) / CELL_SIZE).round();
 
 
 func get_module_at(at: Vector2i) -> Module:
@@ -35,6 +37,9 @@ func get_module_at(at: Vector2i) -> Module:
 
 
 func can_add_module(at: Vector2i, _module: Module) -> bool:
+	if abs(at.x) > 3 or abs(at.y) > 3:
+		return false;
+	
 	return modules.find_key(at) == null;
 
 

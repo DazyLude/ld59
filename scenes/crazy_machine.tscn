@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://bwlaq8ub3bb4c" path="res://assets/robots/protag/leg2.png" id="4_v1i6n"]
 [ext_resource type="Texture2D" uid="uid://boiw8ekccqq33" path="res://assets/robots/protag/body.png" id="5_stmj0"]
 [ext_resource type="Texture2D" uid="uid://c0pqxei7irti7" path="res://assets/robots/protag/leg1.png" id="6_bbt2m"]
+[ext_resource type="Texture2D" uid="uid://dxs70q6mag8lr" path="res://assets/module_visuals/GRID.png" id="7_v1i6n"]
 
 [node name="CrazyMachine" type="Node2D" unique_id=939583606 node_paths=PackedStringArray("grid", "body")]
 script = ExtResource("1_dsqke")
@@ -25,5 +26,9 @@ texture = ExtResource("5_stmj0")
 texture = ExtResource("6_bbt2m")
 
 [node name="ModuleGrid" type="Node2D" parent="." unique_id=1588032900]
+position = Vector2(77, -29)
 script = ExtResource("1_ekpws")
 metadata/_custom_type_script = "uid://b2janmkq80v05"
+
+[node name="Sprite2D" type="Sprite2D" parent="ModuleGrid" unique_id=412761568]
+texture = ExtResource("7_v1i6n")

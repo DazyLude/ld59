@@ -2,6 +2,7 @@ extends Node2D
 class_name Machine
 
 
+var default_grid_position := Vector2();
 @export var grid : ModuleGrid;
 @export var body : Node2D;
 
@@ -15,7 +16,11 @@ var reversed : bool:
 var targeting_strategy := Vector2i(0, 0);
 
 func _ready() -> void:
-	grid.position *= GameState.gameplay_scale;
+	if default_grid_position == Vector2():
+		default_grid_position = grid.position;
+	grid.position = default_grid_position * GameState.gameplay_scale;
+	$ModuleGrid/Sprite2D.scale = Vector2(GameState.gameplay_scale, GameState.gameplay_scale);
+	
 	if body != null:
 		body.grid_ref = grid;
 	

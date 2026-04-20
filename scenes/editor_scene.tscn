@@ -2,8 +2,6 @@
 
 [ext_resource type="Script" uid="uid://d3pt6yfvdbj1t" path="res://scenes/editor_scene.gd" id="1_slmlx"]
 [ext_resource type="Texture2D" uid="uid://c6ah7tvh6hcu" path="res://assets/backgrounds/fon1.png" id="2_y86vm"]
-[ext_resource type="Texture2D" uid="uid://use881777aw3" path="res://assets/module_visuals/generator.png" id="3_1aidq"]
-[ext_resource type="PackedScene" uid="uid://cqv27m2vfagl0" path="res://scenes/scene_elements/module_select.tscn" id="3_y86vm"]
 
 [node name="EditorScene" type="Node2D" unique_id=1203965672]
 script = ExtResource("1_slmlx")
@@ -37,22 +35,3 @@ grow_vertical = 2
 [node name="GridContainer" type="GridContainer" parent="CanvasLayer/Control/ScrollContainer" unique_id=659301433]
 layout_mode = 2
 columns = 4
-
-[node name="TextureButton" parent="CanvasLayer/Control/ScrollContainer/GridContainer" unique_id=353587157 instance=ExtResource("3_y86vm")]
-layout_mode = 2
-
-[node name="TextureButton2" type="Button" parent="CanvasLayer/Control/ScrollContainer/GridContainer" unique_id=363061298]
-layout_mode = 2
-icon = ExtResource("3_1aidq")
-
-[node name="TextureButton3" type="Button" parent="CanvasLayer/Control/ScrollContainer/GridContainer" unique_id=304229993]
-layout_mode = 2
-icon = ExtResource("3_1aidq")
-
-[node name="TextureButton4" type="Button" parent="CanvasLayer/Control/ScrollContainer/GridContainer" unique_id=1200050707]
-layout_mode = 2
-icon = ExtResource("3_1aidq")
-
-[node name="TextureButton5" type="Button" parent="CanvasLayer/Control/ScrollContainer/GridContainer" unique_id=28706510]
-layout_mode = 2
-icon = ExtResource("3_1aidq")

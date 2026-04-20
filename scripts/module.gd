@@ -83,6 +83,13 @@ func point_right() -> void:
 
 func set_scale_modifier(scale_modifier: float) -> void:
 	scale = Vector2(scale_modifier, scale_modifier);
+	
+	if hitbox != null:
+		var so := hitbox.get_shape_owners();
+		if so.size() > 0:
+			var shape := hitbox.shape_owner_get_shape(so[0], 0);
+			if shape is RectangleShape2D and shape.size.x == shape.size.y:
+				shape.size = ModuleGrid.CELL_SIZE * scale_modifier;
 
 
 func spawn_notification(text: String, lifetime: float) -> void:

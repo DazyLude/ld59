@@ -107,6 +107,10 @@ func _input(event: InputEvent) -> void:
 		
 		if mb_event.button_index == MOUSE_BUTTON_RIGHT and mb_event.pressed:
 			if currently_selected != null:
+				if temporary_added != null:
+					var grid := GameState.machine_left.grid;
+					grid.remove_module(temporary_added);
+					temporary_added = null;
 				module_picked(null);
 				return;
 
@@ -146,14 +150,16 @@ func spawn_all_items() -> void:
 	for item_name in ModuleLibrary.module_packed_scenes.keys():
 		var module : Module;
 		match item_name:
-			"tube": # need to add all 12 types
-				for t in range(12):
-					module = ModuleLibrary.get_module("tube")
-					module.type = t;
-					modules_instantiated.push_back(module);
-					add_button_for_module(module, 1);
-			"splitter": # need to add all 3 types and 4 rotations
+			"tube": # need to add all 3 types and 4 rotations
 				for t in range(3):
+					for r in range(4):
+						module = ModuleLibrary.get_module("tube")
+						module.type = t;
+						module.rot = r;
+						modules_instantiated.push_back(module);
+						add_button_for_module(module, 1);
+			"splitter": # need to add all 4 types and 4 rotations
+				for t in range(4):
 					for r in range(4):
 						module = ModuleLibrary.get_module("splitter")
 						module.type = t;

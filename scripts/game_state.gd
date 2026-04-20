@@ -20,9 +20,10 @@ func add_machine(machine: Machine) -> void:
 
 
 func shoot_projectile(projectile_scene: Projectile, by: Module, global_pos: Vector2) -> void:
-	current_scene.add_child(projectile_scene);
-	projectile_scene.shooter = by;
-	projectile_scene.position = current_scene.to_local(global_pos);
+	if current_scene != null:
+		current_scene.add_child(projectile_scene);
+		projectile_scene.shooter = by;
+		projectile_scene.position = current_scene.to_local(global_pos);
 
 
 func get_other_grid_location(by: Module, cell: Vector2i) -> Vector2:
