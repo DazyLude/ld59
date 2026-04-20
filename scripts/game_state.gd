@@ -208,7 +208,7 @@ func load_new_game() -> void:
 
 
 func load_tutorial() -> void:
-	pass;
+	get_tree().change_scene_to_file.call_deferred("res://scenes/godot_slides/tutorial.tscn");
 
 
 func new_game() -> void:

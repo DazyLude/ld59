@@ -1,0 +1,430 @@
+[gd_scene format=3 uid="uid://bxsnxiwp7jwvh"]
+
+[ext_resource type="Script" uid="uid://lvwyp21jey71" path="res://scenes/godot_slides/tutorial.gd" id="1_hu88a"]
+[ext_resource type="Texture2D" uid="uid://c6ah7tvh6hcu" path="res://assets/backgrounds/fon1.png" id="2_t48lw"]
+[ext_resource type="Texture2D" uid="uid://bsca2rgera051" path="res://assets/robots/beholder/enemy4.png" id="3_suodu"]
+[ext_resource type="Texture2D" uid="uid://b3occqfuas2vh" path="res://assets/tutorial_images/editor1.png" id="4_c4ic4"]
+[ext_resource type="Texture2D" uid="uid://deksli2yufx02" path="res://assets/tutorial_images/editor2.png" id="5_enajo"]
+[ext_resource type="Texture2D" uid="uid://p7gtowvfiv0w" path="res://assets/tutorial_images/battle.png" id="6_enajo"]
+[ext_resource type="Texture2D" uid="uid://okgx2xs4vqmq" path="res://assets/tutorial_images/barrier.png" id="7_2tffy"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_c13y7"]
+
+[node name="Tutorial" type="Control" unique_id=1887370001 node_paths=PackedStringArray("slides")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_hu88a")
+slides = [NodePath("Slide1"), NodePath("Slide2"), NodePath("Slide3"), NodePath("Slide4"), NodePath("Slide5"), NodePath("Slide6"), NodePath("Slide7"), NodePath("Slide8"), NodePath("Slide9")]
+
+[node name="Slide1" type="Node2D" parent="." unique_id=1657723713]
+visible = false
+
+[node name="Sprite2D2" type="Sprite2D" parent="Slide1" unique_id=1370769448]
+scale = Vector2(0.49322912, 0.49259257)
+texture = ExtResource("2_t48lw")
+centered = false
+
+[node name="Panel" type="Panel" parent="Slide1" unique_id=1226685147]
+offset_left = 247.0
+offset_top = 96.0
+offset_right = 847.0
+offset_bottom = 296.0
+
+[node name="Label" type="Label" parent="Slide1/Panel" unique_id=1038604135]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Well met.
+I am the observer, a completely unafiliated entity within this forgotten realm.
+My goal is to guide you.
+Beep Boop.
+"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="Slide1" unique_id=1720229083]
+position = Vector2(171, 291)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("3_suodu")
+
+[node name="Slide2" type="Node2D" parent="." unique_id=779791000]
+
+[node name="Sprite2D3" type="Sprite2D" parent="Slide2" unique_id=533203328]
+scale = Vector2(0.49322912, 0.49259257)
+texture = ExtResource("2_t48lw")
+centered = false
+
+[node name="Sprite2D2" type="Sprite2D" parent="Slide2" unique_id=359414102]
+position = Vector2(351.99997, 79)
+scale = Vector2(0.61497885, 0.6427221)
+texture = ExtResource("4_c4ic4")
+centered = false
+
+[node name="Panel" type="Panel" parent="Slide2" unique_id=680291243]
+offset_top = 50.0
+offset_right = 361.0
+offset_bottom = 259.0
+
+[node name="Label" type="Label" parent="Slide2/Panel" unique_id=499031214]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 1.0
+offset_bottom = 25.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "This, over there, is the Editor.
+In the editor you can place MODULES in you GRID.
+To place a module you need to click on it.
+Beep Boop.
+"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="Slide2" unique_id=896492632]
+position = Vector2(154, 409)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("3_suodu")
+
+[node name="Slide3" type="Node2D" parent="." unique_id=784064738]
+
+[node name="Sprite2D3" type="Sprite2D" parent="Slide3" unique_id=1199255833]
+scale = Vector2(0.49322912, 0.49259257)
+texture = ExtResource("2_t48lw")
+centered = false
+
+[node name="Sprite2D2" type="Sprite2D" parent="Slide3" unique_id=1947608225]
+position = Vector2(351.99997, 79)
+scale = Vector2(0.61497885, 0.6427221)
+texture = ExtResource("4_c4ic4")
+centered = false
+
+[node name="Panel" type="Panel" parent="Slide3" unique_id=796935303]
+offset_top = 50.0
+offset_right = 361.0
+offset_bottom = 259.0
+
+[node name="Label" type="Label" parent="Slide3/Panel" unique_id=1694430978]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 1.0
+offset_bottom = 25.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Some modules have little arrows on their sides. That means that this module can be connected to your heart.
+Beep Boop."
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="Slide3" unique_id=1223414934]
+position = Vector2(154, 409)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("3_suodu")
+
+[node name="Slide4" type="Node2D" parent="." unique_id=278851489]
+
+[node name="Sprite2D3" type="Sprite2D" parent="Slide4" unique_id=1797798897]
+scale = Vector2(0.49322912, 0.49259257)
+texture = ExtResource("2_t48lw")
+centered = false
+
+[node name="Sprite2D2" type="Sprite2D" parent="Slide4" unique_id=2124789354]
+position = Vector2(351.99997, 79)
+scale = Vector2(0.61497885, 0.6427221)
+texture = ExtResource("4_c4ic4")
+centered = false
+
+[node name="Panel" type="Panel" parent="Slide4" unique_id=29612665]
+offset_top = 50.0
+offset_right = 361.0
+offset_bottom = 259.0
+
+[node name="Label" type="Label" parent="Slide4/Panel" unique_id=371643863]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 1.0
+offset_bottom = 25.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Some modules, like the awful organic tubes over there can be rotated. You can do that by pressing Q or E, or either of the buttons on the bottom.
+Beep Boop."
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="Slide4" unique_id=1240909772]
+position = Vector2(154, 409)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("3_suodu")
+
+[node name="Slide5" type="Node2D" parent="." unique_id=1396347961]
+
+[node name="Sprite2D3" type="Sprite2D" parent="Slide5" unique_id=394954919]
+scale = Vector2(0.49322912, 0.49259257)
+texture = ExtResource("2_t48lw")
+centered = false
+
+[node name="Sprite2D2" type="Sprite2D" parent="Slide5" unique_id=427022501]
+position = Vector2(351.99997, 79)
+scale = Vector2(0.61497885, 0.6427221)
+texture = ExtResource("5_enajo")
+centered = false
+
+[node name="Panel" type="Panel" parent="Slide5" unique_id=381582856]
+offset_top = 50.0
+offset_right = 361.0
+offset_bottom = 259.0
+
+[node name="Label" type="Label" parent="Slide5/Panel" unique_id=1396895746]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 1.0
+offset_bottom = 25.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "This is what you editor will look like. Notice the difference? Yes. You don't have infinite modules, unlike me. Ha.
+Beep Boop."
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="Slide5" unique_id=872450182]
+position = Vector2(154, 409)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("3_suodu")
+
+[node name="Slide6" type="Node2D" parent="." unique_id=1169210465]
+
+[node name="Sprite2D3" type="Sprite2D" parent="Slide6" unique_id=1719519130]
+scale = Vector2(0.49322912, 0.49259257)
+texture = ExtResource("2_t48lw")
+centered = false
+
+[node name="Sprite2D2" type="Sprite2D" parent="Slide6" unique_id=1054098189]
+position = Vector2(351.99997, 79)
+scale = Vector2(0.61497885, 0.6427221)
+texture = ExtResource("6_enajo")
+centered = false
+
+[node name="Panel" type="Panel" parent="Slide6" unique_id=264088673]
+offset_top = 50.0
+offset_right = 361.0
+offset_bottom = 259.0
+
+[node name="Label" type="Label" parent="Slide6/Panel" unique_id=608887939]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 1.0
+offset_bottom = 25.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "This is the battle screen.
+You can press on a module on you opponents grid (in this case, you opponent is a wall), to target the selected module.
+Beep Boop."
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="Slide6" unique_id=1777657047]
+position = Vector2(154, 409)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("3_suodu")
+
+[node name="Slide7" type="Node2D" parent="." unique_id=1983269953]
+
+[node name="Sprite2D3" type="Sprite2D" parent="Slide7" unique_id=862657853]
+scale = Vector2(0.49322912, 0.49259257)
+texture = ExtResource("2_t48lw")
+centered = false
+
+[node name="Sprite2D2" type="Sprite2D" parent="Slide7" unique_id=941027931]
+position = Vector2(351.99997, 79)
+scale = Vector2(0.61497885, 0.6427221)
+texture = ExtResource("6_enajo")
+centered = false
+
+[node name="Panel" type="Panel" parent="Slide7" unique_id=557288912]
+offset_top = 50.0
+offset_right = 361.0
+offset_bottom = 259.0
+
+[node name="Label" type="Label" parent="Slide7/Panel" unique_id=1472454435]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 1.0
+offset_bottom = 25.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "To win the battle, you need to destroy your opponents heart.
+
+If they destroy yours, you lose.
+
+Beep Boop."
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="Slide7" unique_id=75620654]
+position = Vector2(154, 409)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("3_suodu")
+
+[node name="Slide8" type="Node2D" parent="." unique_id=256592758]
+
+[node name="Sprite2D3" type="Sprite2D" parent="Slide8" unique_id=493707175]
+scale = Vector2(0.49322912, 0.49259257)
+texture = ExtResource("2_t48lw")
+centered = false
+
+[node name="Sprite2D2" type="Sprite2D" parent="Slide8" unique_id=1774760725]
+position = Vector2(351.99997, 79)
+scale = Vector2(0.61497885, 0.6427221)
+texture = ExtResource("7_2tffy")
+centered = false
+
+[node name="Panel" type="Panel" parent="Slide8" unique_id=873153294]
+offset_top = 50.0
+offset_right = 361.0
+offset_bottom = 259.0
+
+[node name="Label" type="Label" parent="Slide8/Panel" unique_id=1030683085]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 1.0
+offset_bottom = 25.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Barrier is the module you can see in the grid, one with the arrow. It can be charged. When charged, it has to be activated manually. By clicking on it.
+Beep Boop."
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="Slide8" unique_id=61623281]
+position = Vector2(154, 409)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("3_suodu")
+
+[node name="Slide9" type="Node2D" parent="." unique_id=591871891]
+
+[node name="Sprite2D3" type="Sprite2D" parent="Slide9" unique_id=1178082561]
+scale = Vector2(0.49322912, 0.49259257)
+texture = ExtResource("2_t48lw")
+centered = false
+
+[node name="Panel" type="Panel" parent="Slide9" unique_id=1940559147]
+offset_left = 112.0
+offset_top = 131.0
+offset_right = 473.0
+offset_bottom = 340.0
+
+[node name="Label" type="Label" parent="Slide9/Panel" unique_id=2096765801]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 1.0
+offset_bottom = 25.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "That's it. That's all the help you will get from me, meat person.
+
+Have fun. Ha. Ha. Ha.
+
+Beep Boop."
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="Slide9" unique_id=1252814325]
+position = Vector2(663, 251)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("3_suodu")
+flip_h = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1406629496]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -58.0
+grow_horizontal = 2
+grow_vertical = 0
+alignment = 1
+
+[node name="VSeparator3" type="VSeparator" parent="HBoxContainer" unique_id=1834874056]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/separator = SubResource("StyleBoxEmpty_c13y7")
+
+[node name="back" type="Button" parent="HBoxContainer" unique_id=24319565]
+layout_mode = 2
+text = "back to the menu
+"
+
+[node name="VSeparator" type="VSeparator" parent="HBoxContainer" unique_id=537349143]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/separator = SubResource("StyleBoxEmpty_c13y7")
+
+[node name="prev" type="Button" parent="HBoxContainer" unique_id=918910193]
+layout_mode = 2
+text = "previous tutorial"
+
+[node name="Panel" type="Panel" parent="HBoxContainer" unique_id=1088183163]
+z_as_relative = false
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer/Panel" unique_id=868539143]
+z_index = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "10/10"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="next" type="Button" parent="HBoxContainer" unique_id=1673451865]
+layout_mode = 2
+text = "next tutorial
+"
+
+[node name="VSeparator4" type="VSeparator" parent="HBoxContainer" unique_id=2074060898]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/separator = SubResource("StyleBoxEmpty_c13y7")
