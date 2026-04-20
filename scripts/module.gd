@@ -10,6 +10,7 @@ signal destroyed;
 @export var outputs : Array[Vector2i] = [];
 @export var inputs : Array[Vector2i] = [];
 @export var icon : Texture2D;
+@export var hp_bar : ProgressBar = null;
 
 @export_category("tooltips and bookkeeping")
 @export var module_name : String = "";
@@ -21,7 +22,6 @@ signal destroyed;
 
 
 var current_hp : float = 100.0;
-
 
 @export var hitbox : Area2D = null:
 	set(v):
@@ -43,10 +43,25 @@ func _ready() -> void:
 			icon = textures[0];
 		elif textures.size() > 1:
 			icon = textures[0];
+		
+	if hp_bar == null:
+		create_hp_bar();
 
 
 func _physics_process(_delta: float) -> void:
 	pass;
+
+
+func create_hp_bar():
+	hp_bar = ProgressBar.new();
+	
+	hp_bar.show_percentage = false;
+	hp_bar.size = Vector2(128, 12);
+	hp_bar.position = self.get_child(0).position + Vector2(-64, 64);
+	hp_bar.get_theme_stylebox("fill").bg_color = Color.GREEN;
+	
+	hp_bar.visible = false;
+	self.add_child(hp_bar);
 
 
 func connect_hitbox(hb: Area2D) -> void:
@@ -68,6 +83,11 @@ func receive_input(_orb: Orb) -> void:
 func receive_damage(damage: float) -> void:
 	current_hp -= damage;
 	spawn_notification("-%d(/%d)" % [damage, current_hp], 0.5);
+	
+	if hp_bar:
+		hp_bar.visible = true;
+		hp_bar.value = current_hp;
+		hp_bar.get_theme_stylebox("fill").bg_color = Color.RED.lerp(Color.GREEN, current_hp / max_hp);
 	
 	if current_hp <= 0:
 		destroyed.emit();
