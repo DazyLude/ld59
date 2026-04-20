@@ -6,22 +6,29 @@ func _ready() -> void:
 	
 	$Aim.scale = Vector2(GameState.gameplay_scale, GameState.gameplay_scale)
 	
-	var machine_pckd = preload("res://scenes/crazy_machine.tscn");
+	spawn_player_machine();
+	spawn_enemy_machine();
 	
-	var machine1 : Machine = machine_pckd.instantiate()
-	GameState.add_machine(machine1)
-	machine1.position = Vector2(150.0, 300.0)
-	add_child(machine1)
-	GameState.machine_left = machine1;
+	GameState.current_scene = self;
+
+
+func spawn_player_machine() -> void:
+	var player_machine := Machine.load_from_dictionary(GameState.player_template);
+	player_machine.position = Vector2(150.0, 300.0)
+	add_child(player_machine)
+	GameState.machine_left = player_machine;
+
+
+func spawn_enemy_machine() -> void:
+	var template_machine := MachineLibrary.load_machine("starting_machine");
+	var dict := template_machine.save_to_dictionary();
+	template_machine.queue_free();
 	
-	var machine2 : Machine = machine_pckd.instantiate();
-	GameState.add_machine(machine_pckd.instantiate())
+	var machine2 := Machine.load_from_dictionary(dict, "default");
 	machine2.position = Vector2(1000.0, 300.0)
 	machine2.reversed = true;
 	add_child(machine2)
 	GameState.machine_right = machine2;
-	
-	GameState.current_scene = self;
 
 
 func _input(event: InputEvent) -> void:

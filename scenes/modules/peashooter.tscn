@@ -17,6 +17,7 @@ size = Vector2(128, 128)
 [node name="Peashooter" type="Node2D" unique_id=846544340 node_paths=PackedStringArray("pea_output")]
 script = ExtResource("1_3pp2g")
 pea_output = NodePath("Body/OutPosition")
+max_hp = 10.0
 inputs = Array[Vector2i]([Vector2i(-1, 0)])
 module_name = "peashooter"
 metadata/_custom_type_script = "uid://dfdqpbud8104i"

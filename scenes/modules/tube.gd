@@ -70,6 +70,8 @@ var reversed : bool = false;
 func _ready() -> void:
 	super._ready();
 	update_type_visuals();
+	hitbox.set_deferred("monitorable", GameState.is_editing);
+	hitbox.set_deferred("monitoring", GameState.is_editing);
 
 
 func _physics_process(delta: float) -> void:

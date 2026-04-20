@@ -16,17 +16,25 @@ var is_editing : bool = false:
 			battling.emit();
 		is_editing = v; 
 
-var machines : Array[Machine] = [];
 var machine_right : Machine = null;
 var machine_left : Machine = null;
 var current_scene : Node2D;
+
+var player_template : Dictionary;
 
 # do not change when the game scenes are loaded
 var gameplay_scale : float = 0.66;
 
 
-func add_machine(machine: Machine) -> void:
-	machines.push_back(machine);
+func _init() -> void:
+	var starting_machine := MachineLibrary.load_machine("starting_machine");
+	player_template = starting_machine.save_to_dictionary();
+	starting_machine.queue_free();
+
+#
+#func _ready() -> void:
+	#var vp: get_viewport();
+	#var w 
 
 
 func shoot_projectile(projectile_scene: Projectile, by: Module, global_pos: Vector2) -> void:

@@ -49,9 +49,6 @@ func can_add_module(at: Vector2i, _module: Module) -> bool:
 
 func add_module(at: Vector2i, module: Module) -> void:
 	add_special(module, at);
-	if module.module_name == "generator":
-		module.destroyed.connect(_on_heart_destroyed);
-		hearts[module] = true;
 	
 	module.spawn_output.connect(handle_output.bind(module));
 	module.position = grid_position_to_scene_position(at);

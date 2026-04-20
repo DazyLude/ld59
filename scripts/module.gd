@@ -6,7 +6,7 @@ signal spawn_output(output: Orb, idx: int);
 signal destroyed;
 
 
-@export var max_hp : float = 100.0;
+@export var max_hp : float = 10.0;
 @export var outputs : Array[Vector2i] = [];
 @export var inputs : Array[Vector2i] = [];
 @export var icon : Texture2D;
@@ -30,12 +30,16 @@ var current_hp : float = 100.0;
 		if v != null:
 			connect_hitbox(v);
 		
-		v = hitbox;
+		hitbox = v;
 
 
 func _ready() -> void:
 	if hitbox != null:
 		connect_hitbox(hitbox);
+	else:
+		var areas := get_children().filter(func(c): return c is Area2D)
+		if areas.size() > 0:
+			hitbox = areas[0];
 	
 	if icon == null:
 		var textures := get_children().filter(func(c): return c is Sprite2D).map(func(s): return s.texture)
@@ -96,8 +100,8 @@ func receive_damage(damage: float) -> void:
 
 func _on_destroyed() -> void:
 	turn_shadow();
-	hitbox.monitorable = false;
-	hitbox.monitoring = false;
+	hitbox.set_deferred("monitorable", false);
+	hitbox.set_deferred("monitoring", false);
 
 
 func point_left() -> void:
@@ -116,7 +120,12 @@ func set_scale_modifier(scale_modifier: float) -> void:
 		if so.size() > 0:
 			var shape := hitbox.shape_owner_get_shape(so[0], 0);
 			if shape is RectangleShape2D and shape.size.x == shape.size.y:
-				shape.size = ModuleGrid.CELL_SIZE * scale_modifier;
+				shape.size = ModuleGrid.CELL_SIZE;
+	
+	if hp_bar != null:
+		var offset := ModuleGrid.CELL_SIZE / 2.0 * scale_modifier;
+		hp_bar.scale = Vector2(scale_modifier, scale_modifier);
+		hp_bar.position += Vector2(offset.ceil());
 
 
 func spawn_notification(text: String, lifetime: float) -> void:
@@ -137,15 +146,12 @@ func spawn_notification(text: String, lifetime: float) -> void:
 func get_data() -> Dictionary:
 	if current_hp <= max_hp:
 		return {"hp" : current_hp}
+	
 	return {};
 
 
 func apply_data(d: Dictionary) -> void:
-	if d.is_empty():
-		return;
-	
-	if d.has("hp"):
-		current_hp = d.hp;
+	current_hp = minf(d.get("hp", max_hp), max_hp);
 
 
 func make_copy() -> Module:

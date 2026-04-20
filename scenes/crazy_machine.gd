@@ -39,10 +39,15 @@ func add_modules_from_template() -> void:
 			var module := ModuleLibrary.get_module(data_dict.module_name);
 			if data_dict.has("module_data"):
 				module.apply_data(data_dict.module_data);
+			else:
+				module.apply_data({});
 			grid.add_module(data_dict.position, module);
 
 
 func save_to_dictionary() -> Dictionary:
+	if not is_node_ready():
+		return template;
+	
 	var dict := {
 		"modules": [],
 		"inventory": [],
@@ -73,8 +78,8 @@ func save_to_dictionary() -> Dictionary:
 	return dict;
 
 
-static func load_from_dictionary(dict: Dictionary) -> Machine:
-	var machine_pckd = preload("res://scenes/crazy_machine.tscn");
+static func load_from_dictionary(dict: Dictionary, body_variant: String = "default") -> Machine:
+	var machine_pckd = MachineLibrary.body_variants.get(body_variant, preload("res://scenes/crazy_machine.tscn"))
 	var machine : Machine = machine_pckd.instantiate();
 	machine.template = dict;
 	

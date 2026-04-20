@@ -254,6 +254,7 @@ func try_continue() -> void:
 		);
 		return;
 	
+	GameState.player_template = GameState.machine_left.save_to_dictionary();
 	finished.emit();
 
 
