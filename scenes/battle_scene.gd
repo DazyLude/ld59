@@ -71,12 +71,22 @@ func spawn_enemy_machine() -> void:
 	var dict := template_machine.save_to_dictionary();
 	template_machine.queue_free();
 	
+	var player_machine := GameState.machine_left;
+	var player_grid := player_machine.grid;
+	var player_hearts := player_grid.modules.keys().filter(
+		func(module: Module) -> bool: return module.module_name == "generator"
+	)
+	var target := Vector2i();
+	if player_hearts.size() > 0:
+		target = player_grid.modules[player_hearts[0]];
+	
 	var machine2 := Machine.load_from_dictionary(dict, "default");
 	machine2.position = Vector2(700.0, 300.0)
 	machine2.reversed = true;
 	add_child(machine2)
 	machine2.body.set_textures(pack);
 	GameState.machine_right = machine2;
+	machine2.targeting_strategy = target;
 
 
 func _input(event: InputEvent) -> void:

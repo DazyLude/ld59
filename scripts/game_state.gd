@@ -61,15 +61,21 @@ var wall_enemies := [
 ]
 var easy_enemies := [
 	"easy_target",
-]
-var medium_enemies := [
 	"overengineered",
-]
-var hard_enemies := [
 	"all_roads_lead_to_rome",
 ]
+var medium_enemies := [
+	"double_trouble",
+	"shielded",
+	"spiral_of_doom",
+]
+var hard_enemies := [
+	"well_protected",
+	"dot",
+	"glass_cannon",
+]
 var boss_enemies := [
-	"wall",
+	"creature",
 ]
 
 var easy_rewards := [
@@ -237,7 +243,7 @@ func load_battle() -> void:
 	
 	if victory_achieved:
 		max_difficulty_cleared = maxi(max_difficulty_cleared, current_difficulty)
-		var rewards_pool;
+		var rewards_pool = [];
 		match current_difficulty:
 			0, 1:
 				rewards_pool = easy_rewards;
@@ -247,6 +253,7 @@ func load_battle() -> void:
 				rewards_pool = hard_rewards;
 			4:
 				go_to_victory_screen()
+				return;
 		
 		for reward_slot : Array in rewards_pool:
 			var module_template : Module = reward_slot.pick_random();
@@ -258,8 +265,8 @@ func load_battle() -> void:
 
 
 func go_to_victory_screen() -> void:
-	get_tree().change_scene_to_file("res://scenes/godot_slides/ending.tscn");
+	get_tree().change_scene_to_file.call_deferred("res://scenes/godot_slides/ending.tscn");
 
 
 func go_to_menu() -> void:
-	get_tree().change_scene_to_file("res://scenes/main.tscn");
+	get_tree().change_scene_to_file.call_deferred("res://scenes/main.tscn");
