@@ -9,6 +9,8 @@ signal battling;
 const bounds := Rect2(-1000.0, -1000.0, 2000.0, 2000.0);
 const left_machine_offset := Vector2(150.0, 300.0);
 
+var game_finished : bool = false;
+
 var is_editing : bool = false:
 	set(v):
 		if v:
@@ -265,6 +267,7 @@ func load_battle() -> void:
 
 
 func go_to_victory_screen() -> void:
+	game_finished = true;
 	get_tree().change_scene_to_file.call_deferred("res://scenes/godot_slides/ending.tscn");
 
 
