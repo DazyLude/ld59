@@ -27,6 +27,8 @@ signal destroyed;
 
 var current_hp : float = max_hp;
 
+var stylebox : StyleBoxFlat = null;
+
 @export var hitbox : Area2D = null:
 	set(v):
 		if hitbox != null:
@@ -110,7 +112,7 @@ func create_hp_bar():
 	hp_bar.size = Vector2(width, 8);
 	hp_bar.position = Vector2(-width / 2, width / 2 - 6);
 	
-	var stylebox = StyleBoxFlat.new()
+	stylebox = StyleBoxFlat.new();
 	stylebox.bg_color = Color.LIME_GREEN;
 	hp_bar.add_theme_stylebox_override("fill", stylebox);
 	
@@ -172,6 +174,7 @@ func receive_damage(damage: float) -> void:
 	if hp_bar:
 		hp_bar.visible = true;
 		hp_bar.value = current_hp;
+		stylebox.bg_color = Color.INDIAN_RED.lerp(Color.LIME_GREEN, hp_bar.get_as_ratio());
 	
 	if current_hp <= 0:
 		destroyed.emit();
