@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://cxcv28bglne2s"]
+
+[ext_resource type="Script" uid="uid://82f7kvyqcqe4" path="res://scenes/godot_slides/ending.gd" id="1_etdec"]
+[ext_resource type="Texture2D" uid="uid://dhnragcoel8ot" path="res://assets/backgrounds/rabbits fon.png" id="2_aka3v"]
+
+[node name="Ending" type="Control" unique_id=1288831167]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_etdec")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=2104695923]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_aka3v")
+expand_mode = 2
+
+[node name="Button" type="Button" parent="." unique_id=2091998074]
+layout_mode = 0
+offset_left = 596.0
+offset_top = 332.0
+offset_right = 951.0
+offset_bottom = 609.0
+text = "exit to the menu"

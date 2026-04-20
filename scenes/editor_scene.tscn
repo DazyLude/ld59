@@ -91,3 +91,89 @@ grow_vertical = 0
 [node name="Continue" type="Button" parent="CanvasLayer/GamePanel" unique_id=839978287]
 layout_mode = 2
 text = "continue"
+
+[node name="Rewards" type="Control" parent="CanvasLayer" unique_id=1432389731]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Rewards" type="VBoxContainer" parent="CanvasLayer/Rewards" unique_id=518966438]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -151.0
+offset_top = -161.0
+offset_right = 151.0
+offset_bottom = 161.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="CanvasLayer/Rewards/Rewards" unique_id=898493833]
+layout_mode = 2
+text = "Victory!
+Yours for taking:"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Rewards/Rewards" unique_id=914291623]
+layout_mode = 2
+
+[node name="Hide" type="Button" parent="CanvasLayer/Rewards/Rewards" unique_id=1424733306]
+layout_mode = 2
+text = "confirm"
+
+[node name="DifficultySelect" type="Control" parent="CanvasLayer" unique_id=1525392534]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/DifficultySelect" unique_id=1797660763]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -437.5
+offset_top = -289.5
+offset_right = 437.5
+offset_bottom = 289.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/DifficultySelect/VBoxContainer" unique_id=750510465]
+layout_mode = 2
+
+[node name="HBoxContainer" type="VBoxContainer" parent="CanvasLayer/DifficultySelect/VBoxContainer" unique_id=1722352371]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="CanvasLayer/DifficultySelect/VBoxContainer/HBoxContainer" unique_id=1826013691]
+layout_mode = 2
+text = "easy"
+
+[node name="Button2" type="Button" parent="CanvasLayer/DifficultySelect/VBoxContainer/HBoxContainer" unique_id=1160029377]
+layout_mode = 2
+text = "medium"
+
+[node name="Button3" type="Button" parent="CanvasLayer/DifficultySelect/VBoxContainer/HBoxContainer" unique_id=1158049798]
+layout_mode = 2
+text = "hard"
+
+[node name="Button4" type="Button" parent="CanvasLayer/DifficultySelect/VBoxContainer/HBoxContainer" unique_id=549168761]
+layout_mode = 2
+text = "final showdown!"
+
+[node name="Hide" type="Button" parent="CanvasLayer/DifficultySelect/VBoxContainer" unique_id=981069236]
+layout_mode = 2
+text = "back"

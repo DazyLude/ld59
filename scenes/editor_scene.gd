@@ -7,6 +7,7 @@ signal finished;
 var is_creative : bool = true;
 
 @export var module_selector_root : Control;
+@onready var rewards_root : Control = $CanvasLayer/Rewards/Rewards/HBoxContainer;
 
 var currently_selected : Module;
 var temporary_added : Module:
@@ -38,6 +39,29 @@ func _ready() -> void:
 	
 	$CanvasLayer/Tools/E.pressed.connect(try_rotate.bind(1))
 	$CanvasLayer/Tools/Q.pressed.connect(try_rotate.bind(-1))
+	
+	$CanvasLayer/DifficultySelect/VBoxContainer/Hide.pressed.connect(hide_difficulty_select)
+	
+	$CanvasLayer/DifficultySelect/VBoxContainer/HBoxContainer/Button.pressed.connect(
+		choose_difficulty_and_start.bind(1)
+	);
+	$CanvasLayer/DifficultySelect/VBoxContainer/HBoxContainer/Button2.visible = GameState.max_difficulty_cleared >= 1
+	$CanvasLayer/DifficultySelect/VBoxContainer/HBoxContainer/Button2.pressed.connect(
+		choose_difficulty_and_start.bind(2)
+	);
+	$CanvasLayer/DifficultySelect/VBoxContainer/HBoxContainer/Button3.visible = GameState.max_difficulty_cleared >= 2
+	$CanvasLayer/DifficultySelect/VBoxContainer/HBoxContainer/Button3.pressed.connect(
+		choose_difficulty_and_start.bind(3)
+	);
+	$CanvasLayer/DifficultySelect/VBoxContainer/HBoxContainer/Button4.visible = GameState.max_difficulty_cleared >= 3
+	$CanvasLayer/DifficultySelect/VBoxContainer/HBoxContainer/Button4.pressed.connect(
+		choose_difficulty_and_start.bind(4)
+	);
+	
+	$CanvasLayer/Rewards/Rewards/Hide.pressed.connect($CanvasLayer/Rewards.hide)
+	
+	if not GameState.pending_rewards.is_empty():
+		render_pending_rewards();
 	
 	spawn_inventory();
 
@@ -111,7 +135,7 @@ func _input(event: InputEvent) -> void:
 					var module_copy = temporary_added.make_copy();
 					if not is_creative:
 						# put to inventory
-						GameState.player_inventory[module_copy] = 1;	
+						GameState.player_inventory[module_copy] = 1;
 						spawn_inventory();
 					else:
 						modules_instantiated.push_back(module_copy);
@@ -144,7 +168,7 @@ func set_machine(machine: Machine) -> void:
 	
 	GameState.machine_left = machine;
 	add_child(machine);
-	machine.position = Vector2(150.0, 300.0)
+	machine.position = GameState.left_machine_offset;
 
 
 func get_modules_at_point(point: Vector2) -> Array:
@@ -176,6 +200,20 @@ func spawn_inventory_items() -> void:
 	for module in GameState.player_inventory:
 		var count := GameState.player_inventory[module];
 		add_button_for_module(module, count);
+
+
+func render_pending_rewards() -> void:
+	for module in GameState.pending_rewards:
+		GameState.player_inventory[module] = 1;
+		var button : ModuleButton = preload("res://scenes/scene_elements/module_select.tscn").instantiate()
+		add_child(module);
+		remove_child(module);
+		button.icon = module.icon;
+		button.pressed.connect(module_picked.bind(module))
+		rewards_root.add_child(button);
+	
+	GameState.pending_rewards.clear();
+	$CanvasLayer/Rewards.show();
 
 
 func spawn_all_items() -> void:
@@ -264,16 +302,35 @@ func load_from_clipboard() -> void:
 
 
 func try_continue() -> void:
-	if GameState.machine_left.grid.hearts.is_empty():
-		spawn_notification(
-			"Can't continue: Machine has no heart.",
-			2.5,
-			get_global_mouse_position() - Vector2(0.0, 10.0)
-		);
-		return;
+	if GameState.machine_left.grid.modules.keys().all(
+		func(module: Module) -> bool: return module.module_name != "generator"):
+			spawn_notification(
+				"Can't continue: Machine has no heart.",
+				2.5,
+				get_global_mouse_position() - Vector2(0.0, 10.0)
+			);
+			return;
 	
+	if GameState.max_difficulty_cleared >= 0:
+		show_difficulty_select()
+	else:
+		GameState.machine_left.grid.fix_all();
+		GameState.player_template = GameState.machine_left.save_to_dictionary();
+		finished.emit();
+
+
+func show_difficulty_select() -> void:
+	$CanvasLayer/DifficultySelect.show();
+
+
+func hide_difficulty_select() -> void:
+	$CanvasLayer/DifficultySelect.hide();
+
+
+func choose_difficulty_and_start(diff: int) -> void:
 	GameState.machine_left.grid.fix_all();
 	GameState.player_template = GameState.machine_left.save_to_dictionary();
+	GameState.current_difficulty = diff;
 	finished.emit();
 
 

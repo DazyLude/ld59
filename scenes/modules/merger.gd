@@ -170,14 +170,16 @@ func update_type_visuals() -> void:
 		tas
 	);
 	icon = $TubeBody.texture
-	update_input_output_display();
+	update_input_output_display()
 
 
 func point_left() -> void:
+	$TubeBody.flip_h = true;
 	reversed = true;
 
 
 func point_right() -> void:
+	$TubeBody.flip_h = false;
 	reversed = false;
 
 

@@ -22,6 +22,21 @@ var breath_speed = PI / 4.0
 var breath_amplitude = 10.0;
 
 
+var textures := {
+	"default": [
+		preload("res://assets/robots/protag/body.png"),
+		preload("res://assets/robots/protag/leg1.png"),
+		preload("res://assets/robots/protag/leg2.png")
+	],
+	"default_victory": [
+		preload("res://assets/robots/protag/body s venochkom.png"),
+		preload("res://assets/robots/protag/leg1.png"),
+		preload("res://assets/robots/protag/leg2.png")
+	]
+}
+
+
+
 @onready
 var node_starting_positions : Dictionary = {
 	$BackLegSprite: $BackLegSprite.position,
@@ -43,5 +58,5 @@ func _process(delta: float) -> void:
 	var offset := Vector2(0.0, sin(breath_progress * breath_speed + random_phase) * breath_amplitude);
 	
 	if grid_ref != null:
-		grid_ref.position = node_starting_positions[grid_ref] + offset;
+		grid_ref.position = node_starting_positions[grid_ref] + offset * Vector2(GameState.gameplay_scale, GameState.gameplay_scale);
 	$BodySprite.position = node_starting_positions[$BodySprite] + offset;

@@ -169,10 +169,12 @@ func update_inputs_outputs():
 
 
 func point_left() -> void:
+	$TubeBody.flip_h = true;
 	reversed = true;
 
 
 func point_right() -> void:
+	$TubeBody.flip_h = false;
 	reversed = false;
 
 

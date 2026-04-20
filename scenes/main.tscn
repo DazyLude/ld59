@@ -52,6 +52,10 @@ layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
+[node name="Button3" type="Button" parent="VBoxContainer" unique_id=1314948294]
+layout_mode = 2
+text = "Creative Mode!"
+
 [node name="Button" type="Button" parent="VBoxContainer" unique_id=448981082]
 layout_mode = 2
 text = "Start"
@@ -59,7 +63,3 @@ text = "Start"
 [node name="Button2" type="Button" parent="VBoxContainer" unique_id=257138450]
 layout_mode = 2
 text = "Tutorial"
-
-[node name="Button3" type="Button" parent="VBoxContainer" unique_id=1314948294]
-layout_mode = 2
-text = "Creative Mode!"

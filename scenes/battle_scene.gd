@@ -31,18 +31,31 @@ func _exit_tree() -> void:
 
 func spawn_player_machine() -> void:
 	var player_machine := Machine.load_from_dictionary(GameState.player_template);
-	player_machine.position = Vector2(150.0, 300.0)
+	player_machine.position = GameState.left_machine_offset
 	add_child(player_machine)
 	GameState.machine_left = player_machine;
 
 
 func spawn_enemy_machine() -> void:
-	var template_machine := MachineLibrary.load_machine("starting_machine");
+	var enemy : String;
+	match GameState.current_difficulty:
+		0:
+			enemy = GameState.wall_enemies.pick_random();
+		1:
+			enemy = GameState.easy_enemies.pick_random();
+		2:
+			enemy = GameState.medium_enemies.pick_random();
+		3:
+			enemy = GameState.hard_enemies.pick_random();
+		4:
+			enemy = GameState.boss_enemies.pick_random();
+	
+	var template_machine := MachineLibrary.load_machine(enemy);
 	var dict := template_machine.save_to_dictionary();
 	template_machine.queue_free();
 	
 	var machine2 := Machine.load_from_dictionary(dict, "default");
-	machine2.position = Vector2(1000.0, 300.0)
+	machine2.position = Vector2(700.0, 300.0)
 	machine2.reversed = true;
 	add_child(machine2)
 	GameState.machine_right = machine2;

@@ -38,9 +38,12 @@ func _init() -> void:
 
 
 @warning_ignore("shadowed_variable_base_class")
-func get_module(name: String) -> Module:
+func get_module(name: String, type := -1) -> Module:
 	if name in module_packed_scenes:
-		return module_packed_scenes[name].instantiate();
+		var instance := module_packed_scenes[name].instantiate();
+		if type != -1:
+			instance.type = type;
+		return instance;
 	
 	push_error("module with a \"%s\" name not found." % name);
 	return null;

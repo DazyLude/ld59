@@ -12,7 +12,7 @@ size = Vector2(64, 64)
 
 [node name="SuperGenerator" type="Node2D" unique_id=817523074]
 script = ExtResource("1_b3ldq")
-module_name = "Multiplicator"
+module_name = "multiplicator"
 metadata/_custom_type_script = "uid://dfdqpbud8104i"
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1199102708]

@@ -176,10 +176,12 @@ func update_type_visuals() -> void:
 
 
 func point_left() -> void:
+	$TubeBody.flip_h = true;
 	reversed = true;
 
 
 func point_right() -> void:
+	$TubeBody.flip_h = false;
 	reversed = false;
 
 

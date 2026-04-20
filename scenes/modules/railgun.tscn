@@ -22,7 +22,7 @@ script = ExtResource("1_p6fba")
 pea_output = NodePath("Body/OutPosition")
 inputs = Array[Vector2i]([Vector2i(-1, 0)])
 icon = SubResource("AtlasTexture_c637e")
-module_name = "Railgun"
+module_name = "railgun"
 metadata/_custom_type_script = "uid://dfdqpbud8104i"
 
 [node name="Base" type="Sprite2D" parent="." unique_id=1101215429]
