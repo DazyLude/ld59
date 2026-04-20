@@ -7,49 +7,47 @@ const w := Vector2i(-1.0,  0.0);
 const s := Vector2i( 0.0,  1.0);
 const pos_mult := Vector2(48.0, 48.0);
 
-const type_inputs : Array[Vector2i] = [
-	w, n, e, s, # t0 r0-4
-	w, n, e, s, # t1 r0-4
-	w, n, e, s, # t2 r0-4
+const rot_outputs : Array[Vector2i] = [
+	w, n, e, s
 ]
 
-const type_outputs : Array[Vector2i] = [
-	e, s, w, n, # t0 r0-4
-	s, w, n, e, # t1 r0-4
-	n, e, s, w, # t2 r0-4
+const type_rot_inputs : Array[Array] = [
+	[n, s], [n, e], [s, e], [n, e, s], # rot0
+	[e, w], [e, s], [e, n], [e, s, w], # rot1
+	[s, n], [s, w], [n, w], [s, w, n], # rot2
+	[w, e], [w, n], [w, s], [w, n, e], # rot3
 ]
 
 const texture_atlas_position_type_mapping = [
-	tas * Vector2(3, 4), tas * Vector2(1, 4), # t0 r0-1
-	tas * Vector2(2, 4), tas * Vector2(0, 4), # t0 r2-3
-	tas * Vector2(1, 2), tas * Vector2(3, 3), # t1 r0-1
-	tas * Vector2(0, 3), tas * Vector2(2, 2), # t1 r2-3
-	tas * Vector2(1, 3), tas * Vector2(2, 3), # t2 r0-1
-	tas * Vector2(0, 2), tas * Vector2(3, 2), # t2 r2-3
+	tas * Vector2(1, 8), tas * Vector2(2, 9), tas * Vector2(3, 9), tas * Vector2(1, 11), # rot0
+	tas * Vector2(2, 8), tas * Vector2(0, 9), tas * Vector2(1, 9), tas * Vector2(3, 11), # rot1
+	tas * Vector2(0, 8), tas * Vector2(1, 10), tas * Vector2(0, 10), tas * Vector2(0, 11), # rot2
+	tas * Vector2(3, 8), tas * Vector2(3, 10), tas * Vector2(2, 10), tas * Vector2(2, 11), # rot3
 ]
 const tas = Vector2(64, 64);
-
-
-@export_enum(
-	"none:-1",
-	"straight:0",
-	"corner_cw:1",
-	"corner_ccw:2",
-) var type : int = -1 :
-	set(v):
-		if v < -1 or v >= 3:
-			push_error("wrong tube type");
-			return;
-		type = v;
-		
-		update_inputs_outputs();
-		if is_node_ready():
-			update_type_visuals();
 
 
 var rot : int = 0:
 	set(v):
 		rot = wrapi(v, 0, 4);
+		update_inputs_outputs();
+		if is_node_ready():
+			update_type_visuals();
+
+
+@export_enum(
+	"none:-1",
+	"t:0",
+	"t-side-cw:1",
+	"t-side-ccw:1",
+	"+:2",
+) var type : int = -1 :
+	set(v):
+		if v < -1 or v >= 4:
+			push_error("wrong splitter type");
+			return;
+		type = v;
+		
 		update_inputs_outputs();
 		if is_node_ready():
 			update_type_visuals();
@@ -61,6 +59,9 @@ const PIPE_LENGTH := 2.1;
 var holding_orbs : Array[Orb] = [];
 var per_orb_progress : Array[float] = [];
 
+var orb_n : int = 0;
+var per_orb_source : Array[Vector2i] = [];
+
 var orb_nodes : Array[OrbRenderer] = [];
 var free_orb_nodes : Array[OrbRenderer] = [];
 
@@ -70,8 +71,6 @@ var reversed : bool = false;
 func _ready() -> void:
 	super._ready();
 	update_type_visuals();
-	hitbox.set_deferred("monitorable", GameState.is_editing);
-	hitbox.set_deferred("monitoring", GameState.is_editing);
 
 
 func _physics_process(delta: float) -> void:
@@ -84,25 +83,37 @@ func _physics_process(delta: float) -> void:
 	update_orb_positions();
 
 
+func update_inputs_outputs() -> void:
+	if type != -1:
+		inputs = Array(type_rot_inputs[type + rot * 4], TYPE_VECTOR2I, &'', null);
+		outputs = [rot_outputs[rot]];
+	else:
+		inputs = []
+		outputs = []
+
+
 func can_receive_input(_orb: Orb, _from: Vector2i) -> bool:
 	return holding_orbs.size() < MAX_ORBS;
 
 
-func receive_input(orb: Orb, _from: Vector2i) -> void:
+func receive_input(orb: Orb, from: Vector2i) -> void:
 	holding_orbs.push_front(orb);
 	per_orb_progress.push_front(0.0);
+	per_orb_source.push_front(from);
+	orb_n = wrapi(orb_n + 1, 0, outputs.size());
 	
 	var orb_node := get_free_orb_node();
 	orb_nodes.push_front(orb_node);
 	
-	update_orb_position(orb_node, 0.0);
+	update_orb_position(0, 0.0);
 
 
 func release_frontmost_orb() -> void:
 	var orb : Orb = holding_orbs.pop_back();
 	spawn_output.emit(orb, 0);
-	
 	per_orb_progress.pop_back();
+	per_orb_source.pop_back();
+	
 	var node : OrbRenderer = orb_nodes.pop_back();
 	free_orb_node(node);
 
@@ -126,18 +137,19 @@ func free_orb_node(node: OrbRenderer) -> void:
 func update_orb_positions() -> void:
 	for idx in per_orb_progress.size():
 		var progress := per_orb_progress[idx];
-		var node := orb_nodes[idx];
-		update_orb_position(node, progress / PIPE_LENGTH);
+		update_orb_position(idx, progress / PIPE_LENGTH);
 
 
-func update_orb_position(node: OrbRenderer, progress: float) -> void:
+func update_orb_position(orb_idx: int, progress: float) -> void:
+	var node := orb_nodes[orb_idx];
+	
 	if type == -1:
 		return;
 	
 	var rev_mult := Vector2(-1.0, 1.0) if reversed else Vector2(1.0, 1.0);
 	
 	if progress < 0.5:
-		var start := Vector2(inputs[0]) * pos_mult * rev_mult * GameState.gameplay_scale;
+		var start := Vector2(per_orb_source[orb_idx]) * pos_mult * rev_mult * GameState.gameplay_scale;
 		node.position = lerp(start, Vector2(), progress * 2.0)
 	else:
 		var end := Vector2(outputs[0]) * pos_mult * rev_mult * GameState.gameplay_scale;
@@ -152,19 +164,10 @@ func update_type_visuals() -> void:
 	$TubeBody.show();
 	
 	($TubeBody.texture as AtlasTexture).region = Rect2(
-		texture_atlas_position_type_mapping[type * 4 + rot],
+		texture_atlas_position_type_mapping[type + rot * 4],
 		tas
 	);
 	icon = $TubeBody.texture
-
-
-func update_inputs_outputs():
-	if type != -1:
-		inputs = [type_inputs[type * 4 + rot]]
-		outputs = [type_outputs[type * 4 + rot]]
-	else:
-		inputs = []
-		outputs = []
 
 
 func point_left() -> void:

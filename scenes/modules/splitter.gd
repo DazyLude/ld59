@@ -92,11 +92,11 @@ func update_inputs_outputs() -> void:
 		outputs = []
 
 
-func can_receive_input(_orb: Orb) -> bool:
+func can_receive_input(_orb: Orb, _from: Vector2i) -> bool:
 	return holding_orbs.size() < MAX_ORBS;
 
 
-func receive_input(orb: Orb) -> void:
+func receive_input(orb: Orb, _from: Vector2i) -> void:
 	holding_orbs.push_front(orb);
 	per_orb_progress.push_front(0.0);
 	per_orb_destination.push_front(orb_n);

@@ -183,6 +183,14 @@ func spawn_all_items() -> void:
 						module.rot = r;
 						modules_instantiated.push_back(module);
 						add_button_for_module(module, 1);
+			"merger": # need to add all 4 types and rotations
+				for t in range(4):
+					for r in range(4):
+						module = ModuleLibrary.get_module("merger")
+						module.type = t;
+						module.rot = r;
+						modules_instantiated.push_back(module);
+						add_button_for_module(module, 1);
 			_:
 				module = ModuleLibrary.get_module(item_name);
 				modules_instantiated.push_back(module);

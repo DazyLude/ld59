@@ -110,11 +110,11 @@ func disconnect_hitbox(hb: Area2D) -> void:
 	hb.queue_free();
 
 
-func can_receive_input(_orb: Orb) -> bool:
+func can_receive_input(_orb: Orb, _from: Vector2i) -> bool:
 	return false;
 
 
-func receive_input(_orb: Orb) -> void:
+func receive_input(_orb: Orb, _from: Vector2i) -> void:
 	pass;
 
 

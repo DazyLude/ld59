@@ -87,13 +87,13 @@ func poll_outputs(orb: Orb, module: Module) -> void:
 			
 			if receiver == null:
 				continue;
-			if not receiver.inputs.has(- output):
+			if not receiver.inputs.has(-output):
 				continue;
-			if receiver.can_receive_input(orb) == false:
+			if not receiver.can_receive_input(orb, -output):
 				continue;
 			
 			cached.push_back(output)
-			receiver.receive_input(orb);
+			receiver.receive_input(orb, -output);
 			return;
 	
 	cached.clear();
@@ -104,13 +104,13 @@ func poll_outputs(orb: Orb, module: Module) -> void:
 		
 		if receiver == null:
 			continue;
-		if not receiver.inputs.has(- output):
+		if not receiver.inputs.has(-output):
 			continue;
-		if receiver.can_receive_input(orb) == false:
+		if receiver.can_receive_input(orb, -output) == false:
 			continue;
 		
 		cached.push_back(output)
-		receiver.receive_input(orb);
+		receiver.receive_input(orb, -output);
 		return;
 	
 	spawn_homeless_orb(orb, grid_position_to_scene_position(module_position));
@@ -130,14 +130,14 @@ func request_output(orb: Orb, output_idx: int, module: Module) -> void:
 	if receiver == null:
 		spawn_homeless_orb(orb, grid_position_to_scene_position(module_position));
 		return;
-	if not receiver.inputs.has(- output):
+	if not receiver.inputs.has(-output):
 		spawn_homeless_orb(orb, grid_position_to_scene_position(module_position));
 		return;
-	if receiver.can_receive_input(orb) == false:
+	if receiver.can_receive_input(orb, -output) == false:
 		spawn_homeless_orb(orb, grid_position_to_scene_position(module_position));
 		return;
 	
-	receiver.receive_input(orb);
+	receiver.receive_input(orb, -output);
 
 
 func remove_module(module: Module) -> void:

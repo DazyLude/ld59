@@ -4,11 +4,11 @@ extends Module
 @export var pea_output : Marker2D;
 
 
-func can_receive_input(_orb: Orb) -> bool:
+func can_receive_input(_orb: Orb, _from: Vector2i) -> bool:
 	return true
 
 
-func receive_input(_orb: Orb) -> void:
+func receive_input(_orb: Orb, _from: Vector2i) -> void:
 	if GameState.is_editing:
 		return;
 	
