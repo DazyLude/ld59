@@ -30,6 +30,10 @@ BgmPlayer="*uid://dklkixwe5epwv"
 
 window/stretch/mode="viewport"
 
+[gui]
+
+theme/custom="uid://br0o43ueefk27"
+
 [input]
 
 rotate_cw={
