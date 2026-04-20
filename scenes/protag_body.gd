@@ -32,6 +32,30 @@ var textures := {
 		preload("res://assets/robots/protag/body s venochkom.png"),
 		preload("res://assets/robots/protag/leg1.png"),
 		preload("res://assets/robots/protag/leg2.png")
+	],
+	"beholder": [
+		preload("res://assets/robots/beholder/enemy4.png"),
+		null, null,
+	],
+	"broken": [
+		preload("res://assets/robots/borken/body.png"),
+		preload("res://assets/robots/borken/leg1.png"),
+		preload("res://assets/robots/borken/leg2.png"),
+	],
+	"broken2": [
+		preload("res://assets/robots/borken_model2/body.png"),
+		preload("res://assets/robots/borken_model2/leg1.png"),
+		preload("res://assets/robots/borken_model2/leg2.png"),
+	],
+	"overgrown": [
+		preload("res://assets/robots/overgrowth/body.png"),
+		preload("res://assets/robots/overgrowth/leg1.png"),
+		preload("res://assets/robots/overgrowth/leg2.png"),
+	],
+	"wall": [
+		preload("res://assets/robots/wall/wall.png"),
+		null,
+		null,
 	]
 }
 
@@ -60,3 +84,13 @@ func _process(delta: float) -> void:
 	if grid_ref != null:
 		grid_ref.position = node_starting_positions[grid_ref] + offset * Vector2(GameState.gameplay_scale, GameState.gameplay_scale);
 	$BodySprite.position = node_starting_positions[$BodySprite] + offset;
+
+
+func set_textures(pack_name: String = "default") -> void:
+	var pack : Array = textures[pack_name];
+	$BodySprite.texture = pack[0];
+	$LegSprite.texture = pack[1];
+	$BackLegSprite.texture = pack[2];
+	
+	if pack_name == "wall":
+		breath_amplitude = 0.0;

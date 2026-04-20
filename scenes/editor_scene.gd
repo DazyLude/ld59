@@ -27,6 +27,11 @@ var modules_instantiated : Array[Module] = [];
 func _ready() -> void:
 	GameState.is_editing = true;
 	$BG.scale = Vector2(GameState.gameplay_scale, GameState.gameplay_scale)
+	match GameState.current_difficulty:
+		0:
+			$BG.texture = GameState.wall_bgs.pick_random();
+		_:
+			$BG.texture = GameState.bgs.pick_random();
 	
 	spawn_player_machine();
 	

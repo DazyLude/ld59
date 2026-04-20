@@ -25,8 +25,8 @@ expand_mode = 2
 
 [node name="Button" type="Button" parent="." unique_id=2091998074]
 layout_mode = 0
-offset_left = 596.0
-offset_top = 332.0
-offset_right = 951.0
-offset_bottom = 609.0
+offset_left = 721.0
+offset_top = 465.0
+offset_right = 935.0
+offset_bottom = 526.0
 text = "exit to the menu"

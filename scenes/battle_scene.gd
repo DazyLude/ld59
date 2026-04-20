@@ -10,6 +10,12 @@ func _ready() -> void:
 	$BG.scale = Vector2(GameState.gameplay_scale, GameState.gameplay_scale)
 	$Aim.scale = Vector2(GameState.gameplay_scale, GameState.gameplay_scale)
 	
+	match GameState.current_difficulty:
+		0:
+			$BG.texture = GameState.wall_bgs.pick_random();
+		_:
+			$BG.texture = GameState.bgs.pick_random();
+	
 	$CanvasLayer/Control/HBoxContainer/Button.pressed.connect(set_speed.bind(1))
 	$CanvasLayer/Control/HBoxContainer/Button2.pressed.connect(set_speed.bind(2))
 	$CanvasLayer/Control/HBoxContainer/Button3.pressed.connect(set_speed.bind(4))
@@ -38,17 +44,28 @@ func spawn_player_machine() -> void:
 
 func spawn_enemy_machine() -> void:
 	var enemy : String;
+	var pack : String;
 	match GameState.current_difficulty:
 		0:
 			enemy = GameState.wall_enemies.pick_random();
+			pack = GameState.wall_types.pick_random();
+			$BG.texture = GameState.wall_bgs.pick_random();
 		1:
 			enemy = GameState.easy_enemies.pick_random();
+			pack = GameState.easy_types.pick_random();
+			$BG.texture = GameState.bgs.pick_random();
 		2:
 			enemy = GameState.medium_enemies.pick_random();
+			pack = GameState.medium_types.pick_random();
+			$BG.texture = GameState.bgs.pick_random();
 		3:
 			enemy = GameState.hard_enemies.pick_random();
+			pack = GameState.hard_types.pick_random();
+			$BG.texture = GameState.bgs.pick_random();
 		4:
 			enemy = GameState.boss_enemies.pick_random();
+			pack = GameState.boss_types.pick_random();
+			$BG.texture = GameState.bgs.pick_random();
 	
 	var template_machine := MachineLibrary.load_machine(enemy);
 	var dict := template_machine.save_to_dictionary();
@@ -58,6 +75,7 @@ func spawn_enemy_machine() -> void:
 	machine2.position = Vector2(700.0, 300.0)
 	machine2.reversed = true;
 	add_child(machine2)
+	machine2.body.set_textures(pack);
 	GameState.machine_right = machine2;
 
 

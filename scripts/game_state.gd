@@ -25,6 +25,37 @@ var pending_rewards : Dictionary[Module, int] = {};
 var player_inventory : Dictionary[Module, int] = {};
 
 
+var wall_bgs := [
+	preload("res://assets/backgrounds/fon2.png")
+]
+
+var bgs := [
+	preload("res://assets/backgrounds/fon1.png"),
+	preload("res://assets/backgrounds/fon2.png"),
+	preload("res://assets/backgrounds/fon3.png")
+]
+
+
+var wall_types := [
+	"wall"
+]
+var easy_types := [
+	"broken2",
+	"overgrown",
+]
+var medium_types := [
+	"broken",
+	"broken2",
+]
+var hard_types := [
+	"beholder",
+	"broken",
+]
+var boss_types := [
+	"beholder"
+]
+
+
 var wall_enemies := [
 	"wall"
 ]
