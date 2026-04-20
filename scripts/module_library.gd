@@ -12,7 +12,7 @@ var module_paths : Array[String] = [
 	"res://scenes/modules/barrier.tscn",
 	"res://scenes/modules/shield.tscn",
 	"res://scenes/modules/merger.tscn",
-	
+	"res://scenes/modules/super_generator.tscn",
 ];
 
 ## this thing is populated from module paths

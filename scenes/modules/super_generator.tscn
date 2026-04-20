@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://bix5m6aiulhiq"]
+
+[ext_resource type="Script" uid="uid://uiub7aae3mc2" path="res://scenes/modules/super_generator.gd" id="1_b3ldq"]
+[ext_resource type="Texture2D" uid="uid://41pta6ojygjs" path="res://assets/module_visuals/spritess.png" id="2_lh6i7"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lh6i7"]
+atlas = ExtResource("2_lh6i7")
+region = Rect2(0, 64, 64, 64)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1kww0"]
+size = Vector2(64, 64)
+
+[node name="SuperGenerator" type="Node2D" unique_id=817523074]
+script = ExtResource("1_b3ldq")
+module_name = "Multiplicator"
+metadata/_custom_type_script = "uid://dfdqpbud8104i"
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1199102708]
+texture = SubResource("AtlasTexture_lh6i7")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1252680025]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1018253168]
+shape = SubResource("RectangleShape2D_1kww0")
