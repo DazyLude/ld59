@@ -12,6 +12,9 @@ signal destroyed;
 @export var icon : Texture2D;
 @export var hp_bar : ProgressBar = null;
 
+@export var input_sprites : Dictionary[Vector2i, Sprite2D];
+@export var output_sprites : Dictionary[Vector2i, Sprite2D];
+
 @export_category("tooltips and bookkeeping")
 @export var module_name : String = "";
 @export_placeholder("{name}_desc") var description : String = "":
@@ -40,6 +43,37 @@ func _ready() -> void:
 		var areas := get_children().filter(func(c): return c is Area2D)
 		if areas.size() > 0:
 			hitbox = areas[0];
+	
+	if GameState.is_editing:
+		if input_sprites.is_empty():
+			var default_textures := {
+				Vector2i(1, 0): preload("res://assets/module_visuals/inputs_outputs/input_e.tres"),
+				Vector2i(0, -1): preload("res://assets/module_visuals/inputs_outputs/input_n.tres"),
+				Vector2i(0, 1): preload("res://assets/module_visuals/inputs_outputs/input_s.tres"),
+				Vector2i(-1, 0): preload("res://assets/module_visuals/inputs_outputs/input_w.tres"),
+			}
+			for input in inputs:
+				if input in default_textures:
+					var sprite := Sprite2D.new();
+					sprite.self_modulate = Color(1.0, 1.0, 1.0, 0.5);
+					sprite.texture = default_textures[input];
+					add_child(sprite);
+					input_sprites[input] = sprite;
+		
+		if output_sprites.is_empty():
+			var default_textures := {
+				Vector2i(1, 0): preload("res://assets/module_visuals/inputs_outputs/output_e.tres"),
+				Vector2i(0, -1): preload("res://assets/module_visuals/inputs_outputs/output_n.tres"),
+				Vector2i(0, 1): preload("res://assets/module_visuals/inputs_outputs/output_s.tres"),
+				Vector2i(-1, 0): preload("res://assets/module_visuals/inputs_outputs/output_w.tres"),
+			}
+			for output in outputs:
+				if output in default_textures:
+					var sprite := Sprite2D.new();
+					sprite.self_modulate = Color(1.0, 1.0, 1.0, 0.5);
+					sprite.texture = default_textures[output];
+					add_child(sprite);
+					output_sprites[output] = sprite;
 	
 	if icon == null:
 		var textures := get_children().filter(func(c): return c is Sprite2D).map(func(s): return s.texture)
