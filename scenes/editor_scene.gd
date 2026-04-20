@@ -35,6 +35,9 @@ func _ready() -> void:
 	$CanvasLayer/ControlPanel/Load.pressed.connect(load_from_clipboard)
 	$CanvasLayer/GamePanel/Continue.pressed.connect(try_continue)
 	
+	$CanvasLayer/Tools/E.pressed.connect(try_rotate.bind(1))
+	$CanvasLayer/Tools/Q.pressed.connect(try_rotate.bind(-1))
+	
 	spawn_inventory();
 
 
@@ -268,10 +271,25 @@ func try_continue() -> void:
 
 
 func try_rotate(direction: int) -> void:
-	if currently_selected != null and currently_selected.get(&"rot") != null:
-		currently_selected.rot += direction;
-		if temporary_added != null:
-			temporary_added.rot += direction;
+	if currently_selected == null:
+		spawn_notification(
+			"Hold a module to rotate",
+			2.5,
+			get_global_mouse_position() - Vector2(0.0, 10.0)
+		);
+		return;
+	
+	if currently_selected.get(&"rot") == null:
+		spawn_notification(
+			"This module refuses to rotate",
+			2.5,
+			get_global_mouse_position() - Vector2(0.0, 10.0)
+		);
+		return;
+	
+	currently_selected.rot += direction;
+	if temporary_added != null:
+		temporary_added.rot += direction;
 
 
 func spawn_notification(text: String, lifetime: float, at: Vector2) -> void:

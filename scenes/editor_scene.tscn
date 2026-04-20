@@ -60,6 +60,26 @@ text = "load from clipboard"
 layout_mode = 2
 text = "creative mode on!"
 
+[node name="Tools" type="VBoxContainer" parent="CanvasLayer" unique_id=1991148191]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -81.5
+offset_top = -66.0
+offset_right = 81.5
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="E" type="Button" parent="CanvasLayer/Tools" unique_id=1589258840]
+layout_mode = 2
+text = "rotate forward (E)"
+
+[node name="Q" type="Button" parent="CanvasLayer/Tools" unique_id=1884853272]
+layout_mode = 2
+text = "rotate backward (Q)"
+
 [node name="GamePanel" type="HBoxContainer" parent="CanvasLayer" unique_id=42070941]
 anchors_preset = 2
 anchor_top = 1.0
