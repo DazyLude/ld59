@@ -2,13 +2,19 @@
 
 [ext_resource type="Script" uid="uid://buucuse0ejwjt" path="res://scenes/battle_scene.gd" id="1_idkgt"]
 [ext_resource type="Texture2D" uid="uid://c6ah7tvh6hcu" path="res://assets/backgrounds/fon1.png" id="2_kinr6"]
+[ext_resource type="Texture2D" uid="uid://41pta6ojygjs" path="res://assets/module_visuals/spritess.png" id="3_rca61"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8qdv8"]
+atlas = ExtResource("3_rca61")
+region = Rect2(128, 64, 64, 64)
 
 [node name="BattleScene" type="Node2D" unique_id=1907799236]
 script = ExtResource("1_idkgt")
 
-[node name="Fon1" type="Sprite2D" parent="." unique_id=2113337638]
+[node name="BG" type="Sprite2D" parent="." unique_id=2113337638]
 scale = Vector2(0.6, 0.6)
 texture = ExtResource("2_kinr6")
 centered = false
 
-[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=531767384]
+[node name="Aim" type="Sprite2D" parent="." unique_id=609000817]
+texture = SubResource("AtlasTexture_8qdv8")

@@ -26,19 +26,29 @@ func shoot_projectile(projectile_scene: Projectile, by: Module, global_pos: Vect
 		projectile_scene.position = current_scene.to_local(global_pos);
 
 
+func get_machine_grid_location(machine: Machine, cell: Vector2i) -> Vector2:
+	var position := machine.grid.grid_position_to_scene_position(cell) + machine.grid.global_position;
+	
+	return position;
+
+
+func get_other_machine(by: Machine) -> Machine:
+	var other_machine : Machine = null;
+	
+	if by == machine_left:
+		other_machine = machine_right;
+	if by == machine_right:
+		other_machine = machine_left;
+	
+	return other_machine
+
+
 func get_other_grid_location(by: Module, cell: Vector2i) -> Vector2:
 	var grid : ModuleGrid = by.owner;
 	var machine : Machine = grid.owner;
-	var other_machine : Machine;
-	
-	if machine == machine_left:
-		other_machine = machine_right;
-	if machine == machine_right:
-		other_machine = machine_left;
+	var other_machine : Machine = get_other_machine(machine);
 	
 	if other_machine == null:
 		return Vector2();
 	
-	var position := other_machine.grid.grid_position_to_scene_position(cell) + other_machine.grid.global_position;
-	
-	return position;
+	return get_machine_grid_location(other_machine, cell)

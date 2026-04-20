@@ -19,6 +19,8 @@ func _ready() -> void:
 	if default_grid_position == Vector2():
 		default_grid_position = grid.position;
 	grid.position = default_grid_position * GameState.gameplay_scale;
+	if reversed:
+		grid.position *= Vector2(-1.0, 1.0);
 	$ModuleGrid/Sprite2D.scale = Vector2(GameState.gameplay_scale, GameState.gameplay_scale);
 	
 	if body != null:

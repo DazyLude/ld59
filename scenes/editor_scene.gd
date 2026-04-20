@@ -74,7 +74,7 @@ func _input(event: InputEvent) -> void:
 		if mb_event.button_index == MOUSE_BUTTON_LEFT and mb_event.pressed:
 			if temporary_added != null:
 				if not is_creative:
-					# remove from inventory
+					# TODO remove from inventory
 					pass;
 				
 				temporary_added.turn_normal();
@@ -94,7 +94,7 @@ func _input(event: InputEvent) -> void:
 					
 					var module_copy = temporary_added.make_copy();
 					if not is_creative:
-						# put to inventory
+						# TODO put to inventory
 						pass;
 					else:
 						modules_instantiated.push_back(module_copy);
