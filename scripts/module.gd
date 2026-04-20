@@ -52,13 +52,13 @@ func _ready() -> void:
 				Vector2i(0, 1): preload("res://assets/module_visuals/inputs_outputs/input_s.tres"),
 				Vector2i(-1, 0): preload("res://assets/module_visuals/inputs_outputs/input_w.tres"),
 			}
-			for input in inputs:
-				if input in default_textures:
-					var sprite := Sprite2D.new();
-					sprite.self_modulate = Color(1.0, 1.0, 1.0, 0.5);
-					sprite.texture = default_textures[input];
-					add_child(sprite);
-					input_sprites[input] = sprite;
+			for input in default_textures:
+				var sprite := Sprite2D.new();
+				sprite.self_modulate = Color(1.0, 1.0, 1.0, 0.5);
+				sprite.texture = default_textures[input];
+				add_child(sprite);
+				input_sprites[input] = sprite;
+				sprite.visible = input in inputs;
 		
 		if output_sprites.is_empty():
 			var default_textures := {
@@ -67,13 +67,13 @@ func _ready() -> void:
 				Vector2i(0, 1): preload("res://assets/module_visuals/inputs_outputs/output_s.tres"),
 				Vector2i(-1, 0): preload("res://assets/module_visuals/inputs_outputs/output_w.tres"),
 			}
-			for output in outputs:
-				if output in default_textures:
-					var sprite := Sprite2D.new();
-					sprite.self_modulate = Color(1.0, 1.0, 1.0, 0.5);
-					sprite.texture = default_textures[output];
-					add_child(sprite);
-					output_sprites[output] = sprite;
+			for output in default_textures:
+				var sprite := Sprite2D.new();
+				sprite.self_modulate = Color(1.0, 1.0, 1.0, 0.5);
+				sprite.texture = default_textures[output];
+				add_child(sprite);
+				output_sprites[output] = sprite;
+				sprite.visible = output in outputs;
 	
 	if icon == null:
 		var textures := get_children().filter(func(c): return c is Sprite2D).map(func(s): return s.texture)
@@ -84,6 +84,13 @@ func _ready() -> void:
 		
 	if hp_bar == null:
 		create_hp_bar();
+
+
+func update_input_output_display() -> void:
+	for input in input_sprites:
+		input_sprites[input].visible = input in inputs;
+	for output in output_sprites:
+		output_sprites[output].visible = output in outputs;
 
 
 func _physics_process(_delta: float) -> void:

@@ -21,8 +21,8 @@ const type_rot_outputs : Array[Array] = [
 const texture_atlas_position_type_mapping = [
 	tas * Vector2(1, 5), tas * Vector2(3, 7), tas * Vector2(2, 7), tas * Vector2(1, 12), # rot0
 	tas * Vector2(2, 5), tas * Vector2(1, 7), tas * Vector2(0, 7), tas * Vector2(3, 12), # rot1
-	tas * Vector2(3, 5), tas * Vector2(2, 6), tas * Vector2(3, 6), tas * Vector2(0, 12), # rot2
-	tas * Vector2(0, 5), tas * Vector2(0, 6), tas * Vector2(1, 6), tas * Vector2(2, 12), # rot3
+	tas * Vector2(0, 5), tas * Vector2(2, 6), tas * Vector2(3, 6), tas * Vector2(0, 12), # rot2
+	tas * Vector2(3, 5), tas * Vector2(0, 6), tas * Vector2(1, 6), tas * Vector2(2, 12), # rot3
 ]
 const tas = Vector2(64, 64);
 
@@ -170,6 +170,7 @@ func update_type_visuals() -> void:
 		tas
 	);
 	icon = $TubeBody.texture
+	update_input_output_display();
 
 
 func point_left() -> void:

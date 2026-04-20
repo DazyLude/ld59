@@ -13,16 +13,16 @@ const rot_outputs : Array[Vector2i] = [
 
 const type_rot_inputs : Array[Array] = [
 	[n, s], [n, e], [s, e], [n, e, s], # rot0
-	[e, w], [e, s], [e, n], [e, s, w], # rot1
+	[e, w], [e, s], [w, s], [e, s, w], # rot1
 	[s, n], [s, w], [n, w], [s, w, n], # rot2
-	[w, e], [w, n], [w, s], [w, n, e], # rot3
+	[w, e], [w, n], [e, n], [w, n, e], # rot3
 ]
 
 const texture_atlas_position_type_mapping = [
 	tas * Vector2(1, 8), tas * Vector2(2, 9), tas * Vector2(3, 9), tas * Vector2(1, 11), # rot0
 	tas * Vector2(2, 8), tas * Vector2(0, 9), tas * Vector2(1, 9), tas * Vector2(3, 11), # rot1
-	tas * Vector2(0, 8), tas * Vector2(1, 10), tas * Vector2(0, 10), tas * Vector2(0, 11), # rot2
-	tas * Vector2(3, 8), tas * Vector2(3, 10), tas * Vector2(2, 10), tas * Vector2(2, 11), # rot3
+	tas * Vector2(0, 8), tas * Vector2(3, 10), tas * Vector2(2, 10), tas * Vector2(0, 11), # rot2
+	tas * Vector2(3, 8), tas * Vector2(1, 10), tas * Vector2(0, 10), tas * Vector2(2, 11), # rot3
 ]
 const tas = Vector2(64, 64);
 
@@ -168,6 +168,7 @@ func update_type_visuals() -> void:
 		tas
 	);
 	icon = $TubeBody.texture
+	update_input_output_display();
 
 
 func point_left() -> void:

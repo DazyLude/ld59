@@ -71,6 +71,12 @@ func _process(_d: float) -> void:
 
 
 func _input(event: InputEvent) -> void:
+	if event.is_action_pressed(&"rotate_ccw"):
+		try_rotate(-1);
+	
+	if event.is_action_pressed(&"rotate_cw"):
+		try_rotate(+1);
+	
 	if event is InputEventMouseButton:
 		var mb_event := event as InputEventMouseButton;
 		if mb_event.button_index == MOUSE_BUTTON_LEFT and mb_event.pressed:
@@ -169,28 +175,22 @@ func spawn_all_items() -> void:
 		match item_name:
 			"tube": # need to add all 3 types and 4 rotations
 				for t in range(3):
-					for r in range(4):
-						module = ModuleLibrary.get_module("tube")
-						module.type = t;
-						module.rot = r;
-						modules_instantiated.push_back(module);
-						add_button_for_module(module, 1);
+					module = ModuleLibrary.get_module("tube")
+					module.type = t;
+					modules_instantiated.push_back(module);
+					add_button_for_module(module, 1);
 			"splitter": # need to add all 4 types and 4 rotations
 				for t in range(4):
-					for r in range(4):
-						module = ModuleLibrary.get_module("splitter")
-						module.type = t;
-						module.rot = r;
-						modules_instantiated.push_back(module);
-						add_button_for_module(module, 1);
+					module = ModuleLibrary.get_module("splitter")
+					module.type = t;
+					modules_instantiated.push_back(module);
+					add_button_for_module(module, 1);
 			"merger": # need to add all 4 types and rotations
 				for t in range(4):
-					for r in range(4):
-						module = ModuleLibrary.get_module("merger")
-						module.type = t;
-						module.rot = r;
-						modules_instantiated.push_back(module);
-						add_button_for_module(module, 1);
+					module = ModuleLibrary.get_module("merger")
+					module.type = t;
+					modules_instantiated.push_back(module);
+					add_button_for_module(module, 1);
 			_:
 				module = ModuleLibrary.get_module(item_name);
 				modules_instantiated.push_back(module);
@@ -265,6 +265,13 @@ func try_continue() -> void:
 	
 	GameState.player_template = GameState.machine_left.save_to_dictionary();
 	finished.emit();
+
+
+func try_rotate(direction: int) -> void:
+	if currently_selected != null and currently_selected.get(&"rot") != null:
+		currently_selected.rot += direction;
+		if temporary_added != null:
+			temporary_added.rot += direction;
 
 
 func spawn_notification(text: String, lifetime: float, at: Vector2) -> void:

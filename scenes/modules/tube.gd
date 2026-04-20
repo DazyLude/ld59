@@ -156,6 +156,7 @@ func update_type_visuals() -> void:
 		tas
 	);
 	icon = $TubeBody.texture
+	update_input_output_display();
 
 
 func update_inputs_outputs():

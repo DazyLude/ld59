@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://bjo75frwsnvjx" path="res://assets/entities/orb.png" id="1_yu4ry"]
 
 [node name="Orb" type="Sprite2D" unique_id=194316750]
+z_index = 1
 position = Vector2(-6, 3)
 texture = ExtResource("1_yu4ry")
 script = ExtResource("1_076lx")
