@@ -2,9 +2,19 @@ extends Node
 class_name _GameStateClass
 
 
+signal editing;
+signal battling;
+
+
 const bounds := Rect2(-1000.0, -1000.0, 2000.0, 2000.0);
 
-var is_editing : bool = false; 
+var is_editing : bool = false:
+	set(v):
+		if v:
+			editing.emit();
+		else:
+			battling.emit();
+		is_editing = v; 
 
 var machines : Array[Machine] = [];
 var machine_right : Machine = null;

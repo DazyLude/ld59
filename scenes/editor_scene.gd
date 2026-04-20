@@ -1,10 +1,12 @@
 extends Node2D
 
 
+signal finished;
+
+
 var is_creative : bool = true;
 
-@onready
-var module_selector_root := $CanvasLayer/Control/ScrollContainer/GridContainer;
+@export var module_selector_root : Control;
 
 var currently_selected : Module;
 var temporary_added : Module:
@@ -27,11 +29,15 @@ func _ready() -> void:
 	var machine_pckd = preload("res://scenes/crazy_machine.tscn");
 	
 	var machine1 : Machine = machine_pckd.instantiate()
-	GameState.add_machine(machine1)
-	machine1.position = Vector2(150.0, 300.0)
-	GameState.machine_left = machine1;
 	
-	add_child(machine1);
+	set_machine(machine1)
+	
+	$CanvasLayer/ControlPanel/Load.visible = is_creative;
+	$CanvasLayer/ControlPanel/Label.visible = is_creative;
+	
+	$CanvasLayer/ControlPanel/Save.pressed.connect(save_to_clipboard)
+	$CanvasLayer/ControlPanel/Load.pressed.connect(load_from_clipboard)
+	$CanvasLayer/GamePanel/Continue.pressed.connect(try_continue)
 	
 	spawn_inventory();
 
@@ -113,6 +119,16 @@ func _input(event: InputEvent) -> void:
 					temporary_added = null;
 				module_picked(null);
 				return;
+
+
+func set_machine(machine: Machine) -> void:
+	if GameState.machine_left != null and GameState.machine_left in get_children():
+		remove_child(GameState.machine_left)
+		GameState.machine_left.queue_free();
+	
+	GameState.machine_left = machine;
+	add_child(machine);
+	machine.position = Vector2(150.0, 300.0)
 
 
 func get_modules_at_point(point: Vector2) -> Array:
@@ -205,3 +221,52 @@ func spawn_ghost(module: Module) -> void:
 func despawn_ghost(module: Module) -> void:
 	remove_child(module);
 	module.turn_normal();
+
+
+func save_to_clipboard() -> void:
+	var d := GameState.machine_left.save_to_dictionary();
+	var string := JSON.stringify(JSON.from_native(d));
+	DisplayServer.clipboard_set(string);
+	
+	#var bytes := var_to_bytes(string);
+	#var compressed_bytes := bytes.compress();
+	#var compressed_bytes_string := compressed_bytes.hex_encode()
+
+
+func load_from_clipboard() -> void:
+	var d := DisplayServer.clipboard_get();
+	var json := JSON.new()
+	var error := json.parse(d)
+	if error == OK:
+		var data = JSON.to_native(json.data);
+		if typeof(data) == TYPE_DICTIONARY:
+			var machine = Machine.load_from_dictionary(data);
+			if machine != null:
+				set_machine(machine);
+
+
+func try_continue() -> void:
+	if GameState.machine_left.grid.hearts.is_empty():
+		spawn_notification(
+			"Can't continue: Machine has no heart.",
+			2.5,
+			get_global_mouse_position() - Vector2(0.0, 10.0)
+		);
+		return;
+	
+	finished.emit();
+
+
+func spawn_notification(text: String, lifetime: float, at: Vector2) -> void:
+	var tween := create_tween();
+	
+	var noto := Label.new();
+	var starting_position := at;
+	var speed := Vector2(0.0, -50.0);
+	
+	noto.position = starting_position;
+	noto.text = text;
+	
+	add_child(noto);
+	tween.tween_property(noto, ^"position", starting_position + speed * lifetime, lifetime);
+	tween.tween_callback(noto.queue_free);

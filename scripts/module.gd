@@ -71,6 +71,13 @@ func receive_damage(damage: float) -> void:
 	
 	if current_hp <= 0:
 		destroyed.emit();
+		_on_destroyed();
+
+
+func _on_destroyed() -> void:
+	turn_shadow();
+	hitbox.monitorable = false;
+	hitbox.monitoring = false;
 
 
 func point_left() -> void:

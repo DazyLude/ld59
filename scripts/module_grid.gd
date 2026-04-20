@@ -2,6 +2,9 @@ extends Node2D
 class_name ModuleGrid
 
 
+signal heart_destroyed;
+
+
 const CELL_SIZE := Vector2(64.0, 64.0);
 const GRID_OFFSET := Vector2();
 
@@ -16,6 +19,7 @@ var reversed : bool = false :
 
 
 var modules : Dictionary[Module, Vector2i] = {};
+var hearts : Dictionary[Module, bool] = {};
 
 
 func grid_position_to_scene_position(grid: Vector2i) -> Vector2:
@@ -44,6 +48,11 @@ func can_add_module(at: Vector2i, _module: Module) -> bool:
 
 
 func add_module(at: Vector2i, module: Module) -> void:
+	add_special(module, at);
+	if module.module_name == "generator":
+		module.destroyed.connect(_on_heart_destroyed);
+		hearts[module] = true;
+	
 	module.spawn_output.connect(handle_output.bind(module));
 	module.position = grid_position_to_scene_position(at);
 	modules[module] = at;
@@ -116,6 +125,20 @@ func remove_module(module: Module) -> void:
 	module.queue_free();
 
 
+func remove_special(module: Module) -> void:
+	match module.module_name:
+		"generator":
+			module.destroyed.disconnect(_on_heart_destroyed);
+			hearts.erase(module);
+
+
+func add_special(module: Module, _at: Vector2i) -> void:
+	match module.module_name:
+		"generator":
+			module.destroyed.connect(_on_heart_destroyed);
+			hearts[module] = true;
+
+
 func move_module(from: Vector2i, to: Vector2i, module: Module) -> void:
 	module.position = grid_position_to_scene_position(to);
 	modules[module] = to;
@@ -127,3 +150,12 @@ func spawn_homeless_orb(orb: Orb, at: Vector2) -> void:
 
 func get_ability_list() -> Array[Ability]:
 	return []; 
+
+
+func _on_heart_destroyed() -> void:
+	for heart in hearts:
+		if heart.current_hp <= 0:
+			hearts[heart] = false;
+	
+	if not hearts.values().any(func(b): return b):
+		heart_destroyed.emit();
