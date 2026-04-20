@@ -85,8 +85,10 @@ func _input(event: InputEvent) -> void:
 		if mb_event.button_index == MOUSE_BUTTON_LEFT and mb_event.pressed:
 			if temporary_added != null:
 				if not is_creative:
-					# TODO remove from inventory
-					pass;
+					# remove from inventory
+					GameState.player_inventory.erase(currently_selected);
+					currently_selected.queue_free();
+					spawn_inventory();
 				
 				temporary_added.turn_normal();
 				
@@ -105,8 +107,9 @@ func _input(event: InputEvent) -> void:
 					
 					var module_copy = temporary_added.make_copy();
 					if not is_creative:
-						# TODO put to inventory
-						pass;
+						# put to inventory
+						GameState.player_inventory[module_copy] = 1;	
+						spawn_inventory();
 					else:
 						modules_instantiated.push_back(module_copy);
 					
@@ -167,8 +170,8 @@ func spawn_inventory() -> void:
 
 
 func spawn_inventory_items() -> void:
-	for module in GameState.machine_left.inventory:
-		var count := GameState.machine_left.inventory[module];
+	for module in GameState.player_inventory:
+		var count := GameState.player_inventory[module];
 		add_button_for_module(module, count);
 
 

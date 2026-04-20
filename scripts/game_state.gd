@@ -20,10 +20,17 @@ var machine_right : Machine = null;
 var machine_left : Machine = null;
 var current_scene : Node2D;
 
+var player_inventory : Dictionary[Module, int] = {};
+
+
+var battle_queue : Array[Dictionary] = [];
+var rewards_queue : Array[Dictionary] = [];
+
+
 var player_template : Dictionary;
 
 # do not change when the game scenes are loaded
-var gameplay_scale : float = 0.66;
+var gameplay_scale : float = 0.6;
 
 
 func _init() -> void:
