@@ -17,4 +17,5 @@ texture = ExtResource("2_kinr6")
 centered = false
 
 [node name="Aim" type="Sprite2D" parent="." unique_id=609000817]
+z_index = 1
 texture = SubResource("AtlasTexture_8qdv8")
