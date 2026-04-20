@@ -20,7 +20,9 @@ var reversed : bool = false :
 
 var modules : Dictionary[Module, Vector2i] = {};
 var poll_cache : Dictionary[Module, Array] = {};
+
 var hearts : Dictionary[Module, bool] = {};
+var protectors : Dictionary[Module, Array] = {};
 
 
 func grid_position_to_scene_position(grid: Vector2i) -> Vector2:
@@ -151,6 +153,8 @@ func remove_special(module: Module) -> void:
 		"generator":
 			module.destroyed.disconnect(_on_heart_destroyed);
 			hearts.erase(module);
+		"armor":
+			protectors.erase(module);
 
 
 func add_special(module: Module, _at: Vector2i) -> void:
@@ -158,6 +162,25 @@ func add_special(module: Module, _at: Vector2i) -> void:
 		"generator":
 			module.destroyed.connect(_on_heart_destroyed);
 			hearts[module] = true;
+		"armor", "shield":
+			protectors[module] = [Vector2i(0, 1), Vector2i(0, -1)];
+
+
+func get_protector(module: Module) -> Module:
+	if module in protectors:
+		return null;
+	
+	var protectee_coords := modules[module];
+	for protector in protectors:
+		if protector.current_hp <= 0:
+			continue;
+		
+		var protector_coords := modules[protector];
+		for offset in protectors[protector]:
+			if protector_coords + offset == protectee_coords:
+				return protector;
+	
+	return null;
 
 
 func move_module(from: Vector2i, to: Vector2i, module: Module) -> void:

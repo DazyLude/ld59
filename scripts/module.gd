@@ -134,8 +134,13 @@ func activate() -> void:
 
 
 func receive_damage(damage: float) -> void:
+	if owner is ModuleGrid:
+		var protector := (owner as ModuleGrid).get_protector(self)
+		if protector != null:
+			protector.receive_damage(damage);
+			return;
+	
 	current_hp -= damage;
-	spawn_notification("-%d(/%d)" % [damage, current_hp], 0.5);
 	
 	if hp_bar:
 		hp_bar.visible = true;
@@ -193,13 +198,14 @@ func spawn_notification(text: String, lifetime: float) -> void:
 
 
 func get_data() -> Dictionary:
-	if current_hp <= max_hp:
-		return {"hp" : current_hp}
-	
-	return {};
+	return {
+		"hp" : current_hp,
+		"max_hp": max_hp,
+	}
 
 
 func apply_data(d: Dictionary) -> void:
+	max_hp = d.get("max_hp", max_hp)
 	current_hp = minf(d.get("hp", max_hp), max_hp);
 
 
