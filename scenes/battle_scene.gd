@@ -13,6 +13,8 @@ func _ready() -> void:
 	$CanvasLayer/Control/HBoxContainer/Button2.pressed.connect(set_speed.bind(2))
 	$CanvasLayer/Control/HBoxContainer/Button3.pressed.connect(set_speed.bind(4))
 	
+	$CanvasLayer/Control/VBoxContainer/Surrender.pressed.connect(finished.emit.bind(false));
+	
 	spawn_player_machine();
 	spawn_enemy_machine();
 	

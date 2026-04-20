@@ -22,6 +22,15 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control" unique_id=1868000886]
+layout_mode = 1
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Surrender" type="Button" parent="CanvasLayer/Control/VBoxContainer" unique_id=752911236]
+layout_mode = 2
+text = "retreat!"
+
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Control" unique_id=1987720789]
 layout_mode = 1
 anchors_preset = 1
