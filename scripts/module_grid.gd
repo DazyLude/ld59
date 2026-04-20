@@ -23,6 +23,7 @@ var poll_cache : Dictionary[Module, Array] = {};
 
 var hearts : Dictionary[Module, bool] = {};
 var protectors : Dictionary[Module, Array] = {};
+var barrier_active : Module = null;
 
 
 func grid_position_to_scene_position(grid: Vector2i) -> Vector2:
@@ -167,6 +168,12 @@ func add_special(module: Module, _at: Vector2i) -> void:
 
 
 func get_protector(module: Module) -> Module:
+	if barrier_active == module:
+		return null;
+	
+	if barrier_active:
+		return barrier_active;
+	
 	if module in protectors:
 		return null;
 	

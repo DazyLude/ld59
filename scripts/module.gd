@@ -82,9 +82,11 @@ func _ready() -> void:
 			icon = textures[0];
 		elif textures.size() > 1:
 			icon = textures[0];
-		
+	
 	if hp_bar == null:
 		create_hp_bar();
+	
+	current_hp = max_hp;
 
 
 func update_input_output_display() -> void:
