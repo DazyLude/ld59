@@ -2,6 +2,9 @@ extends Node2D
 class_name Machine
 
 
+signal destroyed;
+
+
 var default_grid_position := Vector2();
 var template : Dictionary;
 
@@ -25,6 +28,7 @@ func _ready() -> void:
 	if reversed:
 		grid.position *= Vector2(-1.0, 1.0);
 	$ModuleGrid/Sprite2D.scale = Vector2(GameState.gameplay_scale, GameState.gameplay_scale);
+	grid.heart_destroyed.connect(destroyed.emit)
 	
 	if body != null:
 		body.grid_ref = grid;

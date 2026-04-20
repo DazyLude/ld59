@@ -26,11 +26,7 @@ var modules_instantiated : Array[Module] = [];
 func _ready() -> void:
 	GameState.is_editing = true;
 	
-	var machine_pckd = preload("res://scenes/crazy_machine.tscn");
-	
-	var machine1 : Machine = machine_pckd.instantiate()
-	
-	set_machine(machine1)
+	spawn_player_machine();
 	
 	$CanvasLayer/ControlPanel/Load.visible = is_creative;
 	$CanvasLayer/ControlPanel/Label.visible = is_creative;
@@ -119,6 +115,11 @@ func _input(event: InputEvent) -> void:
 					temporary_added = null;
 				module_picked(null);
 				return;
+
+
+func spawn_player_machine() -> void:
+	var machine = Machine.load_from_dictionary(GameState.player_template);
+	set_machine(machine);
 
 
 func set_machine(machine: Machine) -> void:

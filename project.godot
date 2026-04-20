@@ -11,6 +11,7 @@ config_version=5
 [application]
 
 config/name="brobo"
+run/main_scene="uid://bi1rbfk3cpjt4"
 config/features=PackedStringArray("4.6", "GL Compatibility")
 config/icon="res://icon.svg"
 

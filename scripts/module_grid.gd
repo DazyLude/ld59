@@ -19,6 +19,7 @@ var reversed : bool = false :
 
 
 var modules : Dictionary[Module, Vector2i] = {};
+var poll_cache : Dictionary[Module, Array] = {};
 var hearts : Dictionary[Module, bool] = {};
 
 
@@ -75,6 +76,28 @@ func handle_output(orb: Orb, output_idx: int, module: Module) -> void:
 func poll_outputs(orb: Orb, module: Module) -> void:
 	var module_position := modules[module];
 	
+	var cached : Array = poll_cache.get_or_add(module, []);
+	
+	if not cached.is_empty():
+		# first poll outputs that haven't been cached before
+		var non_cached := module.outputs.filter(func(ou): return not ou in cached);
+		for output : Vector2i in non_cached:
+			var output_position := module_position + output;
+			var receiver := get_module_at(output_position);
+			
+			if receiver == null:
+				continue;
+			if not receiver.inputs.has(- output):
+				continue;
+			if receiver.can_receive_input(orb) == false:
+				continue;
+			
+			cached.push_back(output)
+			receiver.receive_input(orb);
+			return;
+	
+	cached.clear();
+	# then poll all outputs
 	for output in module.outputs:
 		var output_position := module_position + output;
 		var receiver := get_module_at(output_position);
@@ -86,6 +109,7 @@ func poll_outputs(orb: Orb, module: Module) -> void:
 		if receiver.can_receive_input(orb) == false:
 			continue;
 		
+		cached.push_back(output)
 		receiver.receive_input(orb);
 		return;
 	
@@ -156,3 +180,8 @@ func _on_heart_destroyed() -> void:
 	
 	if not hearts.values().any(func(b): return b):
 		heart_destroyed.emit();
+
+
+func fix_all() -> void:
+	for module in modules:
+		module.current_hp = module.max_hp;

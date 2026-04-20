@@ -1,6 +1,9 @@
 extends Node2D
 
 
+signal finished(victory: bool);
+
+
 func _ready() -> void:
 	GameState.is_editing = false;
 	
@@ -8,6 +11,9 @@ func _ready() -> void:
 	
 	spawn_player_machine();
 	spawn_enemy_machine();
+	
+	GameState.machine_left.destroyed.connect(finished.emit.bind(false), CONNECT_ONE_SHOT);
+	GameState.machine_right.destroyed.connect(finished.emit.bind(true), CONNECT_ONE_SHOT);
 	
 	GameState.current_scene = self;
 

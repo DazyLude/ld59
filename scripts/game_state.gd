@@ -70,3 +70,19 @@ func get_other_grid_location(by: Module, cell: Vector2i) -> Vector2:
 		return Vector2();
 	
 	return get_machine_grid_location(other_machine, cell)
+
+
+func load_editor() -> void:
+	var editor := preload("res://scenes/editor_scene.tscn").instantiate();
+	get_tree().change_scene_to_node.call_deferred(editor);
+	await editor.finished;
+	load_battle();
+
+
+func load_battle() -> void:
+	var battle := preload("res://scenes/battle_scene.tscn").instantiate();
+	get_tree().change_scene_to_node.call_deferred(battle);
+	await battle.finished;
+	machine_left.grid.fix_all();
+	player_template = machine_left.save_to_dictionary();
+	load_editor();
