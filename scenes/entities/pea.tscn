@@ -1,7 +1,13 @@
 [gd_scene format=3 uid="uid://kwuqmy031qay"]
 
 [ext_resource type="Script" uid="uid://b4t7olajsbfi6" path="res://scripts/projectile.gd" id="1_6ismf"]
-[ext_resource type="Texture2D" uid="uid://deda0j080xf6d" path="res://assets/entities/pea.png" id="2_11xev"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_6ismf"]
+load_path = "res://.godot/imported/WEAPON.png-429cf7f13115e2e35ae3a8678f62518d.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_11xev"]
+atlas = SubResource("CompressedTexture2D_6ismf")
+region = Rect2(128, 0, 64, 64)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_up6r6"]
 radius = 14.0
@@ -13,9 +19,8 @@ speed = 125.0
 metadata/_custom_type_script = "uid://b4t7olajsbfi6"
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1123473471]
-position = Vector2(-5, 1)
-texture = ExtResource("2_11xev")
+position = Vector2(4, 5)
+texture = SubResource("AtlasTexture_11xev")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=18206893]
-position = Vector2(1, -1)
 shape = SubResource("CircleShape2D_up6r6")

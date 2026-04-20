@@ -79,8 +79,33 @@ func get_other_grid_location(by: Module, cell: Vector2i) -> Vector2:
 	return get_machine_grid_location(other_machine, cell)
 
 
+func load_new_game() -> void:
+	new_game();
+	var intro := preload("res://scenes/godot_slides/intro.tscn").instantiate();
+	get_tree().change_scene_to_node.call_deferred(intro);
+	await intro.finished;
+	load_editor();
+
+
+func load_tutorial() -> void:
+	pass;
+
+
+func new_game() -> void:
+	pass;
+
+
+func load_creative() -> void:
+	var editor := preload("res://scenes/editor_scene.tscn").instantiate();
+	editor.is_creative = true;
+	get_tree().change_scene_to_node.call_deferred(editor);
+	await editor.finished;
+	load_battle();
+
+
 func load_editor() -> void:
 	var editor := preload("res://scenes/editor_scene.tscn").instantiate();
+	editor.is_creative = false;
 	get_tree().change_scene_to_node.call_deferred(editor);
 	await editor.finished;
 	load_battle();

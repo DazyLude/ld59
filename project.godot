@@ -15,11 +15,20 @@ run/main_scene="uid://bi1rbfk3cpjt4"
 config/features=PackedStringArray("4.6", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[audio]
+
+buses/default_bus_layout="uid://d2prgaikcnei0"
+
 [autoload]
 
 ModuleLibrary="*uid://dcunk2lhkosb6"
 MachineLibrary="*uid://bbq6ctdhghviw"
 GameState="*uid://senjvj82beky"
+BgmPlayer="*uid://dklkixwe5epwv"
+
+[display]
+
+window/stretch/mode="viewport"
 
 [input]
 
@@ -31,6 +40,11 @@ rotate_cw={
 rotate_ccw={
 "deadzone": 0.2,
 "events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":81,"key_label":0,"unicode":113,"location":0,"echo":false,"script":null)
+]
+}
+continue={
+"deadzone": 0.2,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":32,"key_label":0,"unicode":32,"location":0,"echo":false,"script":null)
 ]
 }
 

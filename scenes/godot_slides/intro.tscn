@@ -1,0 +1,156 @@
+[gd_scene format=3 uid="uid://xvh3wpup2408"]
+
+[ext_resource type="Script" uid="uid://u02m4157qdff" path="res://scenes/godot_slides/slides.gd" id="1_jj0ya"]
+[ext_resource type="Script" uid="uid://b2sjqw6dhrbuo" path="res://scripts/one_off_specs.gd" id="2_t1a4l"]
+[ext_resource type="Texture2D" uid="uid://rd77qk6rxjgf" path="res://assets/intro/intro1.png" id="2_wfelr"]
+[ext_resource type="Texture2D" uid="uid://b46u7vhsocdkl" path="res://assets/intro/intro2.png" id="3_w7tum"]
+[ext_resource type="Texture2D" uid="uid://bftfxwwi0muh0" path="res://assets/intro/intro3.png" id="4_t1a4l"]
+[ext_resource type="Texture2D" uid="uid://rys15e2sr1wp" path="res://assets/intro/intro4.png" id="5_7ywxo"]
+[ext_resource type="Texture2D" uid="uid://bm2u1de0r4l1u" path="res://assets/intro/intro5.png" id="6_3pg3p"]
+
+[sub_resource type="Resource" id="Resource_7ywxo"]
+script = ExtResource("2_t1a4l")
+sound = 5
+slide = 1
+metadata/_custom_type_script = "uid://b2sjqw6dhrbuo"
+
+[sub_resource type="Resource" id="Resource_t1a4l"]
+script = ExtResource("2_t1a4l")
+sound = 5
+slide = 2
+metadata/_custom_type_script = "uid://b2sjqw6dhrbuo"
+
+[sub_resource type="Resource" id="Resource_xk0c0"]
+script = ExtResource("2_t1a4l")
+sound = 4
+slide = 4
+metadata/_custom_type_script = "uid://b2sjqw6dhrbuo"
+
+[node name="Intro" type="Control" unique_id=1288831167 node_paths=PackedStringArray("slides")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_jj0ya")
+slides = [NodePath("Slide1"), NodePath("Slide2"), NodePath("Slide3"), NodePath("Slide4"), NodePath("Slide5")]
+transition_delay = Dictionary[int, float]({
+1: 0.15,
+2: 0.15,
+3: 0.15,
+4: 0.3
+})
+per_slide_music = Array[int]([2, 3, 3, 3, 1])
+one_offs = Array[ExtResource("2_t1a4l")]([SubResource("Resource_7ywxo"), SubResource("Resource_t1a4l"), SubResource("Resource_xk0c0")])
+
+[node name="Slide1" type="Control" parent="." unique_id=412848892]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="TextureRect" type="TextureRect" parent="Slide1" unique_id=1181889430]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_wfelr")
+expand_mode = 2
+
+[node name="Slide2" type="Control" parent="." unique_id=172614969]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="TextureRect" type="TextureRect" parent="Slide2" unique_id=46395156]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_w7tum")
+expand_mode = 2
+
+[node name="Slide3" type="Control" parent="." unique_id=545253772]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="TextureRect" type="TextureRect" parent="Slide3" unique_id=1113985151]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_t1a4l")
+expand_mode = 2
+
+[node name="Slide4" type="Control" parent="." unique_id=486698531]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="TextureRect" type="TextureRect" parent="Slide4" unique_id=910975772]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_7ywxo")
+expand_mode = 2
+
+[node name="Slide5" type="Control" parent="." unique_id=634358451]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="TextureRect" type="TextureRect" parent="Slide5" unique_id=891627954]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("6_3pg3p")
+expand_mode = 2
+
+[node name="Label" type="Label" parent="." unique_id=1476097012]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -273.0
+offset_top = -29.0
+offset_right = -5.0
+offset_bottom = -6.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "Press spacebar or click to continue"

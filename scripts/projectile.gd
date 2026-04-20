@@ -10,6 +10,7 @@ var shooter : Node;
 
 func _ready() -> void:
 	area_entered.connect(check_module_collision)
+	scale = Vector2(GameState.gameplay_scale, GameState.gameplay_scale);
 
 
 func _physics_process(delta: float) -> void:

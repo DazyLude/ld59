@@ -84,6 +84,7 @@ func _input(event: InputEvent) -> void:
 		var mb_event := event as InputEventMouseButton;
 		if mb_event.button_index == MOUSE_BUTTON_LEFT and mb_event.pressed:
 			if temporary_added != null:
+				BgmPlayer.play_one_off(BgmPlayer.SoundID.GridClick2)
 				if not is_creative:
 					# remove from inventory
 					GameState.player_inventory.erase(currently_selected);
@@ -103,6 +104,7 @@ func _input(event: InputEvent) -> void:
 			if currently_selected == null:
 				var colliders := get_modules_at_point(get_global_mouse_position());
 				if colliders.size() > 0:
+					BgmPlayer.play_one_off(BgmPlayer.SoundID.GridClick)
 					temporary_added = colliders[0];
 					
 					var module_copy = temporary_added.make_copy();
@@ -291,6 +293,7 @@ func try_rotate(direction: int) -> void:
 		);
 		return;
 	
+	BgmPlayer.play_one_off(BgmPlayer.SoundID.GridClick3)
 	currently_selected.rot += direction;
 	if temporary_added != null:
 		temporary_added.rot += direction;
