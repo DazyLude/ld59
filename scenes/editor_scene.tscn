@@ -66,9 +66,9 @@ anchor_left = 0.14600001
 anchor_top = 0.76400006
 anchor_right = 0.14600001
 anchor_bottom = 0.76400006
-offset_left = 118.591995
+offset_left = -0.40800476
 offset_top = -0.21203613
-offset_right = 371.59198
+offset_right = 252.592
 offset_bottom = 125.787964
 grow_horizontal = 2
 grow_vertical = 0
@@ -146,15 +146,18 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -437.5
-offset_top = -289.5
-offset_right = 437.5
-offset_bottom = 289.5
+offset_left = -104.0
+offset_top = -178.0
+offset_right = 104.0
+offset_bottom = 178.0
 grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Label" type="Label" parent="CanvasLayer/DifficultySelect/VBoxContainer" unique_id=750510465]
 layout_mode = 2
+text = "Choose Difficulty"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="HBoxContainer" type="VBoxContainer" parent="CanvasLayer/DifficultySelect/VBoxContainer" unique_id=1722352371]
 layout_mode = 2

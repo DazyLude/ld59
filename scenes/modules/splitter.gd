@@ -152,11 +152,11 @@ func update_orb_position(orb_idx: int, progress: float) -> void:
 	var rev_mult := Vector2(-1.0, 1.0) if reversed else Vector2(1.0, 1.0);
 	
 	if progress < 0.5:
-		var start := Vector2(inputs[0]) * pos_mult * rev_mult * GameState.gameplay_scale;
+		var start := Vector2(inputs[0]) * pos_mult * rev_mult;
 		node.position = lerp(start, Vector2(), progress * 2.0)
 	else:
 		var dest := outputs[per_orb_destination[orb_idx]];
-		var end := Vector2(dest) * pos_mult * rev_mult * GameState.gameplay_scale;
+		var end := Vector2(dest) * pos_mult * rev_mult;
 		node.position = lerp(Vector2(), end, progress * 2.0 - 1.0)
 
 

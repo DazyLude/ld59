@@ -5,7 +5,7 @@ const n := Vector2i( 0.0, -1.0);
 const e := Vector2i( 1.0,  0.0);
 const w := Vector2i(-1.0,  0.0);
 const s := Vector2i( 0.0,  1.0);
-const pos_mult := Vector2(48.0, 48.0);
+const pos_mult := Vector2(32.0, 32.0);
 
 const type_inputs : Array[Vector2i] = [
 	w, n, e, s, # t0 r0-4
@@ -137,10 +137,10 @@ func update_orb_position(node: OrbRenderer, progress: float) -> void:
 	var rev_mult := Vector2(-1.0, 1.0) if reversed else Vector2(1.0, 1.0);
 	
 	if progress < 0.5:
-		var start := Vector2(inputs[0]) * pos_mult * rev_mult * GameState.gameplay_scale;
+		var start := Vector2(inputs[0]) * pos_mult * rev_mult;
 		node.position = lerp(start, Vector2(), progress * 2.0)
 	else:
-		var end := Vector2(outputs[0]) * pos_mult * rev_mult * GameState.gameplay_scale;
+		var end := Vector2(outputs[0]) * pos_mult * rev_mult;
 		node.position = lerp(Vector2(), end, progress * 2.0 - 1.0)
 
 

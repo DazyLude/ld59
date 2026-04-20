@@ -210,6 +210,8 @@ func new_game() -> void:
 		module.queue_free();
 	
 	player_inventory.clear();
+	max_difficulty_cleared = -1;
+	current_difficulty = 0;
 
 
 func load_creative() -> void:
@@ -256,8 +258,8 @@ func load_battle() -> void:
 
 
 func go_to_victory_screen() -> void:
-	pass;
+	get_tree().change_scene_to_file("res://scenes/godot_slides/ending.tscn");
 
 
 func go_to_menu() -> void:
-	pass;
+	get_tree().change_scene_to_file("res://scenes/main.tscn");
