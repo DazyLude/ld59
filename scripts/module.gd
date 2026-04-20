@@ -24,7 +24,7 @@ signal destroyed;
 		return description
 
 
-var current_hp : float = 100.0;
+var current_hp : float = 10.0;
 
 @export var hitbox : Area2D = null:
 	set(v):
@@ -99,12 +99,15 @@ func _physics_process(_delta: float) -> void:
 
 func create_hp_bar():
 	hp_bar = ProgressBar.new();
-	
 	hp_bar.show_percentage = false;
-	hp_bar.size = Vector2(128, 12);
-	hp_bar.position = self.get_child(0).position + Vector2(-64, 64);
-	hp_bar.get_theme_stylebox("fill").bg_color = Color.GREEN;
+	hp_bar.value = current_hp;
+	hp_bar.max_value = max_hp;
 	
+	var width = ModuleGrid.CELL_SIZE[0];
+	hp_bar.size = Vector2(width, 8);
+	hp_bar.position = self.get_child(0).position + Vector2(-width / 2, width / 2);
+	
+	hp_bar.get_theme_stylebox("fill").bg_color = Color.GREEN;
 	hp_bar.visible = false;
 	self.add_child(hp_bar);
 
@@ -145,7 +148,6 @@ func receive_damage(damage: float) -> void:
 	if hp_bar:
 		hp_bar.visible = true;
 		hp_bar.value = current_hp;
-		hp_bar.get_theme_stylebox("fill").bg_color = Color.RED.lerp(Color.GREEN, current_hp / max_hp);
 	
 	if current_hp <= 0:
 		destroyed.emit();
@@ -175,11 +177,6 @@ func set_scale_modifier(scale_modifier: float) -> void:
 			var shape := hitbox.shape_owner_get_shape(so[0], 0);
 			if shape is RectangleShape2D and shape.size.x == shape.size.y:
 				shape.size = ModuleGrid.CELL_SIZE;
-	
-	if hp_bar != null:
-		var offset := ModuleGrid.CELL_SIZE / 2.0 * scale_modifier;
-		hp_bar.scale = Vector2(scale_modifier, scale_modifier);
-		hp_bar.position += Vector2(offset.ceil());
 
 
 func spawn_notification(text: String, lifetime: float) -> void:
