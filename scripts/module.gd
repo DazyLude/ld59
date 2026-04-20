@@ -25,7 +25,7 @@ signal destroyed;
 		return description
 
 
-var current_hp : float = 10.0;
+var current_hp : float = max_hp;
 
 @export var hitbox : Area2D = null:
 	set(v):

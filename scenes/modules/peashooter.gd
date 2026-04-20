@@ -5,7 +5,10 @@ extends Module
 
 
 func can_receive_input(_orb: Orb, _from: Vector2i) -> bool:
-	return true
+	if current_hp <= 0:
+		return false;
+	
+	return true;
 
 
 func receive_input(_orb: Orb, _from: Vector2i) -> void:
