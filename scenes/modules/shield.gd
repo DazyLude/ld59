@@ -1,11 +1,17 @@
 extends Module
 
 
-var max_charge : int;
+var max_charge : int = 10.0;
 var charge_progress : int;
 
 const default_modulate = Color("ffffff2a")
 var flicker_progress : float = 0.0;
+
+
+func _ready() -> void:
+	super._ready();
+	create_energy_bar(0.0, max_charge);
+
 
 func _process(delta: float) -> void:
 	$Protecc.visible = current_hp > 0;
@@ -27,3 +33,7 @@ func receive_input(_orb: Orb, _from: Vector2i) -> void:
 	if charge_progress == max_charge:
 		charge_progress = 0;
 		current_hp = max_hp;
+	
+	if energy_bar != null:
+		energy_bar.show();
+		energy_bar.value = charge_progress;

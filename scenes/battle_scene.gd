@@ -9,6 +9,10 @@ func _ready() -> void:
 	
 	$Aim.scale = Vector2(GameState.gameplay_scale, GameState.gameplay_scale)
 	
+	$CanvasLayer/Control/HBoxContainer/Button.pressed.connect(set_speed.bind(1))
+	$CanvasLayer/Control/HBoxContainer/Button2.pressed.connect(set_speed.bind(2))
+	$CanvasLayer/Control/HBoxContainer/Button3.pressed.connect(set_speed.bind(4))
+	
 	spawn_player_machine();
 	spawn_enemy_machine();
 	
@@ -16,6 +20,10 @@ func _ready() -> void:
 	GameState.machine_right.destroyed.connect(finished.emit.bind(true), CONNECT_ONE_SHOT);
 	
 	GameState.current_scene = self;
+
+
+func _exit_tree() -> void:
+	set_speed(1);
 
 
 func spawn_player_machine() -> void:
@@ -73,3 +81,8 @@ func get_modules_at_point(point: Vector2) -> Array:
 	colliders = colliders.filter(func(c: Node2D) -> bool: return c is Module);
 	
 	return colliders;
+
+
+func set_speed(speed: int) -> void:
+	Engine.time_scale = speed;
+	Engine.physics_ticks_per_second = 60 * speed;

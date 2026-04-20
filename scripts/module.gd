@@ -11,6 +11,7 @@ signal destroyed;
 @export var inputs : Array[Vector2i] = [];
 @export var icon : Texture2D;
 @export var hp_bar : ProgressBar = null;
+@export var energy_bar : ProgressBar = null;
 
 @export var input_sprites : Dictionary[Vector2i, Sprite2D];
 @export var output_sprites : Dictionary[Vector2i, Sprite2D];
@@ -105,11 +106,32 @@ func create_hp_bar():
 	
 	var width = ModuleGrid.CELL_SIZE[0];
 	hp_bar.size = Vector2(width, 8);
-	hp_bar.position = self.get_child(0).position + Vector2(-width / 2, width / 2);
+	hp_bar.position = Vector2(-width / 2, width / 2 - 6);
 	
-	hp_bar.get_theme_stylebox("fill").bg_color = Color.GREEN;
+	var stylebox = StyleBoxFlat.new()
+	stylebox.bg_color = Color.LIME_GREEN;
+	hp_bar.add_theme_stylebox_override("fill", stylebox);
+	
 	hp_bar.visible = false;
 	self.add_child(hp_bar);
+
+
+func create_energy_bar(current: float, max: float):
+	energy_bar = ProgressBar.new();
+	energy_bar.show_percentage = false;
+	energy_bar.value = current;
+	energy_bar.max_value = max;
+	
+	var width = ModuleGrid.CELL_SIZE[0];
+	energy_bar.size = Vector2(width, 8);
+	energy_bar.position = Vector2(-width / 2, width / 2 - 14);
+	
+	var blue_stylebox = StyleBoxFlat.new()
+	blue_stylebox.bg_color = Color.ROYAL_BLUE;
+	energy_bar.add_theme_stylebox_override("fill", blue_stylebox);
+	
+	energy_bar.visible = false;
+	self.add_child(energy_bar);
 
 
 func connect_hitbox(hb: Area2D) -> void:

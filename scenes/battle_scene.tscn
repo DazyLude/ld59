@@ -11,6 +11,42 @@ region = Rect2(128, 64, 64, 64)
 [node name="BattleScene" type="Node2D" unique_id=1907799236]
 script = ExtResource("1_idkgt")
 
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=633753696]
+
+[node name="Control" type="Control" parent="CanvasLayer" unique_id=1482783453]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Control" unique_id=1987720789]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 40.0
+grow_horizontal = 0
+
+[node name="Speed" type="Label" parent="CanvasLayer/Control/HBoxContainer" unique_id=1226060694]
+layout_mode = 2
+text = "Speed:"
+
+[node name="Button" type="Button" parent="CanvasLayer/Control/HBoxContainer" unique_id=1982465770]
+layout_mode = 2
+text = "x1"
+
+[node name="Button2" type="Button" parent="CanvasLayer/Control/HBoxContainer" unique_id=1678918382]
+layout_mode = 2
+text = "x2"
+
+[node name="Button3" type="Button" parent="CanvasLayer/Control/HBoxContainer" unique_id=606334527]
+layout_mode = 2
+text = "x4"
+
 [node name="BG" type="Sprite2D" parent="." unique_id=2113337638]
 scale = Vector2(0.6, 0.6)
 texture = ExtResource("2_kinr6")
