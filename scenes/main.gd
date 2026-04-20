@@ -8,6 +8,8 @@ func _ready() -> void:
 	var master_idx := AudioServer.get_bus_index(&"Master");
 	$VolumeControl/HSlider.value = AudioServer.get_bus_volume_linear(master_idx) * 100.0;
 	
+	$VBoxContainer/Button3.visible = GameState.game_finished;
+	
 	$VBoxContainer/Button.pressed.connect(GameState.load_new_game);
 	$VBoxContainer/Button2.pressed.connect(GameState.load_tutorial);
 	$VBoxContainer/Button3.pressed.connect(GameState.load_creative);
