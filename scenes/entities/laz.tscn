@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://c5fvmfrck5utu"]
+
+[ext_resource type="Script" uid="uid://b4t7olajsbfi6" path="res://scripts/projectile.gd" id="1_5dmet"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_6ismf"]
+load_path = "res://.godot/imported/WEAPON.png-429cf7f13115e2e35ae3a8678f62518d.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_11xev"]
+atlas = SubResource("CompressedTexture2D_6ismf")
+region = Rect2(128, 64, 64, 64)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5dmet"]
+size = Vector2(48, 8)
+
+[node name="Laz" type="Area2D" unique_id=1922186180]
+script = ExtResource("1_5dmet")
+damage = 3.0
+speed = 275.0
+metadata/_custom_type_script = "uid://b4t7olajsbfi6"
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1123473471]
+position = Vector2(5, 9)
+texture = SubResource("AtlasTexture_11xev")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=18206893]
+shape = SubResource("RectangleShape2D_5dmet")

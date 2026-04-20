@@ -3,6 +3,13 @@
 [ext_resource type="Script" uid="uid://ccviddsk7a45" path="res://scenes/modules/peashooter.gd" id="1_3pp2g"]
 [ext_resource type="Texture2D" uid="uid://clilpxuc1m8pc" path="res://assets/module_visuals/WEAPON.png" id="2_3pp2g"]
 
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_3pp2g"]
+load_path = "res://.godot/imported/WEAPON.png-429cf7f13115e2e35ae3a8678f62518d.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_128xt"]
+atlas = SubResource("CompressedTexture2D_3pp2g")
+region = Rect2(0, 0, 64, 64)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_57vxb"]
 atlas = ExtResource("2_3pp2g")
 region = Rect2(0, 0, 128, 64)
@@ -14,6 +21,7 @@ size = Vector2(64, 64)
 script = ExtResource("1_3pp2g")
 pea_output = NodePath("Body/OutPosition")
 inputs = Array[Vector2i]([Vector2i(-1, 0)])
+icon = SubResource("AtlasTexture_128xt")
 module_name = "peashooter"
 metadata/_custom_type_script = "uid://dfdqpbud8104i"
 

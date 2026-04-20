@@ -1,28 +1,28 @@
-[gd_scene format=3 uid="uid://bxvwanp4bkfo3"]
+[gd_scene format=3 uid="uid://7s24cvaqdhsw"]
 
-[ext_resource type="Script" uid="uid://cuecyudfjb71v" path="res://scenes/modules/lazgun.gd" id="1_64qn0"]
-[ext_resource type="Texture2D" uid="uid://clilpxuc1m8pc" path="res://assets/module_visuals/WEAPON.png" id="2_yrb1y"]
+[ext_resource type="Script" uid="uid://5rw26rdjrrgq" path="res://scenes/modules/railgun.gd" id="1_p6fba"]
+[ext_resource type="Texture2D" uid="uid://clilpxuc1m8pc" path="res://assets/module_visuals/WEAPON.png" id="2_c637e"]
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_64qn0"]
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_p6fba"]
 load_path = "res://.godot/imported/WEAPON.png-429cf7f13115e2e35ae3a8678f62518d.ctex"
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_yrb1y"]
-atlas = SubResource("CompressedTexture2D_64qn0")
-region = Rect2(0, 64, 64, 64)
+[sub_resource type="AtlasTexture" id="AtlasTexture_c637e"]
+atlas = SubResource("CompressedTexture2D_p6fba")
+region = Rect2(0, 128, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_57vxb"]
-atlas = ExtResource("2_yrb1y")
-region = Rect2(0, 64, 128, 64)
+atlas = ExtResource("2_c637e")
+region = Rect2(0, 128, 128, 64)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_128xt"]
 size = Vector2(64, 64)
 
-[node name="Peashooter" type="Node2D" unique_id=846544340 node_paths=PackedStringArray("pea_output")]
-script = ExtResource("1_64qn0")
+[node name="RailGun" type="Node2D" unique_id=846544340 node_paths=PackedStringArray("pea_output")]
+script = ExtResource("1_p6fba")
 pea_output = NodePath("Body/OutPosition")
 inputs = Array[Vector2i]([Vector2i(-1, 0)])
-icon = SubResource("AtlasTexture_yrb1y")
-module_name = "Lazer Gun"
+icon = SubResource("AtlasTexture_c637e")
+module_name = "Railgun"
 metadata/_custom_type_script = "uid://dfdqpbud8104i"
 
 [node name="Base" type="Sprite2D" parent="." unique_id=1101215429]
@@ -33,7 +33,7 @@ texture = SubResource("AtlasTexture_57vxb")
 offset = Vector2(32, 0)
 
 [node name="OutPosition" type="Marker2D" parent="Body" unique_id=186441712]
-position = Vector2(58, -10)
+position = Vector2(64, -5)
 
 [node name="Area2D" type="Area2D" parent="." unique_id=1485143772]
 

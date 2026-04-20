@@ -20,7 +20,7 @@ func receive_input(_orb: Orb, _from: Vector2i) -> void:
 	var angle = pea_output.global_position.angle_to_point(target_global_coords);
 	#$Body.rotation = angle;
 	
-	var pea : Projectile = preload("res://scenes/entities/pea.tscn").instantiate();
+	var pea : Projectile = preload("res://scenes/entities/bullet.tscn").instantiate();
 	
 	pea.rotate(angle);
 	pea.position = pea_output.position.rotated($Body.rotation);

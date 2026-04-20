@@ -6,6 +6,8 @@ class_name _ModuleLibClass
 var module_paths : Array[String] = [
 	"res://scenes/modules/generator.tscn",
 	"res://scenes/modules/peashooter.tscn",
+	"res://scenes/modules/lazgun.tscn",
+	"res://scenes/modules/railgun.tscn",
 	"res://scenes/modules/tube.tscn",
 	"res://scenes/modules/splitter.tscn",
 	"res://scenes/modules/armor.tscn",

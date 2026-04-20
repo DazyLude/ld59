@@ -7,6 +7,7 @@ signal finished(victory: bool);
 func _ready() -> void:
 	GameState.is_editing = false;
 	
+	$BG.scale = Vector2(GameState.gameplay_scale, GameState.gameplay_scale)
 	$Aim.scale = Vector2(GameState.gameplay_scale, GameState.gameplay_scale)
 	
 	$CanvasLayer/Control/HBoxContainer/Button.pressed.connect(set_speed.bind(1))

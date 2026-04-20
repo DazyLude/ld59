@@ -25,6 +25,7 @@ var modules_instantiated : Array[Module] = [];
 
 func _ready() -> void:
 	GameState.is_editing = true;
+	$BG.scale = Vector2(GameState.gameplay_scale, GameState.gameplay_scale)
 	
 	spawn_player_machine();
 	

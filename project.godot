@@ -28,6 +28,8 @@ BgmPlayer="*uid://dklkixwe5epwv"
 
 [display]
 
+window/size/viewport_width=948
+window/size/viewport_height=533
 window/stretch/mode="viewport"
 
 [gui]

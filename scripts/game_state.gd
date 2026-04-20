@@ -30,7 +30,7 @@ var rewards_queue : Array[Dictionary] = [];
 var player_template : Dictionary;
 
 # do not change when the game scenes are loaded
-var gameplay_scale : float = 0.6;
+var gameplay_scale : float = 948.0 / 1920.0;
 
 
 func _init() -> void:
@@ -92,7 +92,10 @@ func load_tutorial() -> void:
 
 
 func new_game() -> void:
-	pass;
+	for module in player_inventory:
+		module.queue_free();
+	
+	player_inventory.clear();
 
 
 func load_creative() -> void:
