@@ -79,7 +79,7 @@ func _physics_process(delta: float) -> void:
 	for idx in per_orb_progress.size():
 		per_orb_progress[idx] += delta;
 		if per_orb_progress[idx] >= PIPE_LENGTH:
-			release_frontmost_orb()
+			release_frontmost_orb.call_deferred()
 	
 	update_orb_positions();
 

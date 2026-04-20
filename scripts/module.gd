@@ -125,6 +125,14 @@ func receive_input(_orb: Orb, _from: Vector2i) -> void:
 	pass;
 
 
+func can_activate() -> bool:
+	return false;
+
+
+func activate() -> void:
+	pass;
+
+
 func receive_damage(damage: float) -> void:
 	current_hp -= damage;
 	spawn_notification("-%d(/%d)" % [damage, current_hp], 0.5);

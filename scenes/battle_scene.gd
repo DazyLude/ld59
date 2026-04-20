@@ -46,16 +46,16 @@ func _input(event: InputEvent) -> void:
 				var module : Module = modules[0];
 				if module.owner.owner == GameState.machine_left:
 					# user is targeting players machine
-					# TODO if module can activate - activate 
-					pass;
+					if module.can_activate():
+						module.activate();
 				else:
 					# user is targeting other machine
 					var new_target := GameState.machine_right.grid.modules[module];
 					GameState.machine_left.targeting_strategy = new_target;
-					pass;
 
 
-func _process(delta: float) -> void:
+
+func _process(_delta: float) -> void:
 	var current_target = GameState.machine_left.targeting_strategy;
 	$Aim.position = GameState.get_machine_grid_location(GameState.machine_right, current_target);
 
