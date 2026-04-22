@@ -26,6 +26,8 @@ var modules_instantiated : Array[Module] = [];
 
 func _ready() -> void:
 	GameState.is_editing = true;
+	BgmPlayer.change_track(BgmPlayer.SoundID.MusicDefault);
+	
 	$BG.scale = Vector2(GameState.gameplay_scale, GameState.gameplay_scale)
 	match GameState.current_difficulty:
 		0:

@@ -6,6 +6,7 @@ signal finished(victory: bool);
 
 func _ready() -> void:
 	GameState.is_editing = false;
+	BgmPlayer.change_track(BgmPlayer.SoundID.MusicBattle);
 	
 	$BG.scale = Vector2(GameState.gameplay_scale, GameState.gameplay_scale)
 	$Aim.scale = Vector2(GameState.gameplay_scale, GameState.gameplay_scale)

@@ -37,6 +37,11 @@ func can_receive_input(_orb: Orb, _from: Vector2i) -> bool:
 	return charge_progress < max_charge and current_hp > 0;
 
 
+func receive_damage(damage: float) -> void:
+	super.receive_damage(damage);
+	BgmPlayer.play_one_off(BgmPlayer.SoundID.FXBarrierHit)
+
+
 func receive_input(_orb: Orb, _from: Vector2i) -> void:
 	charge_progress += 1;
 	
@@ -55,6 +60,7 @@ func can_activate() -> bool:
 var hp_cache : float;
 func activate() -> void:
 	if owner is ModuleGrid:
+		BgmPlayer.play_one_off(BgmPlayer.SoundID.FXBarrierActive)
 		charge_progress = 0;
 		active = true;
 		var grid := owner as ModuleGrid;

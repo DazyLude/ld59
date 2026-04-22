@@ -4,6 +4,7 @@ class_name Projectile
 
 @export var damage : float;
 @export var speed : float;
+@export var hitsound : BgmPlayer.SoundID = BgmPlayer.SoundID.FXPeaHit;
 var direction : Vector2;
 var shooter : Node;
 
@@ -30,4 +31,5 @@ func check_module_collision(another_area: Area2D) -> void:
 
 
 func _on_contact() -> void:
+	BgmPlayer.play_one_off(hitsound);
 	queue_free();

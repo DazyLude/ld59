@@ -26,6 +26,7 @@ func receive_input(_orb: Orb, _from: Vector2i) -> void:
 	pea.position = pea_output.position.rotated($Body.rotation);
 	pea.direction = Vector2(1.0, 0.0).rotated(angle);
 	
+	BgmPlayer.play_one_off(BgmPlayer.SoundID.FXPeaShoot);
 	GameState.shoot_projectile(pea, self, to_global(pea.position));
 
 

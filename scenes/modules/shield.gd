@@ -24,6 +24,11 @@ func _process(delta: float) -> void:
 		flicker_progress = randf_range(0.2, 1.8);
 
 
+func receive_damage(damage: float) -> void:
+	super.receive_damage(damage);
+	BgmPlayer.play_one_off(BgmPlayer.SoundID.FXShieldHit)
+
+
 func can_receive_input(_orb: Orb, _from: Vector2i) -> bool:
 	return true;
 

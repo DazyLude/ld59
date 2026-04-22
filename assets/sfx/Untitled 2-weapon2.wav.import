@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://ctw0cc1k511t1"
+path="res://.godot/imported/Untitled 2-weapon2.wav-0ca49164178f2403cacd2ed5bf626599.sample"
+
+[deps]
+
+source_file="res://assets/sfx/Untitled 2-weapon2.wav"
+dest_files=["res://.godot/imported/Untitled 2-weapon2.wav-0ca49164178f2403cacd2ed5bf626599.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

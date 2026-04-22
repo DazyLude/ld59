@@ -10,19 +10,19 @@
 
 [sub_resource type="Resource" id="Resource_7ywxo"]
 script = ExtResource("2_t1a4l")
-sound = 5
+sound = 7
 slide = 1
-metadata/_custom_type_script = "uid://b2sjqw6dhrbuo"
-
-[sub_resource type="Resource" id="Resource_t1a4l"]
-script = ExtResource("2_t1a4l")
-sound = 5
-slide = 2
 metadata/_custom_type_script = "uid://b2sjqw6dhrbuo"
 
 [sub_resource type="Resource" id="Resource_xk0c0"]
 script = ExtResource("2_t1a4l")
-sound = 4
+sound = 5
+slide = 3
+metadata/_custom_type_script = "uid://b2sjqw6dhrbuo"
+
+[sub_resource type="Resource" id="Resource_3pg3p"]
+script = ExtResource("2_t1a4l")
+sound = 6
 slide = 4
 metadata/_custom_type_script = "uid://b2sjqw6dhrbuo"
 
@@ -42,8 +42,8 @@ transition_delay = Dictionary[int, float]({
 3: 0.15,
 4: 0.3
 })
-per_slide_music = Array[int]([2, 3, 3, 3, 1])
-one_offs = Array[ExtResource("2_t1a4l")]([SubResource("Resource_7ywxo"), SubResource("Resource_t1a4l"), SubResource("Resource_xk0c0")])
+per_slide_music = Array[int]([3, 3, 4, 4, 1])
+one_offs = Array[ExtResource("2_t1a4l")]([SubResource("Resource_7ywxo"), SubResource("Resource_xk0c0"), SubResource("Resource_3pg3p")])
 
 [node name="Slide1" type="Control" parent="." unique_id=412848892]
 layout_mode = 1

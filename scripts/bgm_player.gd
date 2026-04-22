@@ -4,29 +4,63 @@ extends Node
 enum SoundID {
 	None,
 	MusicDefault,
+	MusicBattle,
 	
 	AmForest,
 	AmForest2,
 	
 	FXHeart,
+	FXBreath,
 	FXSignal,
 	
 	GridClick,
 	GridClick2,
 	GridClick3,
+	
+	FXButton,
+	
+	FXPeaHit,
+	FXPeaShoot,
+	FXLazHit,
+	FXLaxShoot,
+	FXRailHit,
+	FXRailShoot,
+	
+	FXArmorHit,
+	FXShieldHit,
+	FXBarrierHit,
+	FXBarrierActive,
 }
 
 
 const uid_per_sound_id : Dictionary[SoundID, String] = {
 	SoundID.None: "",
 	SoundID.MusicDefault: "res://assets/music/main.wav",
+	SoundID.MusicBattle: "res://assets/music/fight.wav",
+	
 	SoundID.AmForest: "res://assets/sfx/frame1.wav",
-	SoundID.AmForest2: "res://assets/sfx/frame2.wav",
-	SoundID.FXHeart: "res://assets/sfx/heartbeat-breath.wav",
-	SoundID.FXSignal: "res://assets/sfx/signalsound.wav",
+	SoundID.AmForest2: "res://assets/sfx/frame2_noise.wav",
+	SoundID.FXHeart: "res://assets/sfx/heartbeat_x3.wav",
+	SoundID.FXBreath: "res://assets/sfx/heartbeat-breath.wav",
+	
+	SoundID.FXSignal: "res://assets/sfx/signalsound2.wav",
 	SoundID.GridClick: "res://assets/sfx/GRID_EDIT.wav",
 	SoundID.GridClick2: "res://assets/sfx/GRID_INTERFACE.wav",
 	SoundID.GridClick3: "res://assets/sfx/GRID_LOCK.wav",
+	
+	SoundID.FXButton: "res://assets/sfx/interface.wav",
+	
+	SoundID.FXPeaHit: "res://assets/sfx/hit1.wav",
+	SoundID.FXPeaShoot: "res://assets/sfx/Untitled 1-weapon1.wav",
+	SoundID.FXLazHit: "res://assets/sfx/hit2.wav",
+	SoundID.FXLaxShoot: "res://assets/sfx/Untitled 2-weapon2.wav",
+	SoundID.FXRailHit: "res://assets/sfx/hit3.wav",
+	SoundID.FXRailShoot: "res://assets/sfx/Untitled 3-weapon3.wav",
+	
+	SoundID.FXArmorHit: "res://assets/sfx/shield1-hit.wav",
+	SoundID.FXShieldHit: "res://assets/sfx/shield2-hit.wav",
+	SoundID.FXBarrierHit: "res://assets/sfx/shield3-hit.wav",
+	SoundID.FXBarrierActive: "res://assets/sfx/shield3_activation.wav",
 }
 
 
