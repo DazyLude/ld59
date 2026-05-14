@@ -2,6 +2,7 @@ extends Control
 
 
 func _ready() -> void:
+	GameState.is_editing = true;
 	spawn_player_machine();
 	BgmPlayer.change_track(BgmPlayer.SoundID.AmForest);
 	$Button.pressed.connect(GameState.go_to_menu);

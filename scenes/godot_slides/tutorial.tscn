@@ -18,7 +18,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_hu88a")
-slides = [NodePath(""), NodePath(""), NodePath(""), NodePath(""), NodePath(""), NodePath(""), NodePath(""), NodePath(""), NodePath("")]
+slides = [NodePath("Slide1"), NodePath("Slide2"), NodePath("Slide3"), NodePath("Slide4"), NodePath("Slide5"), NodePath("Slide6"), NodePath("Slide7"), NodePath("Slide8"), NodePath("Slide9")]
 
 [node name="Slide1" type="Control" parent="." unique_id=663470774]
 visible = false
@@ -41,11 +41,11 @@ expand_mode = 2
 stretch_mode = 5
 
 [node name="Panel" type="Panel" parent="Slide1" unique_id=1226685147]
-layout_mode = 0
-offset_left = 247.0
-offset_top = 96.0
-offset_right = 847.0
-offset_bottom = 296.0
+layout_mode = 1
+offset_left = 537.0
+offset_top = 246.0
+offset_right = 1137.0
+offset_bottom = 446.0
 
 [node name="Label" type="Label" parent="Slide1/Panel" unique_id=1038604135]
 layout_mode = 1
@@ -62,8 +62,12 @@ Beep Boop.
 horizontal_alignment = 1
 autowrap_mode = 3
 
-[node name="Sprite2D" type="Sprite2D" parent="Slide1" unique_id=1720229083]
-position = Vector2(171, 291)
+[node name="Sprite2D" type="TextureRect" parent="Slide1" unique_id=381397306]
+layout_mode = 0
+offset_left = 200.0
+offset_top = 203.0
+offset_right = 1028.0
+offset_bottom = 1186.0
 scale = Vector2(0.3, 0.3)
 texture = ExtResource("3_suodu")
 
@@ -87,17 +91,21 @@ texture = ExtResource("2_t48lw")
 expand_mode = 2
 stretch_mode = 5
 
-[node name="Sprite2D2" type="Sprite2D" parent="Slide2" unique_id=359414102]
-position = Vector2(351.99997, 79)
+[node name="Sprite2D2" type="TextureRect" parent="Slide2" unique_id=660793867]
+layout_mode = 0
+offset_left = 501.0
+offset_top = 128.0
+offset_right = 1692.9108
+offset_bottom = 825.03534
 scale = Vector2(0.61497885, 0.6427221)
 texture = ExtResource("4_c4ic4")
-centered = false
 
 [node name="Panel" type="Panel" parent="Slide2" unique_id=680291243]
-layout_mode = 0
-offset_top = 50.0
-offset_right = 361.0
-offset_bottom = 259.0
+layout_mode = 1
+offset_left = 120.0
+offset_top = 105.0
+offset_right = 481.0
+offset_bottom = 314.0
 
 [node name="Label" type="Label" parent="Slide2/Panel" unique_id=499031214]
 layout_mode = 1
@@ -118,8 +126,12 @@ Beep Boop.
 horizontal_alignment = 1
 autowrap_mode = 3
 
-[node name="Sprite2D" type="Sprite2D" parent="Slide2" unique_id=896492632]
-position = Vector2(154, 409)
+[node name="Sprite2D" type="TextureRect" parent="Slide2" unique_id=1416635036]
+layout_mode = 0
+offset_left = 157.0
+offset_top = 340.0
+offset_right = 985.0
+offset_bottom = 1323.0
 scale = Vector2(0.3, 0.3)
 texture = ExtResource("3_suodu")
 
@@ -143,17 +155,21 @@ texture = ExtResource("2_t48lw")
 expand_mode = 2
 stretch_mode = 5
 
-[node name="Sprite2D2" type="Sprite2D" parent="Slide3" unique_id=1947608225]
-position = Vector2(351.99997, 79)
+[node name="Sprite2D2" type="TextureRect" parent="Slide3" unique_id=518433027]
+layout_mode = 0
+offset_left = 628.0
+offset_top = 183.0
+offset_right = 1576.0
+offset_bottom = 712.0
 scale = Vector2(0.61497885, 0.6427221)
 texture = ExtResource("4_c4ic4")
-centered = false
 
 [node name="Panel" type="Panel" parent="Slide3" unique_id=796935303]
-layout_mode = 0
-offset_top = 50.0
-offset_right = 361.0
-offset_bottom = 259.0
+layout_mode = 1
+offset_left = 106.0
+offset_top = 66.0
+offset_right = 467.0
+offset_bottom = 275.0
 
 [node name="Label" type="Label" parent="Slide3/Panel" unique_id=1694430978]
 layout_mode = 1
@@ -171,8 +187,12 @@ Beep Boop."
 horizontal_alignment = 1
 autowrap_mode = 3
 
-[node name="Sprite2D" type="Sprite2D" parent="Slide3" unique_id=1223414934]
-position = Vector2(154, 409)
+[node name="Sprite2D" type="TextureRect" parent="Slide3" unique_id=1048126911]
+layout_mode = 0
+offset_left = 163.0
+offset_top = 321.0
+offset_right = 991.0
+offset_bottom = 1304.0
 scale = Vector2(0.3, 0.3)
 texture = ExtResource("3_suodu")
 
@@ -196,17 +216,21 @@ texture = ExtResource("2_t48lw")
 expand_mode = 2
 stretch_mode = 5
 
-[node name="Sprite2D2" type="Sprite2D" parent="Slide4" unique_id=2124789354]
-position = Vector2(351.99997, 79)
+[node name="Sprite2D2" type="TextureRect" parent="Slide4" unique_id=1061686402]
+layout_mode = 0
+offset_left = 472.0
+offset_top = 95.0
+offset_right = 1745.2145
+offset_bottom = 848.0471
 scale = Vector2(0.61497885, 0.6427221)
 texture = ExtResource("4_c4ic4")
-centered = false
 
 [node name="Panel" type="Panel" parent="Slide4" unique_id=29612665]
-layout_mode = 0
-offset_top = 50.0
-offset_right = 361.0
-offset_bottom = 259.0
+layout_mode = 1
+offset_left = 71.0
+offset_top = 73.0
+offset_right = 432.0
+offset_bottom = 282.0
 
 [node name="Label" type="Label" parent="Slide4/Panel" unique_id=371643863]
 layout_mode = 1
@@ -224,8 +248,12 @@ Beep Boop."
 horizontal_alignment = 1
 autowrap_mode = 3
 
-[node name="Sprite2D" type="Sprite2D" parent="Slide4" unique_id=1240909772]
-position = Vector2(154, 409)
+[node name="Sprite2D" type="TextureRect" parent="Slide4" unique_id=317528326]
+layout_mode = 0
+offset_left = 157.0
+offset_top = 330.0
+offset_right = 985.0
+offset_bottom = 1313.0
 scale = Vector2(0.3, 0.3)
 texture = ExtResource("3_suodu")
 
@@ -249,17 +277,21 @@ texture = ExtResource("2_t48lw")
 expand_mode = 2
 stretch_mode = 5
 
-[node name="Sprite2D2" type="Sprite2D" parent="Slide5" unique_id=427022501]
-position = Vector2(351.99997, 79)
+[node name="Sprite2D2" type="TextureRect" parent="Slide5" unique_id=258353395]
+layout_mode = 0
+offset_left = 462.0
+offset_top = 86.0
+offset_right = 1780.7444
+offset_bottom = 848.3824
 scale = Vector2(0.61497885, 0.6427221)
 texture = ExtResource("5_enajo")
-centered = false
 
 [node name="Panel" type="Panel" parent="Slide5" unique_id=381582856]
-layout_mode = 0
-offset_top = 50.0
-offset_right = 361.0
-offset_bottom = 259.0
+layout_mode = 1
+offset_left = 56.0
+offset_top = 78.0
+offset_right = 417.0
+offset_bottom = 287.0
 
 [node name="Label" type="Label" parent="Slide5/Panel" unique_id=1396895746]
 layout_mode = 1
@@ -277,8 +309,12 @@ Beep Boop."
 horizontal_alignment = 1
 autowrap_mode = 3
 
-[node name="Sprite2D" type="Sprite2D" parent="Slide5" unique_id=872450182]
-position = Vector2(154, 409)
+[node name="Sprite2D" type="TextureRect" parent="Slide5" unique_id=927751901]
+layout_mode = 0
+offset_left = 101.0
+offset_top = 305.0
+offset_right = 929.0
+offset_bottom = 1288.0
 scale = Vector2(0.3, 0.3)
 texture = ExtResource("3_suodu")
 
@@ -302,17 +338,21 @@ texture = ExtResource("2_t48lw")
 expand_mode = 2
 stretch_mode = 5
 
-[node name="Sprite2D2" type="Sprite2D" parent="Slide6" unique_id=1054098189]
-position = Vector2(351.99997, 79)
+[node name="Sprite2D2" type="TextureRect" parent="Slide6" unique_id=710362630]
+layout_mode = 0
+offset_left = 452.0
+offset_top = 94.0
+offset_right = 1756.1099
+offset_bottom = 839.2677
 scale = Vector2(0.61497885, 0.6427221)
 texture = ExtResource("6_enajo")
-centered = false
 
 [node name="Panel" type="Panel" parent="Slide6" unique_id=264088673]
-layout_mode = 0
-offset_top = 50.0
-offset_right = 361.0
-offset_bottom = 259.0
+layout_mode = 1
+offset_left = 57.0
+offset_top = 78.0
+offset_right = 418.0
+offset_bottom = 287.0
 
 [node name="Label" type="Label" parent="Slide6/Panel" unique_id=608887939]
 layout_mode = 1
@@ -331,8 +371,12 @@ Beep Boop."
 horizontal_alignment = 1
 autowrap_mode = 3
 
-[node name="Sprite2D" type="Sprite2D" parent="Slide6" unique_id=1777657047]
-position = Vector2(154, 409)
+[node name="Sprite2D" type="TextureRect" parent="Slide6" unique_id=726161152]
+layout_mode = 0
+offset_left = 103.0
+offset_top = 307.0
+offset_right = 931.0
+offset_bottom = 1290.0
 scale = Vector2(0.3, 0.3)
 texture = ExtResource("3_suodu")
 
@@ -356,17 +400,21 @@ texture = ExtResource("2_t48lw")
 expand_mode = 2
 stretch_mode = 5
 
-[node name="Sprite2D2" type="Sprite2D" parent="Slide7" unique_id=941027931]
-position = Vector2(351.99997, 79)
+[node name="Sprite2D2" type="TextureRect" parent="Slide7" unique_id=1569253861]
+layout_mode = 0
+offset_left = 477.0
+offset_top = 96.0
+offset_right = 1722.5712
+offset_bottom = 817.92944
 scale = Vector2(0.61497885, 0.6427221)
 texture = ExtResource("6_enajo")
-centered = false
 
 [node name="Panel" type="Panel" parent="Slide7" unique_id=557288912]
-layout_mode = 0
-offset_top = 50.0
-offset_right = 361.0
-offset_bottom = 259.0
+layout_mode = 1
+offset_left = 100.0
+offset_top = 71.0
+offset_right = 461.0
+offset_bottom = 280.0
 
 [node name="Label" type="Label" parent="Slide7/Panel" unique_id=1472454435]
 layout_mode = 1
@@ -387,8 +435,12 @@ Beep Boop."
 horizontal_alignment = 1
 autowrap_mode = 3
 
-[node name="Sprite2D" type="Sprite2D" parent="Slide7" unique_id=75620654]
-position = Vector2(154, 409)
+[node name="Sprite2D" type="TextureRect" parent="Slide7" unique_id=356320635]
+layout_mode = 0
+offset_left = 145.0
+offset_top = 301.0
+offset_right = 973.0
+offset_bottom = 1284.0
 scale = Vector2(0.3, 0.3)
 texture = ExtResource("3_suodu")
 
@@ -412,17 +464,21 @@ texture = ExtResource("2_t48lw")
 expand_mode = 2
 stretch_mode = 5
 
-[node name="Sprite2D2" type="Sprite2D" parent="Slide8" unique_id=1774760725]
-position = Vector2(351.99997, 79)
+[node name="Sprite2D2" type="TextureRect" parent="Slide8" unique_id=352510344]
+layout_mode = 0
+offset_left = 536.0
+offset_top = 123.0
+offset_right = 1703.5198
+offset_bottom = 823.1471
 scale = Vector2(0.61497885, 0.6427221)
 texture = ExtResource("7_2tffy")
-centered = false
 
 [node name="Panel" type="Panel" parent="Slide8" unique_id=873153294]
-layout_mode = 0
-offset_top = 50.0
-offset_right = 361.0
-offset_bottom = 259.0
+layout_mode = 1
+offset_left = 83.0
+offset_top = 73.0
+offset_right = 444.0
+offset_bottom = 282.0
 
 [node name="Label" type="Label" parent="Slide8/Panel" unique_id=1030683085]
 layout_mode = 1
@@ -440,12 +496,17 @@ Beep Boop."
 horizontal_alignment = 1
 autowrap_mode = 3
 
-[node name="Sprite2D" type="Sprite2D" parent="Slide8" unique_id=61623281]
-position = Vector2(154, 409)
+[node name="Sprite2D" type="TextureRect" parent="Slide8" unique_id=2072706737]
+layout_mode = 0
+offset_left = 95.0
+offset_top = 305.0
+offset_right = 923.0
+offset_bottom = 1288.0
 scale = Vector2(0.3, 0.3)
 texture = ExtResource("3_suodu")
 
 [node name="Slide9" type="Control" parent="." unique_id=86874076]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -465,11 +526,11 @@ expand_mode = 2
 stretch_mode = 5
 
 [node name="Panel" type="Panel" parent="Slide9" unique_id=1940559147]
-layout_mode = 0
-offset_left = 112.0
-offset_top = 131.0
-offset_right = 473.0
-offset_bottom = 340.0
+layout_mode = 1
+offset_left = 260.0
+offset_top = 240.0
+offset_right = 621.0
+offset_bottom = 449.0
 
 [node name="Label" type="Label" parent="Slide9/Panel" unique_id=2096765801]
 layout_mode = 1
@@ -490,8 +551,12 @@ Beep Boop."
 horizontal_alignment = 1
 autowrap_mode = 3
 
-[node name="Sprite2D" type="Sprite2D" parent="Slide9" unique_id=1252814325]
-position = Vector2(663, 251)
+[node name="Sprite2D" type="TextureRect" parent="Slide9" unique_id=1692898905]
+layout_mode = 0
+offset_left = 819.0
+offset_top = 207.00002
+offset_right = 1647.0
+offset_bottom = 1190.0
 scale = Vector2(0.3, 0.3)
 texture = ExtResource("3_suodu")
 flip_h = true

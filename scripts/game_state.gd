@@ -13,7 +13,9 @@ const right_machine_offset := Vector2(1000.0, 350.0);
 var gameplay_scale : float = 1280.0 / 1920.0;
 var bounds := Rect2(Vector2(-500.0, -500.0) * gameplay_scale, Vector2(2e4, 2e4) * gameplay_scale);
 
-var game_finished : bool = true;
+var game_finished : bool = false;
+var sound_volume : float = 0.5;
+
 
 var is_editing : bool = false:
 	set(v):
@@ -162,11 +164,6 @@ func _init() -> void:
 	player_template = starting_machine.save_to_dictionary();
 	starting_machine.queue_free();
 
-#
-#func _ready() -> void:
-	#var vp: get_viewport();
-	#var w 
-
 
 func shoot_projectile(projectile_scene: Projectile, by: Module, global_pos: Vector2) -> void:
 	if current_scene != null:
@@ -279,7 +276,8 @@ func go_to_menu() -> void:
 
 func save_persistent() -> void:
 	var persistent_dictionary := {
-		"game_finished": game_finished
+		"game_finished": game_finished,
+		"sound_volume": sound_volume,
 	}
 	var native_str : String = JSON.stringify(JSON.from_native(persistent_dictionary));
 	
@@ -305,8 +303,11 @@ func load_persistent() -> void:
 		var err_int := FileAccess.get_open_error()
 		push_error(err_int, ": ", error_string(err_int));
 	
-	var persistent_dictionary : Dictionary = JSON.from_native(JSON.parse_string(file.get_as_text()))
+	var persistent_dictionary : Dictionary = JSON.to_native(JSON.parse_string(file.get_as_text()))
 	file.close()
 	
-	game_finished = persistent_dictionary.game_finished;
+	if persistent_dictionary.has(game_finished) and typeof(persistent_dictionary.game_finished) == TYPE_BOOL:
+		game_finished = persistent_dictionary.game_finished;
 	
+	if persistent_dictionary.has(sound_volume) and typeof(persistent_dictionary.sound_volume) == TYPE_FLOAT:
+		sound_volume = persistent_dictionary.sound_volume;

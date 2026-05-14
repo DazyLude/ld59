@@ -5,8 +5,8 @@ func _ready() -> void:
 	BgmPlayer.change_track(BgmPlayer.SoundID.MusicDefault)
 	
 	$VolumeControl/HSlider.value_changed.connect(update_master_volume);
-	var master_idx := AudioServer.get_bus_index(&"Master");
-	$VolumeControl/HSlider.value = AudioServer.get_bus_volume_linear(master_idx) * 100.0;
+	$VolumeControl/HSlider.set_value_no_signal(GameState.sound_volume * 100.0);
+	update_master_volume(GameState.sound_volume * 100.0);
 	
 	$VBoxContainer/Button3.visible = GameState.game_finished;
 	
@@ -17,4 +17,5 @@ func _ready() -> void:
 
 func update_master_volume(v: float) -> void:
 	var master_idx := AudioServer.get_bus_index(&"Master");
-	AudioServer.set_bus_volume_linear(master_idx, v / 100.0)
+	AudioServer.set_bus_volume_linear(master_idx, v / 100.0);
+	GameState.sound_volume = v / 100.0;

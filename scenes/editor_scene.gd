@@ -110,6 +110,9 @@ func _input(event: InputEvent) -> void:
 		try_rotate(+1);
 	
 	if event is InputEventMouseButton:
+		if $CanvasLayer/Rewards.visible:
+			return;
+		
 		var mb_event := event as InputEventMouseButton;
 		if mb_event.button_index == MOUSE_BUTTON_LEFT and mb_event.pressed:
 			if temporary_added != null:
@@ -213,7 +216,8 @@ func render_pending_rewards() -> void:
 		add_child(module);
 		remove_child(module);
 		button.icon = module.icon;
-		button.pressed.connect(module_picked.bind(module))
+		button.add_theme_stylebox_override(&"hover", preload("res://assets/theme_boxes/digital_box.tres"))
+		button.process_mode = Node.PROCESS_MODE_DISABLED
 		rewards_root.add_child(button);
 	
 	GameState.pending_rewards.clear();
