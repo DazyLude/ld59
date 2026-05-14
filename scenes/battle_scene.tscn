@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://b1hdqegky5p3a"]
 
 [ext_resource type="Script" uid="uid://buucuse0ejwjt" path="res://scenes/battle_scene.gd" id="1_idkgt"]
+[ext_resource type="FontFile" uid="uid://biultjax00i3k" path="res://assets/fonts/Jersey15-Regular.ttf" id="2_8qdv8"]
 [ext_resource type="Texture2D" uid="uid://c6ah7tvh6hcu" path="res://assets/backgrounds/fon1.png" id="2_kinr6"]
 [ext_resource type="Texture2D" uid="uid://41pta6ojygjs" path="res://assets/module_visuals/spritess.png" id="3_rca61"]
 
@@ -55,6 +56,39 @@ text = "x2"
 [node name="Button3" type="Button" parent="CanvasLayer/Control/HBoxContainer" unique_id=606334527]
 layout_mode = 2
 text = "x4"
+
+[node name="Panel" type="Panel" parent="CanvasLayer/Control" unique_id=1285840439]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -144.0
+offset_top = -80.0
+offset_right = -11.0
+offset_bottom = 66.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/Control/Panel" unique_id=1977594418]
+layout_mode = 0
+offset_left = 7.0
+offset_top = 7.0
+offset_right = 127.0
+offset_bottom = 38.0
+theme_override_fonts/font = ExtResource("2_8qdv8")
+text = "CONTROLS"
+
+[node name="Label" type="Label" parent="CanvasLayer/Control/Panel/Label" unique_id=1139388296]
+layout_mode = 0
+offset_top = 30.0
+offset_right = 122.0
+offset_bottom = 131.0
+theme_override_font_sizes/font_size = 22
+text = "LMB - target or activate
+1/2/3 - adjust speed"
+autowrap_mode = 2
 
 [node name="BG" type="Sprite2D" parent="." unique_id=2113337638]
 scale = Vector2(0.6, 0.6)

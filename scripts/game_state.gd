@@ -6,10 +6,14 @@ signal editing;
 signal battling;
 
 
-const bounds := Rect2(-1000.0, -1000.0, 2000.0, 2000.0);
-const left_machine_offset := Vector2(150.0, 300.0);
+const left_machine_offset := Vector2(250.0, 350.0);
+const right_machine_offset := Vector2(1000.0, 350.0);
 
-var game_finished : bool = false;
+# do not change when the game scenes are loaded
+var gameplay_scale : float = 1280.0 / 1920.0;
+var bounds := Rect2(Vector2(-500.0, -500.0) * gameplay_scale, Vector2(2e4, 2e4) * gameplay_scale);
+
+var game_finished : bool = true;
 
 var is_editing : bool = false:
 	set(v):
@@ -62,17 +66,17 @@ var wall_enemies := [
 	"wall"
 ]
 var easy_enemies := [
+	"shielded",
+]
+var medium_enemies := [
+	"well_protected",
 	"easy_target",
 	"overengineered",
 	"all_roads_lead_to_rome",
-]
-var medium_enemies := [
 	"double_trouble",
-	"shielded",
 	"spiral_of_doom",
 ]
 var hard_enemies := [
-	"well_protected",
 	"dot",
 	"glass_cannon",
 ]
@@ -151,8 +155,6 @@ var current_difficulty : int = 0;
 
 var player_template : Dictionary;
 
-# do not change when the game scenes are loaded
-var gameplay_scale : float = 948.0 / 1920.0;
 
 
 func _init() -> void:
@@ -273,3 +275,38 @@ func go_to_victory_screen() -> void:
 
 func go_to_menu() -> void:
 	get_tree().change_scene_to_file.call_deferred("res://scenes/main.tscn");
+
+
+func save_persistent() -> void:
+	var persistent_dictionary := {
+		"game_finished": game_finished
+	}
+	var native_str : String = JSON.stringify(JSON.from_native(persistent_dictionary));
+	
+	var file := FileAccess.open("user://pulse_advance.save", FileAccess.WRITE);
+	if file == null: # error when opening file
+		var err := FileAccess.get_open_error()
+		push_error(err, ": ", error_string(err));
+	
+	if not file.store_string(native_str):
+		var err := file.get_error()
+		push_error(err, ": ", error_string(err));
+		return;
+	
+	file.close()
+
+
+func load_persistent() -> void:
+	if not FileAccess.file_exists("user://pulse_advance.save"):
+		return;
+	
+	var file := FileAccess.open("user://pulse_advance.save", FileAccess.READ);
+	if file == null: # error when opening file
+		var err_int := FileAccess.get_open_error()
+		push_error(err_int, ": ", error_string(err_int));
+	
+	var persistent_dictionary : Dictionary = JSON.from_native(JSON.parse_string(file.get_as_text()))
+	file.close()
+	
+	game_finished = persistent_dictionary.game_finished;
+	

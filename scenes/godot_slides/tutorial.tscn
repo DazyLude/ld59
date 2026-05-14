@@ -18,17 +18,30 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_hu88a")
-slides = [NodePath("Slide1"), NodePath("Slide2"), NodePath("Slide3"), NodePath("Slide4"), NodePath("Slide5"), NodePath("Slide6"), NodePath("Slide7"), NodePath("Slide8"), NodePath("Slide9")]
+slides = [NodePath(""), NodePath(""), NodePath(""), NodePath(""), NodePath(""), NodePath(""), NodePath(""), NodePath(""), NodePath("")]
 
-[node name="Slide1" type="Node2D" parent="." unique_id=1657723713]
+[node name="Slide1" type="Control" parent="." unique_id=663470774]
 visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="Sprite2D2" type="Sprite2D" parent="Slide1" unique_id=1370769448]
-scale = Vector2(0.49322912, 0.49259257)
+[node name="BG" type="TextureRect" parent="Slide1" unique_id=384323316]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 texture = ExtResource("2_t48lw")
-centered = false
+expand_mode = 2
+stretch_mode = 5
 
 [node name="Panel" type="Panel" parent="Slide1" unique_id=1226685147]
+layout_mode = 0
 offset_left = 247.0
 offset_top = 96.0
 offset_right = 847.0
@@ -54,12 +67,25 @@ position = Vector2(171, 291)
 scale = Vector2(0.3, 0.3)
 texture = ExtResource("3_suodu")
 
-[node name="Slide2" type="Node2D" parent="." unique_id=779791000]
+[node name="Slide2" type="Control" parent="." unique_id=269275705]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="Sprite2D3" type="Sprite2D" parent="Slide2" unique_id=533203328]
-scale = Vector2(0.49322912, 0.49259257)
+[node name="BG" type="TextureRect" parent="Slide2" unique_id=1564820577]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 texture = ExtResource("2_t48lw")
-centered = false
+expand_mode = 2
+stretch_mode = 5
 
 [node name="Sprite2D2" type="Sprite2D" parent="Slide2" unique_id=359414102]
 position = Vector2(351.99997, 79)
@@ -68,6 +94,7 @@ texture = ExtResource("4_c4ic4")
 centered = false
 
 [node name="Panel" type="Panel" parent="Slide2" unique_id=680291243]
+layout_mode = 0
 offset_top = 50.0
 offset_right = 361.0
 offset_bottom = 259.0
@@ -96,12 +123,25 @@ position = Vector2(154, 409)
 scale = Vector2(0.3, 0.3)
 texture = ExtResource("3_suodu")
 
-[node name="Slide3" type="Node2D" parent="." unique_id=784064738]
+[node name="Slide3" type="Control" parent="." unique_id=515040804]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="Sprite2D3" type="Sprite2D" parent="Slide3" unique_id=1199255833]
-scale = Vector2(0.49322912, 0.49259257)
+[node name="BG" type="TextureRect" parent="Slide3" unique_id=1940979025]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 texture = ExtResource("2_t48lw")
-centered = false
+expand_mode = 2
+stretch_mode = 5
 
 [node name="Sprite2D2" type="Sprite2D" parent="Slide3" unique_id=1947608225]
 position = Vector2(351.99997, 79)
@@ -110,6 +150,7 @@ texture = ExtResource("4_c4ic4")
 centered = false
 
 [node name="Panel" type="Panel" parent="Slide3" unique_id=796935303]
+layout_mode = 0
 offset_top = 50.0
 offset_right = 361.0
 offset_bottom = 259.0
@@ -135,12 +176,25 @@ position = Vector2(154, 409)
 scale = Vector2(0.3, 0.3)
 texture = ExtResource("3_suodu")
 
-[node name="Slide4" type="Node2D" parent="." unique_id=278851489]
+[node name="Slide4" type="Control" parent="." unique_id=1950917486]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="Sprite2D3" type="Sprite2D" parent="Slide4" unique_id=1797798897]
-scale = Vector2(0.49322912, 0.49259257)
+[node name="BG" type="TextureRect" parent="Slide4" unique_id=143430585]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 texture = ExtResource("2_t48lw")
-centered = false
+expand_mode = 2
+stretch_mode = 5
 
 [node name="Sprite2D2" type="Sprite2D" parent="Slide4" unique_id=2124789354]
 position = Vector2(351.99997, 79)
@@ -149,6 +203,7 @@ texture = ExtResource("4_c4ic4")
 centered = false
 
 [node name="Panel" type="Panel" parent="Slide4" unique_id=29612665]
+layout_mode = 0
 offset_top = 50.0
 offset_right = 361.0
 offset_bottom = 259.0
@@ -174,12 +229,25 @@ position = Vector2(154, 409)
 scale = Vector2(0.3, 0.3)
 texture = ExtResource("3_suodu")
 
-[node name="Slide5" type="Node2D" parent="." unique_id=1396347961]
+[node name="Slide5" type="Control" parent="." unique_id=618156159]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="Sprite2D3" type="Sprite2D" parent="Slide5" unique_id=394954919]
-scale = Vector2(0.49322912, 0.49259257)
+[node name="BG" type="TextureRect" parent="Slide5" unique_id=1467059017]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 texture = ExtResource("2_t48lw")
-centered = false
+expand_mode = 2
+stretch_mode = 5
 
 [node name="Sprite2D2" type="Sprite2D" parent="Slide5" unique_id=427022501]
 position = Vector2(351.99997, 79)
@@ -188,6 +256,7 @@ texture = ExtResource("5_enajo")
 centered = false
 
 [node name="Panel" type="Panel" parent="Slide5" unique_id=381582856]
+layout_mode = 0
 offset_top = 50.0
 offset_right = 361.0
 offset_bottom = 259.0
@@ -213,12 +282,25 @@ position = Vector2(154, 409)
 scale = Vector2(0.3, 0.3)
 texture = ExtResource("3_suodu")
 
-[node name="Slide6" type="Node2D" parent="." unique_id=1169210465]
+[node name="Slide6" type="Control" parent="." unique_id=340156347]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="Sprite2D3" type="Sprite2D" parent="Slide6" unique_id=1719519130]
-scale = Vector2(0.49322912, 0.49259257)
+[node name="BG" type="TextureRect" parent="Slide6" unique_id=1621461572]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 texture = ExtResource("2_t48lw")
-centered = false
+expand_mode = 2
+stretch_mode = 5
 
 [node name="Sprite2D2" type="Sprite2D" parent="Slide6" unique_id=1054098189]
 position = Vector2(351.99997, 79)
@@ -227,6 +309,7 @@ texture = ExtResource("6_enajo")
 centered = false
 
 [node name="Panel" type="Panel" parent="Slide6" unique_id=264088673]
+layout_mode = 0
 offset_top = 50.0
 offset_right = 361.0
 offset_bottom = 259.0
@@ -253,12 +336,25 @@ position = Vector2(154, 409)
 scale = Vector2(0.3, 0.3)
 texture = ExtResource("3_suodu")
 
-[node name="Slide7" type="Node2D" parent="." unique_id=1983269953]
+[node name="Slide7" type="Control" parent="." unique_id=1622055580]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="Sprite2D3" type="Sprite2D" parent="Slide7" unique_id=862657853]
-scale = Vector2(0.49322912, 0.49259257)
+[node name="BG" type="TextureRect" parent="Slide7" unique_id=328556943]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 texture = ExtResource("2_t48lw")
-centered = false
+expand_mode = 2
+stretch_mode = 5
 
 [node name="Sprite2D2" type="Sprite2D" parent="Slide7" unique_id=941027931]
 position = Vector2(351.99997, 79)
@@ -267,6 +363,7 @@ texture = ExtResource("6_enajo")
 centered = false
 
 [node name="Panel" type="Panel" parent="Slide7" unique_id=557288912]
+layout_mode = 0
 offset_top = 50.0
 offset_right = 361.0
 offset_bottom = 259.0
@@ -295,12 +392,25 @@ position = Vector2(154, 409)
 scale = Vector2(0.3, 0.3)
 texture = ExtResource("3_suodu")
 
-[node name="Slide8" type="Node2D" parent="." unique_id=256592758]
+[node name="Slide8" type="Control" parent="." unique_id=1479150713]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="Sprite2D3" type="Sprite2D" parent="Slide8" unique_id=493707175]
-scale = Vector2(0.49322912, 0.49259257)
+[node name="BG" type="TextureRect" parent="Slide8" unique_id=1294541938]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 texture = ExtResource("2_t48lw")
-centered = false
+expand_mode = 2
+stretch_mode = 5
 
 [node name="Sprite2D2" type="Sprite2D" parent="Slide8" unique_id=1774760725]
 position = Vector2(351.99997, 79)
@@ -309,6 +419,7 @@ texture = ExtResource("7_2tffy")
 centered = false
 
 [node name="Panel" type="Panel" parent="Slide8" unique_id=873153294]
+layout_mode = 0
 offset_top = 50.0
 offset_right = 361.0
 offset_bottom = 259.0
@@ -334,14 +445,27 @@ position = Vector2(154, 409)
 scale = Vector2(0.3, 0.3)
 texture = ExtResource("3_suodu")
 
-[node name="Slide9" type="Node2D" parent="." unique_id=591871891]
+[node name="Slide9" type="Control" parent="." unique_id=86874076]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="Sprite2D3" type="Sprite2D" parent="Slide9" unique_id=1178082561]
-scale = Vector2(0.49322912, 0.49259257)
+[node name="BG" type="TextureRect" parent="Slide9" unique_id=847205859]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 texture = ExtResource("2_t48lw")
-centered = false
+expand_mode = 2
+stretch_mode = 5
 
 [node name="Panel" type="Panel" parent="Slide9" unique_id=1940559147]
+layout_mode = 0
 offset_left = 112.0
 offset_top = 131.0
 offset_right = 473.0

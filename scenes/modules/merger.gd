@@ -5,7 +5,7 @@ const n := Vector2i( 0.0, -1.0);
 const e := Vector2i( 1.0,  0.0);
 const w := Vector2i(-1.0,  0.0);
 const s := Vector2i( 0.0,  1.0);
-const pos_mult := Vector2(48.0, 48.0);
+const pos_mult := Vector2(32.0, 32.0);
 
 const rot_outputs : Array[Vector2i] = [
 	w, n, e, s

@@ -1,7 +1,7 @@
 extends Control
 
 
-@export var slides : Array[Node2D] = [];
+@export var slides : Array[Control] = [];
 var current_slide_idx : int = 0;
 
 

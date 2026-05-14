@@ -44,9 +44,6 @@ func _ready() -> void:
 	$CanvasLayer/ControlPanel/Load.pressed.connect(load_from_clipboard)
 	$CanvasLayer/GamePanel/Continue.pressed.connect(try_continue)
 	
-	$CanvasLayer/Tools/E.pressed.connect(try_rotate.bind(1))
-	$CanvasLayer/Tools/Q.pressed.connect(try_rotate.bind(-1))
-	
 	$CanvasLayer/DifficultySelect/VBoxContainer/Hide.pressed.connect(hide_difficulty_select)
 	
 	$CanvasLayer/DifficultySelect/VBoxContainer/HBoxContainer/Button.pressed.connect(
@@ -253,6 +250,8 @@ func spawn_all_items() -> void:
 
 func add_button_for_module(module: Module, _count: int) -> void:
 	var button : ModuleButton = preload("res://scenes/scene_elements/module_select.tscn").instantiate()
+	button.tooltip_text = "%s\n%s" % [tr(module.module_name), tr(module.description)]
+	
 	add_child(module);
 	remove_child(module);
 	button.icon = module.icon;

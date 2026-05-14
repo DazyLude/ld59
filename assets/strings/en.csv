@@ -1,0 +1,23 @@
+keys,en
+generator,Heart
+generator_desc,Your Heart. Generates three signals per second.
+peashooter,Peashooter
+peashooter_desc,Consumes a signal to shoot a pea at the target.
+lazer gun,Lazgun
+lazer gun_desc,Consumes a signal to shoot a projectile at the target.
+railgun,Railgun
+railgun_desc,Consumes a signal to shoot a strong projectile at the target.
+tube,Tube
+tube_desc,Transmits a signal in a single direction.
+splitter,Splitter
+splitter_desc,Splits signals to its outputs evenly.
+merger,Merger
+merger_desc,Merges signals from multiple outputs to a single input.
+armor,Armor
+armor_desc,Protects modules directly above and below of this one.
+barrier,Shield
+barrier_desc,Protects modules directly above and below of this one.\nTakes signals to charge. Regains health when charged.
+shield,Barrier
+shield_desc,Takes signals to charge. Can be activated when charged.\nAfter activations, blocks ALL incoming damage for 5 seconds.
+multiplicator,Multiplicator
+multiplicator_desc,Takes one signal to output three simultaneously.

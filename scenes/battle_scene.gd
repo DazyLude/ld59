@@ -82,7 +82,7 @@ func spawn_enemy_machine() -> void:
 		target = player_grid.modules[player_hearts[0]];
 	
 	var machine2 := Machine.load_from_dictionary(dict, "default");
-	machine2.position = Vector2(700.0, 300.0)
+	machine2.position = GameState.right_machine_offset;
 	machine2.reversed = true;
 	add_child(machine2)
 	machine2.body.set_textures(pack);
@@ -105,6 +105,15 @@ func _input(event: InputEvent) -> void:
 					# user is targeting other machine
 					var new_target := GameState.machine_right.grid.modules[module];
 					GameState.machine_left.targeting_strategy = new_target;
+	
+	if event.is_action_pressed(&"set_speed_normal"):
+		set_speed(1);
+	
+	if event.is_action_pressed(&"set_speed_fast"):
+		set_speed(2);
+	
+	if event.is_action_pressed(&"set_speed_super_fast"):
+		set_speed(4);
 
 
 

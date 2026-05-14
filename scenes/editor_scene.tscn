@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://d3pt6yfvdbj1t" path="res://scenes/editor_scene.gd" id="1_slmlx"]
 [ext_resource type="Texture2D" uid="uid://c6ah7tvh6hcu" path="res://assets/backgrounds/fon1.png" id="2_y86vm"]
+[ext_resource type="FontFile" uid="uid://biultjax00i3k" path="res://assets/fonts/Jersey15-Regular.ttf" id="3_slmlx"]
 
 [node name="EditorScene" type="Node2D" unique_id=1203965672 node_paths=PackedStringArray("module_selector_root")]
 script = ExtResource("1_slmlx")
@@ -29,7 +30,8 @@ anchors_preset = 11
 anchor_left = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -448.0
+offset_left = -595.0
+offset_right = -147.0
 grow_horizontal = 0
 grow_vertical = 2
 theme_override_constants/margin_left = 20
@@ -43,6 +45,40 @@ layout_mode = 2
 [node name="GridContainer" type="GridContainer" parent="CanvasLayer/Control/MarginContainer/ScrollContainer" unique_id=659301433]
 layout_mode = 2
 columns = 4
+
+[node name="Panel" type="Panel" parent="CanvasLayer/Control" unique_id=2085444439]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -144.0
+offset_top = -80.0
+offset_right = -11.0
+offset_bottom = 95.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/Control/Panel" unique_id=332052048]
+layout_mode = 0
+offset_left = 7.0
+offset_top = 7.0
+offset_right = 127.0
+offset_bottom = 38.0
+theme_override_fonts/font = ExtResource("3_slmlx")
+text = "CONTROLS"
+
+[node name="Label" type="Label" parent="CanvasLayer/Control/Panel/Label" unique_id=66146150]
+layout_mode = 0
+offset_top = 30.0
+offset_right = 121.0
+offset_bottom = 105.0
+theme_override_font_sizes/font_size = 22
+text = "LMB - pick and place modules
+RMB - stash to inventory
+Q/E - rotate"
+autowrap_mode = 2
 
 [node name="ControlPanel" type="HBoxContainer" parent="CanvasLayer" unique_id=1287892958]
 offset_right = 40.0
@@ -59,27 +95,6 @@ text = "load from clipboard"
 [node name="Label" type="Label" parent="CanvasLayer/ControlPanel" unique_id=1574810227]
 layout_mode = 2
 text = "creative mode on!"
-
-[node name="Tools" type="VBoxContainer" parent="CanvasLayer" unique_id=1991148191]
-anchors_preset = -1
-anchor_left = 0.14600001
-anchor_top = 0.76400006
-anchor_right = 0.14600001
-anchor_bottom = 0.76400006
-offset_left = -0.40800476
-offset_top = -0.21203613
-offset_right = 252.592
-offset_bottom = 125.787964
-grow_horizontal = 2
-grow_vertical = 0
-
-[node name="E" type="Button" parent="CanvasLayer/Tools" unique_id=1589258840]
-layout_mode = 2
-text = "rotate forward (E)"
-
-[node name="Q" type="Button" parent="CanvasLayer/Tools" unique_id=1884853272]
-layout_mode = 2
-text = "rotate backward (Q)"
 
 [node name="GamePanel" type="HBoxContainer" parent="CanvasLayer" unique_id=42070941]
 anchors_preset = 2

@@ -10,10 +10,10 @@ var module_paths : Array[String] = [
 	"res://scenes/modules/railgun.tscn",
 	"res://scenes/modules/tube.tscn",
 	"res://scenes/modules/splitter.tscn",
+	"res://scenes/modules/merger.tscn",
 	"res://scenes/modules/armor.tscn",
 	"res://scenes/modules/barrier.tscn",
 	"res://scenes/modules/shield.tscn",
-	"res://scenes/modules/merger.tscn",
 	"res://scenes/modules/super_generator.tscn",
 ];
 
